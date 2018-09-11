@@ -6,7 +6,7 @@ import React from 'react';
 /**
  * Local import
  */
-
+import DailyQuestions from '../DailyQuestions';
 // Styles et assets
 import './app.sass';
 
@@ -16,6 +16,7 @@ import './app.sass';
 const App = () => (
   <div id="app">
     App
+    <DailyQuestions />
   </div>
 );
 
