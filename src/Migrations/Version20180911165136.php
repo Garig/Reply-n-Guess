@@ -8,7 +8,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20180911152758 extends AbstractMigration
+final class Version20180911165136 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -21,7 +21,7 @@ final class Version20180911152758 extends AbstractMigration
         $this->addSql('CREATE TABLE status (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE result (id INT AUTO_INCREMENT NOT NULL, nb_voting INT NOT NULL, nb_answer_1 INT NOT NULL, nb_answer_2 INT NOT NULL, nb_predict_1 INT NOT NULL, nb_predict_2 INT NOT NULL, perc_answer_1 INT NOT NULL, perc_answer_2 INT NOT NULL, perc_predict_1_true INT NOT NULL, perc_predict_1_false INT NOT NULL, perc_predict_2_true INT NOT NULL, perc_predict_2_false INT NOT NULL, perc_men_answer_1 INT NOT NULL, perc_men_answer_2 INT NOT NULL, perc_women_answer_1 INT NOT NULL, perc_women_answer_2 INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE answer (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, questions_id INT DEFAULT NULL, user_choice INT NOT NULL, user_predict INT NOT NULL, INDEX IDX_DADD4A2567B3B43D (users_id), INDEX IDX_DADD4A25BCB134CE (questions_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE departement (id INT AUTO_INCREMENT NOT NULL, code INT NOT NULL, name VARCHAR(40) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE departement (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(3) NOT NULL, name VARCHAR(40) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE question ADD CONSTRAINT FK_B6F7494E67B3B43D FOREIGN KEY (users_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE question ADD CONSTRAINT FK_B6F7494E1259C1FF FOREIGN KEY (statuses_id) REFERENCES status (id)');
         $this->addSql('ALTER TABLE question ADD CONSTRAINT FK_B6F7494E8A30AB9 FOREIGN KEY (results_id) REFERENCES result (id)');

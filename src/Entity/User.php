@@ -71,7 +71,7 @@ class User
     private $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="Users")
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="users")
      */
     private $answers;
 

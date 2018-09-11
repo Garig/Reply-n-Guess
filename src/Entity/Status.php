@@ -24,7 +24,7 @@ class Status
     private $code;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="status")
+     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="statuses")
      */
     private $questions;
 
