@@ -1,0 +1,46 @@
+{
+    "devDependencies": {
+        "@babel/core": "*",
+        "@babel/plugin-proposal-class-properties": "*",
+        "@babel/plugin-proposal-object-rest-spread": "*",
+        "@babel/preset-env": "*",
+        "@babel/preset-react": "*",
+        "@symfony/webpack-encore": "^0.20.0",
+        "autoprefixer": "*",
+        "babel-eslint": "*",
+        "babel-loader": "*",
+        "babel-preset-react": "^6.24.1",
+        "css-loader": "*",
+        "file-loader": "*",
+        "html-webpack-plugin": "*",
+        "ignore-styles": "*",
+        "mini-css-extract-plugin": "*",
+        "mocha": "*",
+        "node-sass": "*",
+        "optimize-css-assets-webpack-plugin": "*",
+        "postcss": "*",
+        "postcss-loader": "*",
+        "sass-loader": "*",
+        "style-loader": "*",
+        "uglifyjs-webpack-plugin": "*",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production"
+    },
+    "dependencies": {
+        "@babel/polyfill": "*",
+        "classnames": "*",
+        "express": "^4.16.3",
+        "nodemon": "^1.18.4",
+        "react": "*",
+        "react-dom": "*",
+        "react-redux": "*",
+        "redux": "*"
+    }
+}
