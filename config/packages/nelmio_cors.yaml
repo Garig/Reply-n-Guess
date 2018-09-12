@@ -1,6 +1,8 @@
 nelmio_cors:
     defaults:
         origin_regex: true
+        # Modification pour les autorisations de l'API
+        # @LINK https://github.com/nelmio/NelmioCorsBundle#configuration
         allow_origin: ['*']
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
