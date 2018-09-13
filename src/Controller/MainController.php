@@ -14,9 +14,17 @@ use Symfony\Component\HttpFoundation\Response;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/test", name="index")
+     * @Route("/", name="index")
      */
     public function index()
+    {
+        return $this->render('main/index.html.twig');
+    }
+
+        /**
+     * @Route("/test", name="test")
+     */
+    public function test()
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
@@ -28,12 +36,6 @@ class MainController extends AbstractController
         $question = $repository->find(1);
 
         $questionJson = $serializer->serialize($question, 'json');
-
-        // dump($questionJson);
-
-        // return $this->render('main/index.html.twig', [
-        //     'questionJson' => $questionJson,
-        // ]);
 
         $response = new Response($questionJson);
         $response->headers->set('Content-Type', 'application/json');
