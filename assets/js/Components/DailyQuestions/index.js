@@ -19,31 +19,31 @@ class DailyQuestions extends React.Component {
     questions : []
   }
   componentDidMount() {
-    const URL = 'http://localhost:8001';
-    axios
-      .get(`${URL}/test`)
-      .then(response => {
-        // Check si le state est bien vide
-        console.log(this.state.questions)
-        this.setState({
-          questions: [...this.state.questions, response.data]
-        })
-        // Check le state est bien mis a jour
-        console.log(this.state.questions)
-      })
-      .catch(error => console.log(error));
-    axios
-      .post(`${URL}/api/questions`, {
-        title: 'question_test_api_4',
-        prop1: 'un',
-        prop2: 'deux',
-      })
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // const URL = 'http://localhost:8001';
+    // axios
+    //   .get(`${URL}/test`)
+    //   .then(response => {
+    //     // Check si le state est bien vide
+    //     console.log(this.state.questions)
+    //     this.setState({
+    //       questions: [...this.state.questions, response.data]
+    //     })
+    //     // Check le state est bien mis a jour
+    //     console.log(this.state.questions)
+    //   })
+    //   .catch(error => console.log(error));
+    // axios
+    //   .post(`${URL}/api/questions`, {
+    //     title: 'question_test_api_4',
+    //     prop1: 'un',
+    //     prop2: 'deux',
+    //   })
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
   render() {
     return (
