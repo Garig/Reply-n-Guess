@@ -5,11 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Question;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends AbstractController
 {
@@ -21,7 +23,7 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig');
     }
 
-        /**
+    /**
      * @Route("/test", name="test")
      */
     public function test()
@@ -42,6 +44,25 @@ class MainController extends AbstractController
 
         return $response;
     }
-}
 
+    /**
+     * @Route("/send", name="send_test")
+     */
+    public function testDeserialize(Request $request)
+    {       
+        $content = $request->getContent();
+        $json = json_decode($content, true);
+
+        $question = new Question();
+        $question->setTitle($json['title']);
+        $question->setProp1($json['prop_1']);
+        $question->setProp2($json['prop_2']);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($question);
+        $em->flush();
+
+        return new JsonResponse($json);
+    }
+}
 

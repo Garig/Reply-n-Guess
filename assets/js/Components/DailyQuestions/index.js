@@ -18,7 +18,7 @@ class DailyQuestions extends React.Component {
   state = {
     questions : []
   }
-  componentWillMount() {
+  componentDidMount() {
     const URL = 'http://localhost:8001';
     axios
       .get(`${URL}/test`)
@@ -32,6 +32,18 @@ class DailyQuestions extends React.Component {
         console.log(this.state.questions)
       })
       .catch(error => console.log(error));
+    axios
+      .post(`${URL}/api/questions`, {
+        title: 'question_test_api_4',
+        prop1: 'un',
+        prop2: 'deux',
+      })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   render() {
     return (
