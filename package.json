@@ -28,6 +28,8 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "clean": "rm -rf dist",
+        "clean:all": "rm -rf dist node_modules",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",

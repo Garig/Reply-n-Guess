@@ -16,15 +16,15 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `villes_fr`
---
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `departement`
 --
+CREATE TABLE IF NOT EXISTS `departement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(3) NOT NULL,
+  `name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -35,8 +35,8 @@ INSERT INTO `departement` (`id`, `code`, `name`) VALUES
 (1, '01', 'Ain'),
 (2, '02', 'Aisne'),
 (3, '03', 'Allier'),
-(5, '05', 'Hautes-Alpes'),
 (4, '04', 'Alpes-de-Haute-Provence'),
+(5, '05', 'Hautes-Alpes'),
 (6, '06', 'Alpes-Maritimes'),
 (7, '07', 'Ardèche'),
 (8, '08', 'Ardennes'),
@@ -128,11 +128,11 @@ INSERT INTO `departement` (`id`, `code`, `name`) VALUES
 (94, '93', 'Seine-Saint-Denis'),
 (95, '94', 'Val-de-Marne'),
 (96, '95', 'Val-d''oise'),
-(97, '976', 'Mayotte'),
-(98, '971', 'Guadeloupe'),
+(97, '971', 'Guadeloupe'),
+(98, '972', 'Martinique'),
 (99, '973', 'Guyane'),
-(100, '972', 'Martinique'),
-(101, '974', 'Réunion');
+(100, '974', 'Réunion');
+(101, '976', 'Mayotte'),
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
