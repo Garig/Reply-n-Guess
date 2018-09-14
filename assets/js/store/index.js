@@ -7,9 +7,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
  * Local import
  */
 // Reducer
-import reducer from 'js/store/reducer'; // notre reducer custom
+import reducer from './reducer.js'; // notre reducer custom
+
 // Middlewares
-import socketMiddleware from './socket'; // notre middleware custom
+// import socketMiddleware from './socket'; // notre middleware custom
 
 /*
  * Code
@@ -24,10 +25,11 @@ if (window.devToolsExtension) {
 }
 
 // Middlewares custom — on n'en a qu'un seul
-const mySocketMiddleware = applyMiddleware(socketMiddleware);
+// const mySocketMiddleware = applyMiddleware(socketMiddleware);
 
 // Enhancers : les extensions/outils + les middlewares custom
-const enhancers = compose(mySocketMiddleware, ...devTools);
+// const enhancers = compose(mySocketMiddleware, ...devTools);
+const enhancers = compose(...devTools);
 
 // createStore configure le store avec le reducer et les "enhancers"
 const store = createStore(

@@ -10,25 +10,26 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import App from './Components/App';
+import { Provider } from 'react-redux';
 
 /**
  * Local import
  */
 // Components
-import App from './Components/App';
+import App from './containers/App';
 
 // Store
-// import store from 'src/store';
+import store from './store';
 
 // Action
-// import { websocketConnect } from 'src/store/actions';
 
 /**
  * Code
  */
 const rootComponent = (
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 render(rootComponent, document.getElementById('root'));

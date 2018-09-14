@@ -15,9 +15,9 @@ import './app.sass';
 /**
  * Code
  */
-const App = () => (
+const App = ({ doSomething }) => (
   <div id="app">
-    App
+    <p onClick={doSomething}>App</p>
     <DailyQuestions />
     <Form />
   </div>

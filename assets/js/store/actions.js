@@ -8,5 +8,5 @@ export const DO_SOMETHING = 'actions/DO_SOMETHING';
  */
 // On fait qqchose
 export const doSomething = () => ({
-  type: DO_SOMETHING,
+  type: DO_SOMETHING
 });
