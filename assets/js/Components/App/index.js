@@ -7,6 +7,8 @@ import React from 'react';
  * Local import
  */
 import DailyQuestions from '../DailyQuestions';
+import Form from '../Form';
+
 // Styles et assets
 import './app.sass';
 
@@ -17,6 +19,7 @@ const App = () => (
   <div id="app">
     App
     <DailyQuestions />
+    <Form />
   </div>
 );
 
