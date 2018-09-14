@@ -20,6 +20,22 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
 
+    /**
+    * @return Question[] Returns an array of Question objects
+    */
+    
+    public function findThreeByrandom()
+    {
+        return $this->createQueryBuilder('q')
+            // ->andWhere('q.exampleField = :val')
+            ->orderBy('RAND()')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

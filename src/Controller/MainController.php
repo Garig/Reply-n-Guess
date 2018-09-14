@@ -20,7 +20,20 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render('main/index.html.twig');
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();
+
+        dump($questions);
+        
+        $questionsJson = $serializer->serialize($questions, 'json');
+
+        $response = new Response($questionsJson);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -30,7 +43,6 @@ class MainController extends AbstractController
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
-
         $serializer = new Serializer($normalizers, $encoders);
 
         $repository = $this->getDoctrine()->getRepository(Question::class);
