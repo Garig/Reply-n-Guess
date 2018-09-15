@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class MainController extends AbstractController
 {
@@ -20,14 +21,14 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
+        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();  
 
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = array(new DateTimeNormalizer(), new ObjectNormalizer());
+        $serializer = new Serializer($normalizer, $encoders);
 
         dump($questions);
-        
+
         $questionsJson = $serializer->serialize($questions, 'json');
 
         $response = new Response($questionsJson);

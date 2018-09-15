@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -28,10 +29,14 @@ class QuestionRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('q')
             // ->andWhere('q.exampleField = :val')
+            // ->innerJoin('q.users', 'u', Join::ON, 'q.id = u.id')
+            ->innerJoin('q.users', 'u')
+            ->where('q.id = u.id')
             ->orderBy('RAND()')
             ->setMaxResults(3)
             ->getQuery()
-            ->getResult()
+            ->getResult()  
+            
         ;
     }
 
