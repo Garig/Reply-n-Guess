@@ -15,13 +15,29 @@ import axios from 'axios';
  * Code
  */
 
-const DailyQuestions = ({ loadDailyQuestions }) => {
-  loadDailyQuestions();
-  return (
-    <div>
-     Daily
-    </div>
-  );
+class DailyQuestions extends React.Component {
+  componentDidMount() {
+    this.props.loadDailyQuestions();
+  }
+  render() {
+    return (
+      <div>
+        {
+          this.props.questions.length > 0
+            ? this.props.questions.map(current =>
+              <ul key={current.id}>
+                <li>ID : {current.id}</li>
+                <li>TITLE : {current.title}</li>
+                <li>PROP 1 : {current.prop1}</li>
+                <li>PROP 2 : {current.porp2}</li>
+                <li>SUBMIT : {current.submitDate.timestamp}</li>
+              </ul>
+            )
+            : null
+        }
+      </div>
+    );
+  }
 };
 
 /**

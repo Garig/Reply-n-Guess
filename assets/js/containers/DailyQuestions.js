@@ -16,7 +16,9 @@ import DailyQuestions from '../Components/DailyQuestions';
  *  - ownProps : les props passées au container
  * Pas de data à transmettre ? ==> alors const mapStateToProps = null;
  */
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  questions: state.questions
+});
 
 /* === Actions ===
  */
