@@ -14,6 +14,7 @@
         "file-loader": "*",
         "html-webpack-plugin": "*",
         "ignore-styles": "*",
+        "logger": "^0.0.1",
         "mini-css-extract-plugin": "*",
         "mocha": "*",
         "node-sass": "*",
@@ -44,6 +45,7 @@
         "react": "*",
         "react-dom": "*",
         "react-redux": "*",
-        "redux": "*"
+        "redux": "*",
+        "redux-thunk": "^2.3.0"
     }
 }

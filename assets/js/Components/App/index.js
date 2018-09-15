@@ -6,7 +6,7 @@ import React from 'react';
 /**
  * Local import
  */
-import DailyQuestions from '../DailyQuestions';
+import DailyQuestions from '../../containers/DailyQuestions';
 import Form from '../Form';
 
 // Styles et assets
