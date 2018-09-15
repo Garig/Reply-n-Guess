@@ -2,7 +2,8 @@
  * Npm import
  */
 import { createStore, applyMiddleware, compose } from 'redux';
-
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 /*
  * Local import
  */
@@ -24,11 +25,15 @@ if (window.devToolsExtension) {
   devTools.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
-// Middlewares custom — on n'en a qu'un seul
-const myquestionsMiddleware = applyMiddleware(questionsMiddleware);
+// Middleware custom — on n'en a qu'un seul
+const middleware = applyMiddleware(
+  questionsMiddleware,
+  logger,
+  thunk
+);
 
 // Enhancers : les extensions/outils + les middlewares custom
-const enhancers = compose(myquestionsMiddleware, ...devTools);
+const enhancers = compose(middleware, ...devTools);
 
 // createStore configure le store avec le reducer et les "enhancers"
 const store = createStore(
