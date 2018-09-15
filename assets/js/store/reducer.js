@@ -23,7 +23,6 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case RECEIVE_DAILY_QUESTIONS:
-      console.log('RECEIVE_DAILY_QUESTIONS');
       return {
         ...state,
         questions: [...state.questions, ...action.payload]
