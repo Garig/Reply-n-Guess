@@ -23,9 +23,14 @@ class MainController extends AbstractController
     {
         $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();  
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizer = array(new DateTimeNormalizer(), new ObjectNormalizer());
-        $serializer = new Serializer($normalizer, $encoders);
+        $encoders = array(new JsonEncoder());
+        $objectNormalizer = new ObjectNormalizer(); 
+        $objectNormalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array(new DateTimeNormalizer(), $objectNormalizer);
+    
+        $serializer = new Serializer($normalizers, $encoders);
 
         dump($questions);
 
