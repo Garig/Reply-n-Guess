@@ -1,5 +1,6 @@
 import {
-  LOAD_DAILY_QUESTIONS
+  LOAD_DAILY_QUESTIONS,
+  receiveDailyQuestions
 } from '../actions';
 import axios from 'axios';
 
@@ -11,7 +12,9 @@ const questionsMiddleware = store => next => (action) => {
       console.log('LOAD_DAILY_QUESTIONS');
       axios
         .get(`${URL}/dailyQuestion`)
-        .then(response => console.log(response))
+        .then(response => {
+          store.dispatch(receiveDailyQuestions(response.data));
+        })
         .catch(error => console.log(error));
       break;
     }

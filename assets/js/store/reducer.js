@@ -2,7 +2,8 @@
  * Local import
  */
 import {
-  DO_SOMETHING
+  DO_SOMETHING,
+  RECEIVE_DAILY_QUESTIONS
 } from './actions';
 
 /**
@@ -21,10 +22,11 @@ const initialState = {
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
-      console.log('DO_SOMETHING');
+    case RECEIVE_DAILY_QUESTIONS:
+      console.log('RECEIVE_DAILY_QUESTIONS', action.payload);
       return {
-        ...state
+        ...state,
+        questions: [...state.questions, ...action.payload]
       };
 
     default:
