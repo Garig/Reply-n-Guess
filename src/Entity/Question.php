@@ -6,9 +6,21 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\QuestionController;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *          "get",
+ *          "post",
+ *          "dailyQuestions"={
+ *              "method"="GET",
+ *              "path"="/dailyQuestions",
+ *              "controller"=QuestionController::class
+ *          }
+ *      },
+ *      attributes={"formats"={"jsonld"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
 class Question

@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Question;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -16,32 +15,6 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class MainController extends AbstractController
 {
-    /**
-     * @Route("/dailyQuestions", name="daily_questions")
-     */
-    public function dailyQuestions()
-    {
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();  
-
-        $encoders = array(new JsonEncoder());
-        $objectNormalizer = new ObjectNormalizer(); 
-        // $objectNormalizer->setCircularReferenceHandler(function ($object) {
-        //     return $object->getId();
-        // });
-        $normalizers = array(new DateTimeNormalizer(), $objectNormalizer);
-    
-        $serializer = new Serializer($normalizers, $encoders);
-
-        dump($questions);
-
-        $questionsJson = $serializer->serialize($questions, 'json');
-
-        $response = new Response($questionsJson);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
     /**
      * @Route("/", name="index")
      */

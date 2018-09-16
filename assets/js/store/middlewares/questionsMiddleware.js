@@ -11,9 +11,9 @@ const questionsMiddleware = store => next => (action) => {
     case LOAD_DAILY_QUESTIONS: {
       store.dispatch(dispatch => {
         axios
-          .get(`${URL}/dailyQuestions`)
+          .get(`${URL}/api/dailyQuestions`)
           .then(response => {
-            dispatch(receiveDailyQuestions(response.data));
+            dispatch(receiveDailyQuestions(response.data['hydra:member']));
           })
           .catch(error => console.log(error));
       });

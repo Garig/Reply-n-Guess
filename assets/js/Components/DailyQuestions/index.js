@@ -2,7 +2,6 @@
  * Import
  */
 import React from 'react';
-import axios from 'axios';
 
 /**
  * Local import
@@ -14,7 +13,6 @@ import axios from 'axios';
 /**
  * Code
  */
-
 class DailyQuestions extends React.Component {
   componentDidMount() {
     this.props.loadDailyQuestions();
