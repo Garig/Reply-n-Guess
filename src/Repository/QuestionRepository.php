@@ -21,47 +21,45 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    /**
-    * @return Question[] Returns an array of Question objects
-    */
-    public function findThreeByrandom()
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
-            FROM App\Entity\Question q 
-            INNER JOIN App\Entity\User u
-            WITH q.users = u.id 
-            ORDER BY rand()'
-            
-    )->setMaxResults(3);
-
-    // returns an array of Product objects
-    return $query->execute(); 
-            
-    }
-
-
     // /**
     // * @return Question[] Returns an array of Question objects
     // */
-    
     // public function findThreeByrandom()
     // {
-    //     return $this->createQueryBuilder('q')
-    //         // ->andWhere('q.exampleField = :val')
-    //         // ->innerJoin('q.users', 'u', Join::ON, 'q.id = u.id')
-    //         // ->innerJoin('q.users', 'u')
-    //         // ->where('q.id = u.id')
-    //         ->orderBy('RAND()')
-    //         ->setMaxResults(3)
-    //         ->getQuery()
-    //         ->getResult()  
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
+    //         FROM App\Entity\Question q 
+    //         INNER JOIN App\Entity\User u
+    //         WITH q.users = u.id 
+    //         ORDER BY rand()'
             
-    //     ;
-    //     // SELECT * FROM question INNER JOIN user ON question.users_id = user.id ORDER BY rand() LIMIT 3;
+    // )->setMaxResults(3);
+
+    // // returns an array of Product objects
+    // return $query->execute(); 
+            
     // }
+
+
+    /**
+    * @return Question[] Returns an array of Question objects
+    */
+    
+    public function findThreeByrandom()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar')
+            ->innerJoin('q.users', 'u')
+            ->where('q.id = u.id')
+            ->orderBy('RAND()')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()  
+            
+        ;
+    }
 
 
 //    /**

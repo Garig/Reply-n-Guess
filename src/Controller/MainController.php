@@ -25,9 +25,9 @@ class MainController extends AbstractController
 
         $encoders = array(new JsonEncoder());
         $objectNormalizer = new ObjectNormalizer(); 
-        $objectNormalizer->setCircularReferenceHandler(function ($object) {
-            return $object->getId();
-        });
+        // $objectNormalizer->setCircularReferenceHandler(function ($object) {
+        //     return $object->getId();
+        // });
         $normalizers = array(new DateTimeNormalizer(), $objectNormalizer);
     
         $serializer = new Serializer($normalizers, $encoders);
