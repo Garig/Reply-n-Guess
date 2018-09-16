@@ -22,7 +22,7 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     // /**
-    // * @return Question[] Returns an array of Question objects
+    // * @return Question[] Returns an array of 3 Questions objects
     // */
     // public function findThreeByrandom()
     // {
@@ -34,31 +34,26 @@ class QuestionRepository extends ServiceEntityRepository
     //         INNER JOIN App\Entity\User u
     //         WITH q.users = u.id 
     //         ORDER BY rand()'
-            
     // )->setMaxResults(3);
 
-    // // returns an array of Product objects
-    // return $query->execute(); 
-            
+    // // returns an array of 3 Questions objects
+    // return $query->execute();  
     // }
 
 
     /**
-    * @return Question[] Returns an array of Question objects
+    * @return Question[] Returns an array of 3 Questions objects
     */
-    
     public function findThreeByrandom()
     {
         return $this->createQueryBuilder('q')
-            ->select('q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, u.id as user_id, u.username, u.avatar')
             ->innerJoin('q.users', 'u')
-            ->where('q.id = u.id')
+            ->where('q.users = u.id')
             ->orderBy('RAND()')
             ->setMaxResults(3)
             ->getQuery()
-            ->getResult()  
-            
-        ;
+            ->getResult();
     }
 
 

@@ -47,7 +47,7 @@ class MainController extends AbstractController
      */
     public function test()
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $encoder = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
