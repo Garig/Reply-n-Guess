@@ -11,7 +11,7 @@ const questionsMiddleware = store => next => (action) => {
     case LOAD_DAILY_QUESTIONS: {
       store.dispatch(dispatch => {
         axios
-          .get(`${URL}/dailyQuestion`)
+          .get(`${URL}/dailyQuestions`)
           .then(response => {
             dispatch(receiveDailyQuestions(response.data));
           })

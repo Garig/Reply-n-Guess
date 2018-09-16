@@ -27,9 +27,9 @@ class DailyQuestions extends React.Component {
             <ul key={current.id}>
               <li>ID : {current.id}</li>
               <li>TITLE : {current.title}</li>
-              <li>PROP 1 : {current.prop1}</li>
-              <li>PROP 2 : {current.porp2}</li>
-              <li>SUBMIT : {current.submitDate.timestamp}</li>
+              <li>PROP 1 : {current.prop_1}</li>
+              <li>PROP 2 : {current.prop_2}</li>
+              <li>SUBMIT : {current.submit_date}</li>
             </ul>
           )
         }

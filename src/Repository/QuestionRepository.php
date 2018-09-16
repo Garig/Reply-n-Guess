@@ -47,7 +47,7 @@ class QuestionRepository extends ServiceEntityRepository
     public function findThreeByrandom()
     {
         return $this->createQueryBuilder('q')
-            ->select('q.id, q.title, q.prop_1, q.prop_2, u.id as user_id, u.username, u.avatar')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, q.submit_date, u.id as user_id, u.username, u.avatar')
             ->innerJoin('q.users', 'u')
             ->where('q.users = u.id')
             ->orderBy('RAND()')

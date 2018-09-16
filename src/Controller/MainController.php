@@ -17,9 +17,9 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/dailyQuestions", name="daily_questions")
      */
-    public function index()
+    public function dailyQuestions()
     {
         $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();  
 
@@ -40,6 +40,14 @@ class MainController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /**
+     * @Route("/", name="index")
+     */
+    public function Index()
+    {
+        return $this->render('main/index.html.twig');
     }
 
     /**
