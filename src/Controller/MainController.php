@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class MainController extends AbstractController
 {
@@ -20,7 +21,25 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render('main/index.html.twig');
+        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();  
+
+        $encoders = array(new JsonEncoder());
+        $objectNormalizer = new ObjectNormalizer(); 
+        // $objectNormalizer->setCircularReferenceHandler(function ($object) {
+        //     return $object->getId();
+        // });
+        $normalizers = array(new DateTimeNormalizer(), $objectNormalizer);
+    
+        $serializer = new Serializer($normalizers, $encoders);
+
+        dump($questions);
+
+        $questionsJson = $serializer->serialize($questions, 'json');
+
+        $response = new Response($questionsJson);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -28,7 +47,7 @@ class MainController extends AbstractController
      */
     public function test()
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $encoder = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
@@ -63,25 +82,5 @@ class MainController extends AbstractController
 
         return new JsonResponse($json);
     }
+}
 
-    /**
-     * @Route("/dailyQuestion", name="dailyQuestion")
-     */
-    public function dailyQuestion()
-    {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findThreeByrandom();
-
-        dump($questions);
-        
-        $questionsJson = $serializer->serialize($questions, 'json');
-
-        $response = new Response($questionsJson);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-};

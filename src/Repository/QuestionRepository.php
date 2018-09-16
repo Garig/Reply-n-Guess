@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,20 +21,39 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    // /**
+    // * @return Question[] Returns an array of 3 Questions objects
+    // */
+    // public function findThreeByrandom()
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
+    //         FROM App\Entity\Question q 
+    //         INNER JOIN App\Entity\User u
+    //         WITH q.users = u.id 
+    //         ORDER BY rand()'
+    // )->setMaxResults(3);
+
+    // // returns an array of 3 Questions objects
+    // return $query->execute();  
+    // }
+
 
     /**
-    * @return Question[] Returns an array of Question objects
+    * @return Question[] Returns an array of 3 Questions objects
     */
-    
     public function findThreeByrandom()
     {
         return $this->createQueryBuilder('q')
-            // ->andWhere('q.exampleField = :val')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, u.id as user_id, u.username, u.avatar')
+            ->innerJoin('q.users', 'u')
+            ->where('q.users = u.id')
             ->orderBy('RAND()')
             ->setMaxResults(3)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
 
