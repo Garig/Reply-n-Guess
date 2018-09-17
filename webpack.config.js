@@ -31,10 +31,12 @@ Encore
   .enableSourceMaps(!Encore.isProduction())
 // enables hashed filenames (e.g. app.abc123.css)
   .enableVersioning(Encore.isProduction())
-  .enableReactPreset();
+  .enableReactPreset()
 
 // enables Sass/SCSS support
-// .enableSassLoader()
+  .enableSassLoader(function(options) {}, {
+    resolveUrlLoader: true
+  })
 
 // uncomment if you use TypeScript
 // .enableTypeScriptLoader()
