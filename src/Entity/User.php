@@ -84,6 +84,8 @@ class User
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->setIsValidate(false);
+        $this->setScore(0);
     }
 
     public function getId(): ?int

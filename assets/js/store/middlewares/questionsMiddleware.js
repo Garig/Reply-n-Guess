@@ -22,16 +22,17 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_SIGNUP: {
-      const { username, password, email, birthDate } = store.getState();
+      const { username, password, email, birthDate } = store.getState().user;
       const payload = {
         username,
         password,
         email,
-        birthDate
+        birthDate,
+        'gender': 'homme'
       };
       console.log(payload);
       axios
-        .post(`${URL}/api/users`, { payload })
+        .post(`${URL}/api/users`, payload)
         .then(function(response) {
           console.log(response.data);
         })
