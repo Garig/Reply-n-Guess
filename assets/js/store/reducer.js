@@ -4,7 +4,8 @@
 import {
   DO_SOMETHING,
   RECEIVE_DAILY_QUESTIONS,
-  SET_INPUT
+  SET_INPUT,
+  SET_DATE
 } from './actions';
 
 /**
@@ -18,7 +19,7 @@ const initialState = {
     username: '',
     password: '',
     email: '',
-    birth: ''
+    birthDate: ''
   }
 };
 
@@ -42,7 +43,14 @@ const reducer = (state = initialState, action = {}) => {
           [action.payload.inputName]: action.payload.value
         }
       };
-
+    case SET_DATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          birthDate: action.payload
+        }
+      };
     default:
       return state;
   }

@@ -1,6 +1,8 @@
 import {
   LOAD_DAILY_QUESTIONS,
-  receiveDailyQuestions
+  receiveDailyQuestions,
+  SUBMIT_SIGNUP
+
 } from '../actions';
 import axios from 'axios';
 
@@ -17,6 +19,10 @@ const questionsMiddleware = store => next => (action) => {
           })
           .catch(error => console.log(error));
       });
+      break;
+    }
+    case SUBMIT_SIGNUP: {
+      const { username, password, email, birthDate } = store.getState();
       break;
     }
     default:

@@ -2,7 +2,7 @@
  * Npm import
  */
 import { connect } from 'react-redux';
-import { setInput } from '../store/actions';
+import { setInput, setDate, submitSignup } from '../store/actions';
 
 /**
  * Local import
@@ -31,6 +31,14 @@ const mapDispatchToProps = dispatch => ({
       value
     };
     dispatch(setInput(payload));
+  },
+  setDate: (date, dateString) => {
+    console.log(date, dateString);
+    dispatch(setDate(dateString));
+  },
+  submitSignup: (evt) => {
+    evt.preventDefault();
+    dispatch(submitSignup());
   }
 });
 
