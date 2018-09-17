@@ -18,7 +18,7 @@ const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
  * Code
  */
 const Signup = ({ user, setInput, setDate, submitSignup }) => (
-  <form className="signup-card" onSubmit="submitSignup">
+  <form className="signup-card">
     Merci de remplir le formulaire ci dessous afin de procéder à votre inscription :<br/>
     <div>
       <input id="username" name="username" value={user.username} onChange={setInput} type="text" autoComplete="off" placeholder="Votre pseudo"/>
@@ -26,6 +26,7 @@ const Signup = ({ user, setInput, setDate, submitSignup }) => (
       <input id="email" name="email" value={user.email} onChange={setInput} type="email" autoComplete="off" placeholder="Votre email"/>
     </div>
     <DatePicker onChange={setDate} />
+    <button type="submit" onSubmit={submitSignup}>OK</button>
   </form>
 );
 
