@@ -2,6 +2,7 @@
  * Import
  */
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 /**
  * Local import
@@ -16,11 +17,11 @@ import './header.sass';
 const Header = () => (
   <nav className="nav">
     <ul>
-      <li><a href="/">Reply'n'Guess</a></li>
-      <li><a href="#">Questions ouvertes</a></li>
-      <li><a href="#">Derniers résultats</a></li>
-      <li><a href="#">Classement</a></li>
-      <li><a href="#">Profil</a></li>
+      <li><NavLink to="/" activeClassName='nav-activeLink'>Reply'n'Guess</NavLink></li>
+      <li><NavLink to="#" activeClassName='nav-activeLink'>Questions ouvertes</NavLink></li>
+      <li><NavLink to="#" activeClassName='nav-activeLink'>Derniers résultats</NavLink></li>
+      <li><NavLink to="#" activeClassName='nav-activeLink'>Classement</NavLink></li>
+      <li><NavLink to="#" activeClassName='nav-activeLink'>Profil</NavLink></li>
     </ul>
   </nav>
 );

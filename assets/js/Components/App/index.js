@@ -2,6 +2,7 @@
  * Import
  */
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 /**
  * Local import
@@ -19,9 +20,12 @@ import './app.sass';
 const App = () => (
   <section className="app">
     <Header />
-    <DailyQuestions />
+    <Switch>
+      <Route exact path='/' component={DailyQuestions} />
+    </Switch>
     <Footer />
   </section>
+
 );
 
 /**
