@@ -4,7 +4,7 @@ import {
 } from '../actions';
 import axios from 'axios';
 
-const URL = 'http://localhost:8001';
+const URL = 'http://localhost:8000';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {

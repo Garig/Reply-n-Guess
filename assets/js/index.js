@@ -16,7 +16,7 @@ import { Provider } from 'react-redux';
  * Local import
  */
 // Components
-import App from './containers/App';
+import App from './Components/App';
 
 // Store
 import store from './store';
