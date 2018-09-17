@@ -10,6 +10,8 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header';
 import DailyQuestions from '../../containers/DailyQuestions';
 import Footer from '../Footer';
+import Login from '../Login';
+import Signup from '../Signup';
 
 // Styles et assets
 import './app.sass';
@@ -22,6 +24,8 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path='/' component={DailyQuestions} />
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/signup' component={Signup} />
     </Switch>
     <Footer />
   </section>
