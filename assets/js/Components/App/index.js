@@ -11,7 +11,7 @@ import Header from '../Header';
 import DailyQuestions from '../../containers/DailyQuestions';
 import Footer from '../Footer';
 import Login from '../Login';
-import Signup from '../Signup';
+import Signup from '../../containers/Signup';
 
 // Styles et assets
 import './app.sass';
@@ -23,7 +23,7 @@ const App = () => (
   <section className="app">
     <Header />
     <Switch>
-      <Route exact path='/' component={DailyQuestions} />
+      <Route exact path='/' component={Signup} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
     </Switch>

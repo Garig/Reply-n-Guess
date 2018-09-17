@@ -2,6 +2,7 @@
  * Import
  */
 import React from 'react';
+import { DatePicker } from 'antd';
 
 /**
  * Local import
@@ -9,16 +10,25 @@ import React from 'react';
 
 // Styles et assets
 import './signup.sass';
+import 'antd/lib/date-picker/style/css';
 
+function onChange(date, dateString) {
+  console.log(date, dateString);
+}
+
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 /**
  * Code
  */
-const Signup = () => (
+const Signup = ({ user, setInput }) => (
   <form className="signup-card">
-    Signup
-    <input id="username" name="username" value={null} onChange={() => {}} type="text" autoComplete="off" />
-    <input id="password" name="password" value={null} onChange={() => {}} type="text" autoComplete="off" />
-    <input id="email" name="email" value={null} onChange={() => {}} type="text" autoComplete="off" />
+    Signup :<br/>
+    <div>
+      <input id="username" name="username" value={user.username} onChange={setInput} type="text" autoComplete="off" placeholder="Votre pseudo"/>
+      <input id="password" name="password" value={user.password} onChange={setInput} type="text" autoComplete="off" placeholder="Votre mot de passe"/>
+      <input id="email" name="email" value={user.email} onChange={setInput} type="email" autoComplete="off" placeholder="Votre email"/>
+    </div>
+    <DatePicker onChange={onChange} />
   </form>
 );
 

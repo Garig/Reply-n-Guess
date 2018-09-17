@@ -3,7 +3,8 @@
  */
 import {
   DO_SOMETHING,
-  RECEIVE_DAILY_QUESTIONS
+  RECEIVE_DAILY_QUESTIONS,
+  SET_INPUT
 } from './actions';
 
 /**
@@ -13,7 +14,12 @@ const initialState = {
   answers: [],
   questions: [],
   results: [],
-  user: []
+  user: {
+    username: '',
+    password: '',
+    email: '',
+    birth: ''
+  }
 };
 
 /**
@@ -26,6 +32,15 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         questions: [...state.questions, ...action.payload]
+      };
+    case SET_INPUT:
+      console.log(action.payload.inputName, action.payload.value);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          [action.payload.inputName]: action.payload.value
+        }
       };
 
     default:

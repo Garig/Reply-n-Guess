@@ -38,6 +38,7 @@
     },
     "dependencies": {
         "@babel/polyfill": "*",
+        "antd": "^3.9.2",
         "axios": "^0.18.0",
         "classnames": "*",
         "express": "^4.16.3",
