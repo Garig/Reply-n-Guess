@@ -16,7 +16,9 @@ import './signup.sass';
 const Signup = () => (
   <form className="signup-card">
     Signup
-    <input id="pseudo" name="pseudo" value={null} onChange={() => {}} type="text" autoComplete="off" />
+    <input id="username" name="username" value={null} onChange={() => {}} type="text" autoComplete="off" />
+    <input id="password" name="password" value={null} onChange={() => {}} type="text" autoComplete="off" />
+    <input id="email" name="email" value={null} onChange={() => {}} type="text" autoComplete="off" />
   </form>
 );
 
