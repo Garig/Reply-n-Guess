@@ -5,6 +5,7 @@ import {
   DO_SOMETHING,
   RECEIVE_DAILY_QUESTIONS,
   SET_INPUT,
+  SET_GENDER,
   SET_DATE
 } from './actions';
 
@@ -19,6 +20,7 @@ const initialState = {
     username: '',
     password: '',
     email: '',
+    gender: 'homme',
     birthDate: ''
   }
 };
@@ -49,6 +51,14 @@ const reducer = (state = initialState, action = {}) => {
         user: {
           ...state.user,
           birthDate: action.payload
+        }
+      };
+    case SET_GENDER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          gender: action.payload
         }
       };
     default:

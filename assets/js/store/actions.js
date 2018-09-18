@@ -5,6 +5,7 @@ export const DO_SOMETHING = 'actions/DO_SOMETHING';
 export const LOAD_DAILY_QUESTIONS = 'actions/LOAD_DAILY_QUESTIONS';
 export const RECEIVE_DAILY_QUESTIONS = 'actions/RECEIVE_DAILY_QUESTIONS';
 export const SET_INPUT = 'actions/SET_INPUT';
+export const SET_GENDER = 'actions/SET_GENDER';
 export const SET_DATE = 'actions/SET_DATE';
 export const SUBMIT_SIGNUP = 'actions/SUBMIT_SIGNUP';
 
@@ -27,6 +28,11 @@ export const receiveDailyQuestions = payload => ({
 
 export const setInput = payload => ({
   type: SET_INPUT,
+  payload
+});
+
+export const setGender = payload => ({
+  type: SET_GENDER,
   payload
 });
 

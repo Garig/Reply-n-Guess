@@ -6,7 +6,7 @@ import {
 } from '../actions';
 import axios from 'axios';
 
-const URL = 'http://localhost:8000';
+const URL = 'http://localhost:8001';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -22,13 +22,14 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_SIGNUP: {
-      const { username, password, email, birthDate } = store.getState().user;
+      const { username, password, email, gender, birthDate } = store.getState().user;
       const payload = {
         username,
         password,
         email,
         birthDate,
-        'gender': 'homme'
+        gender,
+        roles: '/api/roles/1'
       };
       console.log(payload);
       axios
@@ -37,7 +38,11 @@ const questionsMiddleware = store => next => (action) => {
           console.log(response.data);
         })
         .catch(function(error) {
-          console.log(error);
+          let errorcode = error.response.data['hydra:description'].slice(-9, -1);
+          console.log(errorcode);
+          // TODO: Effectuer un traitement selon le code erreur rencontrer :
+          // F85E0677 ==> username déjà inscrit en BDD
+          // E7927C74 ==> email déjà inscrit en BDD
         });
       break;
     }
