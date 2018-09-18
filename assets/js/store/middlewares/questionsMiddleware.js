@@ -6,7 +6,7 @@ import {
 } from '../actions';
 import axios from 'axios';
 
-const URL = 'http://localhost:8000';
+const URL = 'http://localhost:8001';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -22,13 +22,13 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_SIGNUP: {
-      const { username, password, email, birthDate } = store.getState().user;
+      const { username, password, email, gender, birthDate } = store.getState().user;
       const payload = {
         username,
         password,
         email,
         birthDate,
-        'gender': 'homme'
+        gender
       };
       console.log(payload);
       axios

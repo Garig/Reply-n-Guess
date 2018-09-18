@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Role;
 
 /**
  * @ApiResource()
@@ -68,7 +69,7 @@ class User implements UserInterface, \Serializable
     private $departements;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users", cascade={"persist"})
      */
     private $roles;
 
@@ -88,6 +89,8 @@ class User implements UserInterface, \Serializable
         $this->questions = new ArrayCollection();
         $this->setIsValidate(false);
         $this->setScore(0);
+        $Role = new Role;
+        $this->setRoles($Role);
     }
 
     public function getSalt()
@@ -214,9 +217,9 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRoles(): ?Role
+    public function getRoles()
     {
-        return $this->roles;
+        return [$this->roles->getName()];
     }
 
     public function setRoles(?Role $roles): self

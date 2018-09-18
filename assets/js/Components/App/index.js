@@ -23,7 +23,7 @@ const App = () => (
   <section className="app">
     <Header />
     <Switch>
-      <Route exact path='/' component={Signup} />
+      <Route exact path='/' component={DailyQuestions} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
     </Switch>
