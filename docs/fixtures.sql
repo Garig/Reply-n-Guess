@@ -10,18 +10,18 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-DELETE FROM `departement`;
-DELETE FROM `role`;
 DELETE FROM `question`;
-DELETE FROM `status`;
 DELETE FROM `app_users`;
+DELETE FROM `departement`;
+DELETE FROM `status`;
+DELETE FROM `role`;
 
 ALTER TABLE `departement` AUTO_INCREMENT=0;
 ALTER TABLE `status` AUTO_INCREMENT=0;
 ALTER TABLE `role` AUTO_INCREMENT=0;
 ALTER TABLE `question` AUTO_INCREMENT=0;
 ALTER TABLE `app_users` AUTO_INCREMENT=0;
-
+/*! ALTER TABLE `app_users` ADD UNIQUE(`username`, `email`)*/;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -165,23 +165,22 @@ INSERT INTO `role` (`id`, `name`) VALUES
 (3, 'ROLE_ADMIN');
 
 INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `roles_id`) VALUES 
-(1, 'Joseph', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'Josetha', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'Jesus', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'femme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1),
-(1, 'admin', '$2a$08$jHZj/wJfcVKlIwr5AvR78euJxYK7Ku5kURNhNx.7.CSIJ3Pq6LEPC', 'email@oclock.io', '01/01/1999', 'homme', 0, 3),
-(1, 'username', 'password', 'email@oclock.io', '01/01/1999', 'homme', 0, 1);
+(1, 'Joseph', 'password', 'joseph@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'Josetha', 'password', 'josetha@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'Jesus', 'password', 'jesus@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username1', 'password', 'email1@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username2', 'password', 'email2@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'username3', 'password', 'email3@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'username4', 'password', 'email4@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username5', 'password', 'email5@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username6', 'password', 'email6@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username7', 'password', 'email7@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'username8', 'password', 'email8@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'username9', 'password', 'email9@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username10', 'password', 'email10@oclock.io', '01/01/1999', 'femme', 0, 1),
+(1, 'username11', 'password', 'email11@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'username12', 'password', 'email12@oclock.io', '01/01/1999', 'homme', 0, 1),
+(1, 'admin', '$2a$08$jHZj/wJfcVKlIwr5AvR78euJxYK7Ku5kURNhNx.7.CSIJ3Pq6LEPC', 'email@oclock.io', '01/01/1999', 'homme', 0, 3);
 
 
 

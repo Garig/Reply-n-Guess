@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\RoleController;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\RoleRepository")
  */
 class Role
@@ -31,7 +34,6 @@ class Role
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->setName('ROLE_USER');
     }
 
     public function getId(): ?int
@@ -40,11 +42,6 @@ class Role
     }
 
     public function getName(): ?string
-    {
-        return $this->name;
-    }
-    
-    public function getNamebyId(int $id): ?string
     {
         return $this->name;
     }

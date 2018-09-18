@@ -28,7 +28,8 @@ const questionsMiddleware = store => next => (action) => {
         password,
         email,
         birthDate,
-        gender
+        gender,
+        roles: '/api/roles/1'
       };
       console.log(payload);
       axios
@@ -37,7 +38,11 @@ const questionsMiddleware = store => next => (action) => {
           console.log(response.data);
         })
         .catch(function(error) {
-          console.log(error);
+          let errorcode = error.response.data['hydra:description'].slice(-9, -1);
+          console.log(errorcode);
+          // TODO: Effectuer un traitement selon le code erreur rencontrer :
+          // F85E0677 ==> username déjà inscrit en BDD
+          // E7927C74 ==> email déjà inscrit en BDD
         });
       break;
     }
