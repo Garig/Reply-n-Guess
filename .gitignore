@@ -21,3 +21,15 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###
+
+###>System files shit during supress or copy
+.DS_Store
+Thumbs.db
+###>System files shit during supress or copy
+
+###>gitignored from react-model
+node_modules/
+dist/
+.vs/
+.vs-code/
+###<gitignored from react-model
