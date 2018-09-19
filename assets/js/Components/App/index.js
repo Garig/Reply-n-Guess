@@ -1,5 +1,5 @@
 /**
- * Import
+ * Package Import
  */
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header';
 import DailyQuestions from '../../containers/DailyQuestions';
 import Footer from '../Footer';
-import Login from '../Login';
+import Login from '../../containers/Login';
 import Signup from '../../containers/Signup';
 
 // Styles et assets
@@ -23,7 +23,7 @@ const App = () => (
   <section className="app">
     <Header />
     <Switch>
-      <Route exact path='/' component={Signup} />
+      <Route exact path='/' component={DailyQuestions} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
     </Switch>

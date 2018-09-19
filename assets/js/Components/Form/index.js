@@ -1,5 +1,5 @@
 /**
- * Import
+ * Package Import
  */
 import React from 'react';
 import axios from 'axios';

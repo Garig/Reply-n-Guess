@@ -1,7 +1,8 @@
 /**
- * Import
+ * Package Import
  */
 import React from 'react';
+import { Input, Icon } from 'antd';
 
 /**
  * Local import
@@ -9,14 +10,16 @@ import React from 'react';
 
 // Styles et assets
 import './login.sass';
+import 'antd/lib/date-picker/style/css';
 
 /**
  * Code
  */
-const Login = () => (
-  <form className="login-card">
-    Login
-    <input id="pseudo" name="pseudo" value={null} onChange={() => {}} type="text" autoComplete="off" />
+const Login = ({ user, setInput, submitLogin }) => (
+  <form className="login-card" onSubmit={submitLogin}>
+    <Input prefix={<Icon type="user" />} className="login-card-input" id="pseudo" name="username" value={user.username} onChange={setInput} type="text" autoComplete="off" placeholder="Votre pseudo"/>
+    <Input prefix={<Icon type="lock" />} className="login-card-input" id="password" name="password" value={user.password} onChange={setInput} type="text" autoComplete="off" placeholder="Votre mot de passe"/>
+    <button type="submit" onSubmit={submitLogin}>OK</button>
   </form>
 );
 

@@ -1,8 +1,8 @@
 import {
   LOAD_DAILY_QUESTIONS,
   receiveDailyQuestions,
-  SUBMIT_SIGNUP
-
+  SUBMIT_SIGNUP,
+  SUBMIT_LOGIN
 } from '../actions';
 import axios from 'axios';
 
@@ -22,14 +22,13 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_SIGNUP: {
-      const { username, password, email, gender, birthDate } = store.getState().user;
+      const { username, password, email, birthDate } = store.getState().user;
       const payload = {
         username,
         password,
         email,
         birthDate,
-        gender,
-        roles: '/api/roles/1'
+        'gender': 'homme'
       };
       console.log(payload);
       axios
@@ -44,6 +43,16 @@ const questionsMiddleware = store => next => (action) => {
           // F85E0677 ==> username déjà inscrit en BDD
           // E7927C74 ==> email déjà inscrit en BDD
         });
+      break;
+    }
+    case SUBMIT_LOGIN: {
+      console.log('SUBMIT_LOGIN');
+      const { username, password } = store.getState().user;
+      const payload = {
+        username,
+        password
+      };
+      console.log(payload);
       break;
     }
     default:
