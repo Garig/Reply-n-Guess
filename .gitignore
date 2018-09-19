@@ -33,3 +33,7 @@ dist/
 .vs/
 .vs-code/
 ###<gitignored from react-model
+
+
+config/jwt/*
+src/Migrations/*
