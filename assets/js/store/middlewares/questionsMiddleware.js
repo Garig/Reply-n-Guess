@@ -4,9 +4,12 @@ import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN
 } from '../actions';
+
+import decode from 'jwt-decode';
+
 import axios from 'axios';
 
-const URL = 'http://localhost:8001';
+const URL = 'http://localhost:8000';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -47,18 +50,21 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_LOGIN: {
-      console.log('SUBMIT_LOGIN');
       const { username, password } = store.getState().user;
       const payload = {
         username,
         password
       };
-      console.log(payload);
       axios
         .post(`${URL}/login_check`, payload)
         .then(function(response) {
-          console.log('J\'ai mon TOKEN : ', response.data);
-          let token = response.data;
+          console.log('---------TOKEN--------');
+          console.log(response.data.token);
+          console.log('---------DECODE--------');
+          const decoded = decode(response.data.token);
+          console.log(decoded);
+
+          // let token = response.data;
           // axios
           //   .post(`${URL}/login_check`, `curl -H "Authorization: Bearer ${token} http://localhost:8001/api`)
           //   .then(function(response) {
