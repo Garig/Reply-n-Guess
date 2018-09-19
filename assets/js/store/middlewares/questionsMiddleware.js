@@ -4,9 +4,12 @@ import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN
 } from '../actions';
+
+import decode from 'jwt-decode';
+
 import axios from 'axios';
 
-const URL = 'http://localhost:8001';
+const URL = 'http://localhost:8000';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -47,32 +50,26 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_LOGIN: {
-      console.log('SUBMIT_LOGIN');
       const { username, password } = store.getState().user;
       const payload = {
         username,
         password
       };
-      console.log(payload);
       axios
         .post(`${URL}/login_check`, payload)
         .then(function(response) {
-          // console.log('J\'ai mon TOKEN : ', response.data);
           let token = response.data.token;
+          console.log('---------TOKEN--------');
           console.log(token);
+          console.log('---------DECODE--------');
+          const decoded = decode(response.data.token);
+          console.log(decoded);
           axios.get('/api/jwt', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Accept': 'application/json',
               'Content-Type': 'application/json'}
           })
-          // fetch(`${URL}/api/jwt`, {
-          //   method: 'GET',
-          //   headers: {
-          //       'Authorization': `Bearer ${token}}`,
-          //       'Accept':'application/json',
-          //       'Content-Type':'application/json'}
-          //   })
             .then(function(response) {
               console.log('Réponse en retour : ', response.data);
             })
