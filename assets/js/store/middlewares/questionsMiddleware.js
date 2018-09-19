@@ -57,14 +57,26 @@ const questionsMiddleware = store => next => (action) => {
       axios
         .post(`${URL}/login_check`, payload)
         .then(function(response) {
-          console.log('J\'ai mon TOKEN : ', response.data);
-          let token = response.data;
-          // axios
-          //   .post(`${URL}/login_check`, `curl -H "Authorization: Bearer ${token} http://localhost:8001/api`)
-          //   .then(function(response) {
-          //     console.log('Réponse en retour : ', response.data);
+          // console.log('J\'ai mon TOKEN : ', response.data);
+          let token = response.data.token;
+          console.log(token);
+          axios.get('/api/jwt', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'}
+          })
+          // fetch(`${URL}/api/jwt`, {
+          //   method: 'GET',
+          //   headers: {
+          //       'Authorization': `Bearer ${token}}`,
+          //       'Accept':'application/json',
+          //       'Content-Type':'application/json'}
           //   })
-          //   .catch(error => console.log('error token : ', error));
+            .then(function(response) {
+              console.log('Réponse en retour : ', response.data);
+            })
+            .catch(error => console.log('error token : ', error));
         })
         .catch(error => console.log('error', error));
       break;

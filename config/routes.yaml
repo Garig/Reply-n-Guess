@@ -9,9 +9,14 @@ logout:
 #   methods: POST
 
 api:
-  path: /api
+  path: /api/jwt
   controller: App\Controller\AuthController::api
 
 login_check:
   path:     /login_check
   methods:  [POST]
+
+# app/config/routing.yml
+gesdinet_jwt_refresh_token:
+    path:     /api/token/refresh
+    defaults: { _controller: gesdinet.jwtrefreshtoken::refresh }
