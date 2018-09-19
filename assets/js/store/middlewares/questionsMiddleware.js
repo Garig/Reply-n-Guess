@@ -22,13 +22,14 @@ const questionsMiddleware = store => next => (action) => {
       break;
     }
     case SUBMIT_SIGNUP: {
-      const { username, password, email, birthDate } = store.getState().user;
+      const { username, password, email, birthDate, gender } = store.getState().user;
       const payload = {
         username,
         password,
         email,
         birthDate,
-        'gender': 'homme'
+        gender,
+        'role': '/api/roles/1'
       };
       console.log(payload);
       axios
@@ -53,6 +54,19 @@ const questionsMiddleware = store => next => (action) => {
         password
       };
       console.log(payload);
+      axios
+        .post(`${URL}/login_check`, payload)
+        .then(function(response) {
+          console.log('J\'ai mon TOKEN : ', response.data);
+          let token = response.data;
+          // axios
+          //   .post(`${URL}/login_check`, `curl -H "Authorization: Bearer ${token} http://localhost:8001/api`)
+          //   .then(function(response) {
+          //     console.log('Réponse en retour : ', response.data);
+          //   })
+          //   .catch(error => console.log('error token : ', error));
+        })
+        .catch(error => console.log('error', error));
       break;
     }
     default:

@@ -164,7 +164,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 (2, 'ROLE_MODERATOR'),
 (3, 'ROLE_ADMIN');
 
-INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `roles_id`) VALUES 
+INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`) VALUES 
 (1, 'Joseph', 'password', 'joseph@oclock.io', '01/01/1999', 'homme', 0, 1),
 (1, 'Josetha', 'password', 'josetha@oclock.io', '01/01/1999', 'femme', 0, 1),
 (1, 'Jesus', 'password', 'jesus@oclock.io', '01/01/1999', 'femme', 0, 1),

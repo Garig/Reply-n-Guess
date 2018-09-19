@@ -20,7 +20,7 @@ const initialState = {
     username: '',
     password: '',
     email: '',
-    gender: 'homme',
+    gender: '',
     birthDate: ''
   }
 };
@@ -34,7 +34,7 @@ const reducer = (state = initialState, action = {}) => {
     case RECEIVE_DAILY_QUESTIONS:
       return {
         ...state,
-        questions: [...state.questions, ...action.payload]
+        questions: [...action.payload]
       };
     case SET_INPUT:
       console.log(action.payload.inputName, action.payload.value);

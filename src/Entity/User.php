@@ -70,7 +70,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
      */
-    private $roles;
+    private $role;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="users")
@@ -86,6 +86,7 @@ class User implements UserInterface, \Serializable
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        // $this->roles = new ArrayCollection();
         $this->setIsValidate(false);
         $this->setScore(0);
     }
@@ -214,14 +215,19 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRoles(): ?Role
+    public function getRoles(): ?array
     {
-        return $this->roles;
+        return array($this->role->getName());
     }
 
-    public function setRoles(?Role $roles): self
+    public function getRole(): ?Role
     {
-        $this->roles = $roles;
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
