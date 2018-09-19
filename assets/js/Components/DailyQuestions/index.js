@@ -2,13 +2,15 @@
  * Package Import
  */
 import React from 'react';
+import { Card } from 'antd';
 
 /**
  * Local import
  */
 
 // Styles et assets
-// import './app.sass';
+import 'antd/lib/card/style/css';
+import './dailyquestions.sass';
 
 /**
  * Code
@@ -22,13 +24,14 @@ class DailyQuestions extends React.Component {
       <div>
         {
           this.props.questions.map(current =>
-            <ul key={current.id}>
-              <li>ID : {current.id}</li>
-              <li>TITLE : {current.title}</li>
-              <li>PROP 1 : {current.prop_1}</li>
-              <li>PROP 2 : {current.prop_2}</li>
-              <li>SUBMIT : {current.submit_date}</li>
-            </ul>
+            <Card
+              key={current.id}
+              title={current.title}
+            >
+              <p>PROP 1 : {current.prop_1}</p>
+              <p>PROP 2 : {current.prop_2}</p>
+              <p>SUBMIT : {current.submit_date}</p>
+            </Card>
           )
         }
       </div>

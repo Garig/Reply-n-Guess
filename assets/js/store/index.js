@@ -28,8 +28,7 @@ if (window.devToolsExtension) {
 // Middleware custom — on n'en a qu'un seul
 const middleware = applyMiddleware(
   questionsMiddleware,
-  thunk,
-  logger
+  thunk
 );
 
 // Enhancers : les extensions/outils + les middlewares custom
