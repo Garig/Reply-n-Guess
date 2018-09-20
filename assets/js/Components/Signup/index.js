@@ -37,8 +37,15 @@ const Signup = ({ user, setInput, setGender, setDate, submitSignup }) => (
     </FormItem>
     <FormItem>
       <Input
+        prefix={<Icon type="lock" />}
+        id="passwordConfirm" name="passwordConfirm" type="password"
+        value={user.passwordConfirm} onChange={setInput}
+        autoComplete="off" placeholder="Confirmer votre mot de passe"/>
+    </FormItem>
+    <FormItem>
+      <Input
         prefix={<Icon type="mail" />}
-        id="email" name="email" type="email"
+        id="email" name="email" type="text"
         value={user.email} onChange={setInput}
         autoComplete="off" placeholder="Votre email"/>
     </FormItem>

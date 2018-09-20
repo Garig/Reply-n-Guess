@@ -24,6 +24,7 @@ const initialState = {
   user: {
     username: '',
     password: '',
+    passwordConfirm: '',
     email: '',
     gender: '',
     birthDate: ''
