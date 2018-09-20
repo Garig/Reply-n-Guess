@@ -1,0 +1,7 @@
+gesdinet_jwt_refresh_token:
+    user_identity_field: username
+    ttl: 60480
+    ttl_update: true
+    firewall: api
+    user_provider: our_db_provider
+    object_manager: doctrine.orm.entity_manager

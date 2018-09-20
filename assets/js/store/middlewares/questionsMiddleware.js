@@ -1,8 +1,15 @@
+/*
+ * Npm import
+ */
+import axios from 'axios';
+
+/*
+ * Local import
+ */
 import {
   LOAD_DAILY_QUESTIONS,
   receiveDailyQuestions
 } from '../actions';
-import axios from 'axios';
 
 const URL = 'http://localhost:8001';
 

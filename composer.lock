@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7f0c4ac79c9e983cbca8a516d4f7b29",
+    "content-hash": "9227576104cfd13b5dbe8ecc07dbb668",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -44,16 +44,16 @@
         },
         {
             "name": "api-platform/core",
-            "version": "v2.3.2",
+            "version": "v2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "8313fb295562e53254d7bb73cd0efce5750ab6e0"
+                "reference": "c2329e456b680b73501b65c5298fae8f3c75bc0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/8313fb295562e53254d7bb73cd0efce5750ab6e0",
-                "reference": "8313fb295562e53254d7bb73cd0efce5750ab6e0",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/c2329e456b680b73501b65c5298fae8f3c75bc0e",
+                "reference": "c2329e456b680b73501b65c5298fae8f3c75bc0e",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
                 "rest",
                 "swagger"
             ],
-            "time": "2018-09-11T18:33:31+00:00"
+            "time": "2018-09-19T07:50:25+00:00"
         },
         {
             "name": "beberlei/DoctrineExtensions",
@@ -1602,6 +1602,59 @@
                 "fixtures"
             ],
             "time": "2018-07-12T10:23:15+00:00"
+        },
+        {
+            "name": "gesdinet/jwt-refresh-token-bundle",
+            "version": "v0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gesdinet/JWTRefreshTokenBundle.git",
+                "reference": "4a2eab6e78fc384313cda9b4783a0ddc7a5d7cf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gesdinet/JWTRefreshTokenBundle/zipball/4a2eab6e78fc384313cda9b4783a0ddc7a5d7cf4",
+                "reference": "4a2eab6e78fc384313cda9b4783a0ddc7a5d7cf4",
+                "shasum": ""
+            },
+            "require": {
+                "lexik/jwt-authentication-bundle": "^1.1|^2.0@dev",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~3.3|~4.0",
+                "symfony/validator": "~3.3|~4.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "~1.4",
+                "doctrine/mongodb-odm-bundle": "^3.4",
+                "doctrine/orm": "^2.4.8",
+                "phpspec/phpspec": "^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gesdinet\\JWTRefreshTokenBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcos Gómez Vilches",
+                    "email": "marcos@gesdinet.com"
+                }
+            ],
+            "description": "Implements a refresh token system over Json Web Tokens in Symfony",
+            "keywords": [
+                "jwt refresh token bundle symfony json web"
+            ],
+            "time": "2018-09-19T12:59:07+00:00"
         },
         {
             "name": "jdorn/sql-formatter",

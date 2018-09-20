@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { DatePicker, Radio, Input, Icon } from 'antd';
+import { Form, Button, DatePicker, Radio, Input, Icon } from 'antd';
 import moment from 'moment';
 
 /**
@@ -14,25 +14,49 @@ import './signup.sass';
 import 'antd/lib/date-picker/style/css';
 
 const RadioGroup = Radio.Group;
+const FormItem = Form.Item;
 
 /**
  * Code
  */
 const Signup = ({ user, setInput, setGender, setDate, submitSignup }) => (
-  <form className="signup-card" onSubmit={submitSignup}>
-    Merci de remplir le formulaire ci dessous afin de procéder à votre inscription :<br/>
-    <div>
-      <Input prefix={<Icon type="user" />} className="signup-card-input" id="username" name="username" value={user.username} onChange={setInput} type="text" autoComplete="off" placeholder="Votre pseudo"/>
-      <Input prefix={<Icon type="lock" />} className="signup-card-input" id="password" name="password" value={user.password} onChange={setInput} type="text" autoComplete="off" placeholder="Votre mot de passe"/>
-      <Input prefix={<Icon type="mail" />} className="signup-card-input" id="email" name="email" value={user.email} onChange={setInput} type="email" autoComplete="off" placeholder="Votre email"/>
-    </div>
-    <RadioGroup className="radio-group" onChange={setGender} value={user.gender}>
-      <Radio className="radioStyle" defaultChecked value={'homme'}>Homme</Radio>
-      <Radio className="radioStyle" value={'femme'}>Femme</Radio>
-    </RadioGroup>
-    <DatePicker onChange={setDate} placeholder="Votre date de naissance" defaultValue={moment('2000-01-01', 'YYYY-MM-DD')} />
-    <button type="submit" onSubmit={submitSignup}>Valider</button>
-  </form>
+  <Form onSubmit={submitSignup}>
+    <FormItem>
+      <Input
+          prefix={<Icon type="user" />}
+          id="username" name="username" type="text"
+          value={user.username} onChange={setInput}
+          autoComplete="off" placeholder="Votre pseudo"/>
+    </FormItem>
+    <FormItem>
+      <Input
+          prefix={<Icon type="lock" />}
+          id="password" name="password" type="password"
+          value={user.password} onChange={setInput}
+          autoComplete="off" placeholder="Votre mot de passe"/>
+    </FormItem>
+    <FormItem>
+      <Input
+          prefix={<Icon type="mail" />}
+          id="email" name="email" type="email"
+          value={user.email} onChange={setInput}
+          autoComplete="off" placeholder="Votre email"/>
+    </FormItem>
+    <FormItem>
+      <RadioGroup onChange={setGender} value={user.gender}>
+        <Radio defaultChecked value={'homme'}>Homme</Radio>
+        <Radio value={'femme'}>Femme</Radio>
+      </RadioGroup>
+    </FormItem>
+    <FormItem>
+      <DatePicker onChange={setDate} placeholder="Votre date de naissance" defaultValue={moment('2000-01-01', 'YYYY-MM-DD')} />
+    </FormItem>
+    <FormItem>
+      <Button type="primary" htmlType="submit" className="login-form-button">
+        Sign up
+      </Button>
+    </FormItem>
+  </Form>
 );
 
 /**

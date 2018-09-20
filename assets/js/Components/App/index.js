@@ -27,7 +27,6 @@ const App = () => (
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
     </Switch>
-    <Footer />
   </section>
 
 );
