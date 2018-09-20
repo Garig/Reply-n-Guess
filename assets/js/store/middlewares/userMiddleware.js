@@ -9,12 +9,13 @@ import * as Joi from 'joi-browser';
  * Local import
  */
 import { URL } from './middleware';
+import { displayAlert } from '../actions/actions';
 import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN
 } from '../actions/userActions';
 
-import { 
+import {
   schemaSignUp,
   schemaLogin
 } from '../../utils/validationJoi';
@@ -35,21 +36,24 @@ const userMiddleware = store => next => (action) => {
       };
 
       Joi.validate(payload, schemaSignUp, (err, value) => {
-        err
-          ? console.log(err.message)
-          : axios
+        if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
+        else {
+          store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
+          axios
             .post(`${URL}/api/users`, payload)
             .then(function(response) {
               console.log(response.data);
-            // TODO : clear les inputs
+              // TODO : clear les inputs
+              store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
             })
             .catch(function(error) {
-              let errorcode = error.response.data['hydra:description'].slice(-9, -1);
-              console.log(errorcode);
-              // TODO: Effectuer un traitement selon le code erreur rencontrer :
+              let errorCodeAPI = error.response.data['hydra:description'].slice(-9, -1);
               // F85E0677 ==> username déjà inscrit en BDD
+              if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
               // E7927C74 ==> email déjà inscrit en BDD
+              if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
             });
+        }
       });
       break;
     }
@@ -62,9 +66,10 @@ const userMiddleware = store => next => (action) => {
       };
 
       Joi.validate(payload, schemaLogin, (err, value) => {
-        err
-          ? console.log(err.message)
-          : axios
+        if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
+        else {
+          store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
+          axios
             .post(`${URL}/login_check`, payload)
             .then(function(response) {
               let token = response.data.token;
@@ -83,10 +88,17 @@ const userMiddleware = store => next => (action) => {
                 })
                 .then(function(response) {
                   console.log('Réponse en retour : ', response.data);
+                  store.dispatch(displayAlert({type: 'success', message: 'Connexion réussie !'}));
                 })
-                .catch(error => console.log('error token : ', error));
+                .catch(function(error) {
+                  if (err) store.dispatch(displayAlert({type: 'error', message: 'Problème de connexion merci de ressayer'}));
+                  console.log('error token : ', error);
+                });
             })
-            .catch(error => console.log('error', error));
+            .catch(function(error) {
+              if (error) store.dispatch(displayAlert({type: 'error', message: 'Identifiants invalides !'}));
+            });
+        }
       });
       break;
     }

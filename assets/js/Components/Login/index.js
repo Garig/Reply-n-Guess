@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { Form, Button, Input, Icon } from 'antd';
+import { Form, Button, Input, Icon, Alert } from 'antd';
 
 /**
  * Local import
@@ -10,16 +10,20 @@ import { Form, Button, Input, Icon } from 'antd';
 
 // Styles et assets
 import './login.sass';
-
-import 'antd/lib/date-picker/style/css';
+import 'antd/lib/alert/style/css';
 
 const FormItem = Form.Item;
 
 /**
  * Code
  */
-const Login = ({ user, setInput, submitLogin }) => (
+const Login = ({ user, userInterface, setInput, submitLogin }) => (  
   <Form className="login-card" onSubmit={submitLogin}>
+    {
+      userInterface.alert.display
+        ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
+        : null
+    }
     <FormItem>
       <Input
         prefix={<Icon type="user" />}

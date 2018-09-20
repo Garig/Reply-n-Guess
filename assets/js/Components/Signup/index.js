@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { Form, Button, DatePicker, Radio, Input, Icon } from 'antd';
+import { Form, Button, DatePicker, Radio, Input, Icon, Alert } from 'antd';
 import moment from 'moment';
 
 /**
@@ -19,8 +19,13 @@ const FormItem = Form.Item;
 /**
  * Code
  */
-const Signup = ({ user, setInput, setGender, setDate, submitSignup }) => (
+const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
   <Form onSubmit={submitSignup}>
+    {
+      userInterface.alert.display
+        ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
+        : null
+    }
     <FormItem>
       <Input
         prefix={<Icon type="user" />}

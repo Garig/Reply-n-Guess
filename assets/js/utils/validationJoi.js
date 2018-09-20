@@ -19,6 +19,7 @@ export const schemaSignUp = {
     .error(new Error('Confirmation invalide :)')),
   email: Joi.string()
     .email()
+    // eslint-disable-next-line
     .regex(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
     .required()
     .error(new Error('Merci de renseigner un email conforme :)')),
@@ -29,7 +30,7 @@ export const schemaSignUp = {
   birthDate: Joi.string()
     .required()
     .error(new Error('Merci de renseigner votre date de naissance :)')),
-  role: Joi.any().optional()
+  role: Joi.string().optional()
 };
 
 export const schemaLogin = {
@@ -44,5 +45,5 @@ export const schemaLogin = {
     .min(8)
     .max(60)
     .required()
-    .error(new Error('Merci de renseigner votre mot de passe comprenant entre 8 et 60 caractères :)')),
+    .error(new Error('Merci de renseigner votre mot de passe comprenant entre 8 et 60 caractères :)'))
 };

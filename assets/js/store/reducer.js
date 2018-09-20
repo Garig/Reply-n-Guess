@@ -6,6 +6,7 @@ import {
 } from './actions/questionsActions';
 
 import {
+  DISPLAY_ALERT,
   SET_INPUT
 } from './actions/actions';
 
@@ -28,6 +29,14 @@ const initialState = {
     email: '',
     gender: '',
     birthDate: ''
+  },
+  userInterface: {
+    isConnected: false, // TODO : stocker le JWT + gérer les redirections
+    alert: {
+      display: false,
+      type: '',
+      message: ''
+    }
   }
 };
 
@@ -64,6 +73,18 @@ const reducer = (state = initialState, action = {}) => {
         user: {
           ...state.user,
           gender: action.payload
+        }
+      };
+    case DISPLAY_ALERT:
+      return {
+        ...state,
+        userInterface: {
+          ...state.userInterface,
+          alert: {
+            display: true,
+            type: action.payload.type,
+            message: action.payload.message
+          }
         }
       };
     default:
