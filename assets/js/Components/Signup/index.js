@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { DatePicker, Radio, Input, Icon } from 'antd';
+import moment from 'moment';
 
 /**
  * Local import
@@ -11,8 +12,6 @@ import { DatePicker, Radio, Input, Icon } from 'antd';
 // Styles et assets
 import './signup.sass';
 import 'antd/lib/date-picker/style/css';
-
-const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
 const RadioGroup = Radio.Group;
 
@@ -31,8 +30,8 @@ const Signup = ({ user, setInput, setGender, setDate, submitSignup }) => (
       <Radio className="radioStyle" defaultChecked value={'homme'}>Homme</Radio>
       <Radio className="radioStyle" value={'femme'}>Femme</Radio>
     </RadioGroup>
-    <DatePicker onChange={setDate} />
-    <button type="submit" onSubmit={submitSignup}>OK</button>
+    <DatePicker onChange={setDate} placeholder="Votre date de naissance" defaultValue={moment('2000-01-01', 'YYYY-MM-DD')} />
+    <button type="submit" onSubmit={submitSignup}>Valider</button>
   </form>
 );
 

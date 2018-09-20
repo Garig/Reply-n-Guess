@@ -9,9 +9,9 @@ import { Route, Switch } from 'react-router-dom';
  */
 import Header from '../Header';
 import DailyQuestions from '../../containers/DailyQuestions';
-import Footer from '../Footer';
 import Login from '../../containers/Login';
 import Signup from '../../containers/Signup';
+import Footer from '../Footer';
 
 // Styles et assets
 import './app.sass';

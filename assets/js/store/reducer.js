@@ -37,7 +37,6 @@ const reducer = (state = initialState, action = {}) => {
         questions: [...action.payload]
       };
     case SET_INPUT:
-      console.log(action.payload.inputName, action.payload.value);
       return {
         ...state,
         user: {

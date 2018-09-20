@@ -11,7 +11,8 @@ import thunk from 'redux-thunk';
 import reducer from './reducer.js'; // notre reducer custom
 
 // Middlewares
-import questionsMiddleware from './middlewares/questionsMiddleware'; // notre middleware custom
+import questionsMiddleware from './middlewares/questionsMiddleware'; // notre middleware pour la page d'accueil
+import userMiddleware from './middlewares/userMiddleware'; // notre middleware pour la gestion de l'user
 
 /*
  * Code
@@ -28,8 +29,8 @@ if (window.devToolsExtension) {
 // Middleware custom — on n'en a qu'un seul
 const middleware = applyMiddleware(
   questionsMiddleware,
-  thunk,
-  logger
+  userMiddleware,
+  thunk
 );
 
 // Enhancers : les extensions/outils + les middlewares custom
