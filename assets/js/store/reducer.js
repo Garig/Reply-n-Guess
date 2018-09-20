@@ -2,12 +2,17 @@
  * Local import
  */
 import {
-  DO_SOMETHING,
-  RECEIVE_DAILY_QUESTIONS,
-  SET_INPUT,
+  RECEIVE_DAILY_QUESTIONS
+} from './actions/questionsActions';
+
+import {
+  SET_INPUT
+} from './actions/actions';
+
+import {
   SET_GENDER,
   SET_DATE
-} from './actions';
+} from './actions/userActions';
 
 /**
  * Initial State

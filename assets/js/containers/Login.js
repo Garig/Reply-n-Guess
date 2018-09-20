@@ -1,8 +1,9 @@
 /**
- * Npm import
+ * Package Import
  */
 import { connect } from 'react-redux';
-import { setInput, submitLogin } from '../store/actions';
+import { submitLogin } from '../store/actions/userActions';
+import { setInput } from '../store/actions/actions';
 
 /**
  * Local import

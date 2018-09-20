@@ -23,24 +23,24 @@ const Signup = ({ user, setInput, setGender, setDate, submitSignup }) => (
   <Form onSubmit={submitSignup}>
     <FormItem>
       <Input
-          prefix={<Icon type="user" />}
-          id="username" name="username" type="text"
-          value={user.username} onChange={setInput}
-          autoComplete="off" placeholder="Votre pseudo"/>
+        prefix={<Icon type="user" />}
+        id="username" name="username" type="text"
+        value={user.username} onChange={setInput}
+        autoComplete="off" placeholder="Votre pseudo"/>
     </FormItem>
     <FormItem>
       <Input
-          prefix={<Icon type="lock" />}
-          id="password" name="password" type="password"
-          value={user.password} onChange={setInput}
-          autoComplete="off" placeholder="Votre mot de passe"/>
+        prefix={<Icon type="lock" />}
+        id="password" name="password" type="password"
+        value={user.password} onChange={setInput}
+        autoComplete="off" placeholder="Votre mot de passe"/>
     </FormItem>
     <FormItem>
       <Input
-          prefix={<Icon type="mail" />}
-          id="email" name="email" type="email"
-          value={user.email} onChange={setInput}
-          autoComplete="off" placeholder="Votre email"/>
+        prefix={<Icon type="mail" />}
+        id="email" name="email" type="email"
+        value={user.email} onChange={setInput}
+        autoComplete="off" placeholder="Votre email"/>
     </FormItem>
     <FormItem>
       <RadioGroup onChange={setGender} value={user.gender}>

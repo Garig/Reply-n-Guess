@@ -1,8 +1,7 @@
 /**
- * Npm import
+ * Package Import
  */
 import { connect } from 'react-redux';
-import { loadDailyQuestions } from '../store/actions';
 
 /**
  * Local import
@@ -22,11 +21,7 @@ const mapStateToProps = state => ({
 
 /* === Actions ===
  */
-const mapDispatchToProps = dispatch => ({
-  loadDailyQuestions: () => {
-    dispatch(loadDailyQuestions());
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 /**
  * Export

@@ -1,8 +1,9 @@
 /**
- * Npm import
+ * Package Import
  */
 import { connect } from 'react-redux';
-import { setInput, setGender, setDate, submitSignup } from '../store/actions';
+import { setGender, setDate, submitSignup } from '../store/actions/userActions';
+import { setInput } from '../store/actions/actions';
 
 /**
  * Local import

@@ -6,7 +6,7 @@
  */
 
 /**
- * NPM import
+ * Package import
  */
 import React from 'react';
 import { render } from 'react-dom';
@@ -14,19 +14,19 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 /**
- * Local importa
+ * Local import
  */
 // Components
 import App from './Components/App';
 
 // Store
 import store from './store';
-
-// Action
+import { loadDailyQuestions } from './store/actions/questionsActions';
 
 /**
  * Code
  */
+// Composant principal
 const rootComponent = (
   <Provider store={store}>
     <Router>
@@ -35,7 +35,11 @@ const rootComponent = (
   </Provider>
 );
 
-render(rootComponent, document.getElementById('root'));
+// Point d'entrée
+const targetNode = document.getElementById('root');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// var $ = require('jquery');
+// Rendu
+render(rootComponent, targetNode);
+
+// Action
+store.dispatch(loadDailyQuestions());

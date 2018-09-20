@@ -1,17 +1,16 @@
-/*
- * Npm import
+/**
+ * Package Import
  */
 import axios from 'axios';
 
-/*
+/**
  * Local import
  */
+import { URL } from './middleware';
 import {
   LOAD_DAILY_QUESTIONS,
   receiveDailyQuestions
-} from '../actions';
-
-const URL = 'http://localhost:8001';
+} from '../actions/questionsActions';
 
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -31,4 +30,7 @@ const questionsMiddleware = store => next => (action) => {
   next(action);
 };
 
+/**
+ * Export
+ */
 export default questionsMiddleware;

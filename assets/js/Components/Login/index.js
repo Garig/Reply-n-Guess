@@ -22,19 +22,19 @@ const Login = ({ user, setInput, submitLogin }) => (
   <Form className="login-card" onSubmit={submitLogin}>
     <FormItem>
       <Input
-          prefix={<Icon type="user" />}
-          className="signup-card-input"
-          id="username" name="username" type="text"
-          value={user.username} onChange={setInput}
-          autoComplete="off" placeholder="Votre pseudo"/>
+        prefix={<Icon type="user" />}
+        className="signup-card-input"
+        id="username" name="username" type="text"
+        value={user.username} onChange={setInput}
+        autoComplete="off" placeholder="Votre pseudo"/>
     </FormItem>
     <FormItem>
       <Input
-          prefix={<Icon type="lock" />}
-          className="signup-card-input"
-          id="password" name="password" type="password"
-          value={user.password} onChange={setInput}
-          autoComplete="off" placeholder="Votre mot de passe"/>
+        prefix={<Icon type="lock" />}
+        className="signup-card-input"
+        id="password" name="password" type="password"
+        value={user.password} onChange={setInput}
+        autoComplete="off" placeholder="Votre mot de passe"/>
     </FormItem>
     <FormItem>
       <Button type="primary" htmlType="submit" className="login-form-button">

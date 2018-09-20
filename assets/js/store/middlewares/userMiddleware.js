@@ -1,13 +1,18 @@
-import {
-  SUBMIT_SIGNUP,
-  SUBMIT_LOGIN
-} from '../actions';
-
+/**
+ * Package Import
+ */
 import axios from 'axios';
 import decode from 'jwt-decode';
 import * as Joi from 'joi-browser';
 
-const URL = 'http://localhost:8001';
+/*
+ * Local import
+ */
+import { URL } from './middleware';
+import {
+  SUBMIT_SIGNUP,
+  SUBMIT_LOGIN
+} from '../actions/userActions';
 
 const userMiddleware = store => next => (action) => {
   switch (action.type) {
