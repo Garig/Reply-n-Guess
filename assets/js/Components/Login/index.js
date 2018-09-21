@@ -7,6 +7,12 @@ import { Form, Button, Input, Icon, Alert } from 'antd';
 /**
  * Local import
  */
+import {
+  userType,
+  userInterfaceType,
+  setInputType,
+  submitLoginType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import './login.sass';
@@ -17,7 +23,7 @@ const FormItem = Form.Item;
 /**
  * Code
  */
-const Login = ({ user, userInterface, setInput, submitLogin }) => (  
+const Login = ({ user, userInterface, setInput, submitLogin }) => (
   <Form className="login-card" onSubmit={submitLogin}>
     {
       userInterface.alert.display
@@ -47,6 +53,16 @@ const Login = ({ user, userInterface, setInput, submitLogin }) => (
     </FormItem>
   </Form>
 );
+
+/**
+ * PropTypes
+ */
+Login.propTypes = {
+  user: userType.isRequired,
+  userInterface: userInterfaceType.isRequired,
+  setInput: setInputType.isRequired,
+  submitLogin: submitLoginType.isRequired
+};
 
 /**
  * Export

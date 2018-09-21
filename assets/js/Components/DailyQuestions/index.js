@@ -7,6 +7,7 @@ import { Card } from 'antd';
 /**
  * Local import
  */
+import { QuestionsType } from '../../utils/validationPropTypes';
 
 // Styles et assets
 import 'antd/lib/card/style/css';
@@ -31,6 +32,13 @@ const DailyQuestions = ({ questions }) => (
     }
   </div>
 );
+
+/**
+ * PropTypes
+ */
+DailyQuestions.propTypes = {
+  questions: QuestionsType.isRequired
+};
 
 /**
  * Export
