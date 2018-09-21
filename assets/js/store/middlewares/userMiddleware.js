@@ -8,6 +8,7 @@ import * as Joi from 'joi-browser';
 /*
  * Local import
  */
+//
 import { URL } from './middleware';
 import { displayAlert, makeRedirect } from '../actions/actions';
 import {
@@ -20,6 +21,12 @@ import {
   schemaSignUp,
   schemaLogin
 } from '../../utils/validationJoi';
+
+import {
+  AuthService
+} from '../../utils/AuthServices';
+
+const Auth = new AuthService();
 
 const userMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -40,23 +47,20 @@ const userMiddleware = store => next => (action) => {
         if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
         else {
           store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
-          axios
-            .post(`${URL}/api/users`, payload)
+          Auth.signup(payload)
             .then(function(response) {
-              console.log(response.data);
-              // TODO : clear les inputs
-              // payload.password = '';
-              store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
-              setTimeout(() => {
-                store.dispatch(makeRedirect('/login'));
-              }, 1000);
-            })
-            .catch(function(error) {
-              let errorCodeAPI = error.response.data['hydra:description'].slice(-9, -1);
-              // F85E0677 ==> username déjà inscrit en BDD
-              if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
-              // E7927C74 ==> email déjà inscrit en BDD
-              if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
+              if (typeof (response) === 'object') {
+                store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
+                setTimeout(() => {
+                  store.dispatch(makeRedirect('/login'));
+                }, 1000);
+              } else {
+                let errorCodeAPI = response;
+                // F85E0677 ==> username déjà inscrit en BDD
+                if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
+                // E7927C74 ==> email déjà inscrit en BDD
+                if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
+              }
             });
         }
       });

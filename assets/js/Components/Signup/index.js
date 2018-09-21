@@ -30,7 +30,7 @@ const FormItem = Form.Item;
  * Code
  */
 const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
-  userInterface.redirection === '/login'
+  userInterface.redirection === '/zerzer'
     ? <Redirect to={'/login'} />
     : <Form onSubmit={submitSignup}>
       {
