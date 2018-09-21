@@ -8,6 +8,14 @@ import moment from 'moment';
 /**
  * Local import
  */
+import {
+  userType,
+  userInterfaceType,
+  setInputType,
+  setGenderType,
+  setDateType,
+  submitSignupType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import './signup.sass';
@@ -70,6 +78,18 @@ const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignu
     </FormItem>
   </Form>
 );
+
+/**
+ * PropTypes
+ */
+Signup.propTypes = {
+  user: userType.isRequired,
+  userInterface: userInterfaceType.isRequired,
+  setInput: setInputType.isRequired,
+  setGender: setGenderType.isRequired,
+  setDate: setDateType.isRequired,
+  submitSignup: submitSignupType.isRequired
+};
 
 /**
  * Export
