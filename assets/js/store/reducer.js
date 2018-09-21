@@ -12,7 +12,8 @@ import {
 
 import {
   SET_GENDER,
-  SET_DATE
+  SET_DATE,
+  UPDATE_CONNECTION
 } from './actions/userActions';
 
 /**
@@ -87,6 +88,15 @@ const reducer = (state = initialState, action = {}) => {
           }
         }
       };
+    case UPDATE_CONNECTION: {
+      return {
+        ...state,
+        userInterface: {
+          ...state.userInterface,
+          isConnected: action.payload
+        }
+      }
+    }
     default:
       return state;
   }

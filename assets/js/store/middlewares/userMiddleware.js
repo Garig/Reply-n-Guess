@@ -12,7 +12,8 @@ import { URL } from './middleware';
 import { displayAlert } from '../actions/actions';
 import {
   SUBMIT_SIGNUP,
-  SUBMIT_LOGIN
+  SUBMIT_LOGIN,
+  updateConnection
 } from '../actions/userActions';
 
 import {
@@ -89,6 +90,10 @@ const userMiddleware = store => next => (action) => {
                 .then(function(response) {
                   console.log('Réponse en retour : ', response.data);
                   store.dispatch(displayAlert({type: 'success', message: 'Connexion réussie !'}));
+                  localStorage.setItem('token', token);
+                  setTimeout(() => {
+                    store.dispatch(updateConnection(true));
+                  }, 1000);
                 })
                 .catch(function(error) {
                   if (err) store.dispatch(displayAlert({type: 'error', message: 'Problème de connexion merci de ressayer'}));

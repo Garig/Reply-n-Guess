@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
 /**
@@ -21,23 +21,24 @@ const Header = () => (
   <header>
     <Menu
       mode="horizontal"
+      selectedKeys={[window.location.pathname]}
     >
-      <Menu.Item>
+      <Menu.Item key="/">
         <NavLink to="/">Reply'n'Guess</NavLink>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="/open_questions">
         <NavLink to="/open_questions">Questions ouvertes</NavLink>
       </Menu.Item>
-      <Menu.Item>
-        <NavLink to="#">Derniers résultats</NavLink>
+      <Menu.Item key="/lastest_results">
+        <NavLink to="/lastest_results">Derniers résultats</NavLink>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="/ranking">
         <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="/login">
         <NavLink to="/login">Connexion</NavLink>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="/signup">
         <NavLink to="/signup">Inscription</NavLink>
       </Menu.Item>
     </Menu>
