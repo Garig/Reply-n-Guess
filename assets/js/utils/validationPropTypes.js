@@ -36,6 +36,7 @@ export const userType =
 export const userInterfaceType =
   PropTypes.shape({
     isConnected: PropTypes.bool.isRequired,
+    redirection: PropTypes.string.isRequired,
     alert: PropTypes.shape({
       display: PropTypes.bool.isRequired,
       type: PropTypes.string.isRequired,

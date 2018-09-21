@@ -13,6 +13,9 @@ export const DISPLAY_ALERT = 'actions/DISPLAY_ALERT';
 // Pour display une alert
 export const HIDE_ALERT = 'actions/HIDE_ALERT';
 
+// Pour faire une redirection
+export const MAKE_REDIRECT = 'actions/MAKE_REDIRECT';
+
 /**
  * Action creators
  */
@@ -33,8 +36,14 @@ export const displayAlert = payload => ({
   payload
 });
 
-// Pour display une alert
+// Pour masquer une alert
 export const hideAlert = payload => ({
   type: HIDE_ALERT,
+  payload
+});
+
+// Pour faire une redirection
+export const makeRedirect = payload => ({
+  type: MAKE_REDIRECT,
   payload
 });

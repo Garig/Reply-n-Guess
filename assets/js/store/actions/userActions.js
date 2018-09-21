@@ -36,7 +36,6 @@ export const submitLogin = payload => ({
   payload
 });
 
-// Pour le Login
 export const updateConnection = payload => ({
   type: UPDATE_CONNECTION,
   payload

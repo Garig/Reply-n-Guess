@@ -4,10 +4,12 @@
 import React from 'react';
 import { Form, Button, DatePicker, Radio, Input, Icon, Alert } from 'antd';
 import moment from 'moment';
+import { Redirect } from 'react-router-dom';
 
 /**
  * Local import
  */
+// PropTypes
 import {
   userType,
   userInterfaceType,
@@ -28,8 +30,8 @@ const FormItem = Form.Item;
  * Code
  */
 const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
-  userInterface.isConnected
-    ? <Redirect to={'/'} />
+  userInterface.redirection === '/login'
+    ? <Redirect to={'/login'} />
     : <Form onSubmit={submitSignup}>
       {
         userInterface.alert.display

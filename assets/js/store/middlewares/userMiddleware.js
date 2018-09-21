@@ -9,7 +9,7 @@ import * as Joi from 'joi-browser';
  * Local import
  */
 import { URL } from './middleware';
-import { displayAlert } from '../actions/actions';
+import { displayAlert, makeRedirect } from '../actions/actions';
 import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN,
@@ -45,7 +45,11 @@ const userMiddleware = store => next => (action) => {
             .then(function(response) {
               console.log(response.data);
               // TODO : clear les inputs
+              // payload.password = '';
               store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
+              setTimeout(() => {
+                store.dispatch(makeRedirect('/login'));
+              }, 1000);
             })
             .catch(function(error) {
               let errorCodeAPI = error.response.data['hydra:description'].slice(-9, -1);
@@ -93,6 +97,7 @@ const userMiddleware = store => next => (action) => {
                   localStorage.setItem('token', token);
                   setTimeout(() => {
                     store.dispatch(updateConnection(true));
+                    store.dispatch(makeRedirect('/'));
                   }, 1000);
                 })
                 .catch(function(error) {

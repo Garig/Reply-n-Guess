@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
+// PropTypes
 import {
   userType,
   userInterfaceType,
@@ -25,7 +26,7 @@ const FormItem = Form.Item;
  * Code
  */
 const Login = ({ user, userInterface, setInput, submitLogin }) => (
-  userInterface.isConnected
+  userInterface.redirection === '/'
     ? <Redirect to={'/'} />
     : <Form className="login-card" onSubmit={submitLogin}>
       {

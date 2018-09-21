@@ -7,7 +7,8 @@ import {
 
 import {
   DISPLAY_ALERT,
-  SET_INPUT
+  SET_INPUT,
+  MAKE_REDIRECT
 } from './actions/actions';
 
 import {
@@ -33,6 +34,7 @@ const initialState = {
   },
   userInterface: {
     isConnected: false, // TODO : stocker le JWT + gérer les redirections
+    redirection: '',
     alert: {
       display: false,
       type: '',
@@ -95,7 +97,16 @@ const reducer = (state = initialState, action = {}) => {
           ...state.userInterface,
           isConnected: action.payload
         }
-      }
+      };
+    }
+    case MAKE_REDIRECT: {
+      return {
+        ...state,
+        userInterface: {
+          ...state.userInterface,
+          redirection: action.payload
+        }
+      };
     }
     default:
       return state;
