@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
  * Local import
  */
 import Home from '../Components/Home';
-import { loggedIn } from '../store/actions/userActions';
+import { makeRedirect } from '../store/actions/actions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -21,8 +21,8 @@ const mapStateToProps = state => ({});
 /* === Actions ===
  */
 const mapDispatchToProps = dispatch => ({
-  loggedIn: () => {
-    dispatch(loggedIn());
+  makeRedirect: () => {
+    dispatch(makeRedirect(''));
   }
 });
 

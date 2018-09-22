@@ -14,7 +14,8 @@ import {
 import {
   SET_GENDER,
   SET_DATE,
-  UPDATE_CONNECTION
+  UPDATE_CONNECTION,
+  DISCONNECT
 } from './actions/userActions';
 
 /**
@@ -106,6 +107,12 @@ const reducer = (state = initialState, action = {}) => {
           ...state.userInterface,
           redirection: action.payload
         }
+      };
+    }
+    case DISCONNECT: {
+      return {
+        ...initialState,
+        questions: state.questions
       };
     }
     default:
