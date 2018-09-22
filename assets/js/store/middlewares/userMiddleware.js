@@ -2,29 +2,38 @@
  * Package Import
  */
 import axios from 'axios';
-import decode from 'jwt-decode';
 import * as Joi from 'joi-browser';
 
 /*
  * Local import
  */
-//
+// URL serveur
 import { URL } from './middleware';
+
+// Actions générales
 import { displayAlert, makeRedirect } from '../actions/actions';
+
+// Actions spécifiques à l'user
 import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN,
   updateConnection
 } from '../actions/userActions';
 
+// Validations des données
 import {
   schemaSignUp,
   schemaLogin
 } from '../../utils/validationJoi';
 
+// Centralisation des méthodes correspondant aux connexions users
 import {
   AuthService
 } from '../../utils/AuthServices';
+
+/*
+ * Code
+ */
 
 const Auth = new AuthService();
 
@@ -48,24 +57,20 @@ const userMiddleware = store => next => (action) => {
         else {
           store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
           Auth.signup(payload)
-            .then(function(response) {
-              if (typeof (response) === 'object') {
-                store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
-                setTimeout(() => {
-                  store.dispatch(makeRedirect('/login'));
-                }, 1000);
-              } else {
-                let errorCodeAPI = response;
-                // F85E0677 ==> username déjà inscrit en BDD
-                if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
-                // E7927C74 ==> email déjà inscrit en BDD
-                if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
-              }
+            .then(objectUserCreated => {
+              store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
+              setTimeout(() => {
+                store.dispatch(makeRedirect('/login'));
+              }, 1000);
+            })
+            .catch(errorCodeAPI => {
+              if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
+              if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
             });
         }
       });
+    };
       break;
-    }
     case SUBMIT_LOGIN: {
       const { username, password } = store.getState().user;
 
@@ -121,4 +126,7 @@ const userMiddleware = store => next => (action) => {
   next(action);
 };
 
+/**
+ * Export
+ */
 export default userMiddleware;
