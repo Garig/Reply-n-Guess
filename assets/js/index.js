@@ -22,6 +22,7 @@ import App from './Components/App';
 // Store
 import store from './store';
 import { loadDailyQuestions } from './store/actions/questionsActions';
+import { loggedIn } from './store/actions/userActions';
 
 /**
  * Code
@@ -43,3 +44,4 @@ render(rootComponent, targetNode);
 
 // Action
 store.dispatch(loadDailyQuestions());
+store.dispatch(loggedIn());

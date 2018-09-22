@@ -7,8 +7,9 @@ import { Route, Switch } from 'react-router-dom';
 /**
  * Local import
  */
-import Header from '../Header';
+import Header from '../../containers/Header';
 import Home from '../../containers/Home';
+import Profil from '../../containers/Profil';
 import Login from '../../containers/Login';
 import Signup from '../../containers/Signup';
 import Footer from '../Footer';
@@ -26,9 +27,9 @@ const App = () => (
       <Route exact path='/' component={Home} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
+      <Route exact path='/profil' component={Profil} />
     </Switch>
   </section>
-
 );
 
 /**

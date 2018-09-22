@@ -111,7 +111,7 @@ const userMiddleware = store => next => (action) => {
     }
 
     case LOGGED_IN: {
-      console.log(Auth.loggedIn());
+      if (Auth.loggedIn()) store.dispatch(updateConnection(true));
       break;
     }
 

@@ -16,8 +16,7 @@ import './header.sass';
 /**
  * Code
  */
-
-const Header = () => (
+const Header = ({ userInterface }) => (
   <header>
     <Menu
       mode="horizontal"
@@ -35,12 +34,16 @@ const Header = () => (
       <Menu.Item key="/ranking">
         <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>
-      <Menu.Item key="/login">
-        <NavLink to="/login">Connexion</NavLink>
-      </Menu.Item>
-      <Menu.Item key="/signup">
-        <NavLink to="/signup">Inscription</NavLink>
-      </Menu.Item>
+      {
+        userInterface.isConnected
+          ? <Menu.Item key="/profil"><NavLink to="/profil">Profil</NavLink></Menu.Item>
+          : <Menu.Item key="/login"><NavLink to="/login">Connexion</NavLink></Menu.Item>
+      }
+      {
+        userInterface.isConnected
+          ? <Menu.Item key="/logout"><NavLink to="/logout">Logout</NavLink></Menu.Item>
+          : <Menu.Item key="/signup"><NavLink to="/signup">Inscription</NavLink></Menu.Item>
+      }
     </Menu>
   </header>
 );

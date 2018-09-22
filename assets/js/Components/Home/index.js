@@ -14,9 +14,6 @@ import DailyQuestions from '../../containers/DailyQuestions';
  * Code
  */
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.loggedIn();
-  }
   render() {
     return (
       <DailyQuestions />
