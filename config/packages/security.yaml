@@ -23,7 +23,7 @@ security:
             stateless: true
             anonymous: true
             json_login:
-                check_path: /login_check
+                check_path: /login_get_user_token
                 username_path: username
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -32,16 +32,16 @@ security:
             logout:
                 path: /logout
                 target: /
-        
+
         api:
-            pattern:  ^/api/jwt
+            pattern:  ^/api/jwt/connect_user
             stateless: true
             anonymous: false
             provider: our_db_provider
             guard:
                 authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator        
-                
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
         main:
             anonymous: true
             pattern:    ^/

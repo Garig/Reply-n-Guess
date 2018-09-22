@@ -9,11 +9,11 @@ logout:
 #   methods: POST
 
 api:
-  path: /api/jwt
+  path: /api/jwt/connect_user
   controller: App\Controller\AuthController::api
 
 login_check:
-  path:     /login_check
+  path:     /login_get_user_token
   methods:  [POST]
 
 # app/config/routing.yml

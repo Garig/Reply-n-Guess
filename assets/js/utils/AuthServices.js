@@ -27,7 +27,7 @@ export class AuthService {
   getTokenFromAPI(payload) {
     return new Promise((resolve, reject) =>
       axios
-        .post(`${URL}/login_check`, payload)
+        .post(`${URL}/login_get_user_token`, payload)
         .then(response => {
           const token = response.data.token;
           console.log('---------TOKEN--------');
@@ -45,7 +45,7 @@ export class AuthService {
   connectWithToken(token) {
     return new Promise((resolve, reject) =>
       axios
-        .get('/api/jwt', {
+        .get('/api/jwt/connect_user', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json',
