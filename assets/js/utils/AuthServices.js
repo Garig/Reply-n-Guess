@@ -53,10 +53,26 @@ export class AuthService {
           }
         })
         .then(response => {
-          localStorage.setItem('token', token);
+          this.setToken(token);
           resolve(response.data.token);
         })
         .catch(error => reject(error))
     );
+  }
+
+  loggedIn() {
+    // Checks if there is a saved token and it's still valid
+    const token = this.getToken(); // Getting token from localstorage
+    return token ? true : false;
+  }
+
+  setToken(token) {
+    // Saves user token to localStorage
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    // Retrieves the user token from localStorage
+    return localStorage.getItem('token');
   }
 }

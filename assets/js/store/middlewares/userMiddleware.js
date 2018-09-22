@@ -17,7 +17,8 @@ import { displayAlert, makeRedirect } from '../actions/actions';
 import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN,
-  updateConnection
+  updateConnection,
+  LOGGED_IN
 } from '../actions/userActions';
 
 // Validations des données
@@ -70,8 +71,8 @@ const userMiddleware = store => next => (action) => {
             });
         }
       });
-    };
       break;
+    }
 
     case SUBMIT_LOGIN: {
       const { username, password } = store.getState().user;
@@ -108,6 +109,12 @@ const userMiddleware = store => next => (action) => {
       });
       break;
     }
+
+    case LOGGED_IN: {
+      console.log(Auth.loggedIn());
+      break;
+    }
+
     default:
   }
   next(action);
