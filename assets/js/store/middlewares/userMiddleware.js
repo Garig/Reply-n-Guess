@@ -1,14 +1,11 @@
 /**
  * Package Import
  */
-import axios from 'axios';
 import * as Joi from 'joi-browser';
 
 /*
  * Local import
  */
-// URL serveur
-import { URL } from './middleware';
 
 // Actions générales
 import { displayAlert, makeRedirect } from '../actions/actions';
@@ -18,7 +15,8 @@ import {
   SUBMIT_SIGNUP,
   SUBMIT_LOGIN,
   updateConnection,
-  LOGGED_IN
+  LOGGED_IN,
+  DISCONNECT
 } from '../actions/userActions';
 
 // Validations des données
@@ -115,6 +113,12 @@ const userMiddleware = store => next => (action) => {
       break;
     }
 
+    case DISCONNECT: {
+      Auth.logout();
+      store.dispatch(makeRedirect('/'));
+      store.dispatch(updateConnection(false));
+      break;
+    }
     default:
   }
   next(action);

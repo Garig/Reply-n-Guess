@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
  * Local import
  */
 import Header from '../Components/Header';
+import { disconnect } from '../store/actions/userActions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -21,7 +22,11 @@ const mapStateToProps = state => ({
 
 /* === Actions ===
  */
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  disconnect: () => {
+    dispatch(disconnect());
+  }
+});
 
 /**
  * Export

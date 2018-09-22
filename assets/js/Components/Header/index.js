@@ -16,7 +16,7 @@ import './header.sass';
 /**
  * Code
  */
-const Header = ({ userInterface }) => (
+const Header = ({ userInterface, disconnect }) => (
   <header>
     <Menu
       mode="horizontal"
@@ -41,7 +41,7 @@ const Header = ({ userInterface }) => (
       }
       {
         userInterface.isConnected
-          ? <Menu.Item key="/logout"><NavLink to="/logout">Logout</NavLink></Menu.Item>
+          ? <Menu.Item key="/logout"><Icon type="poweroff" theme="outlined" onClick={disconnect} /></Menu.Item>
           : <Menu.Item key="/signup"><NavLink to="/signup">Inscription</NavLink></Menu.Item>
       }
     </Menu>

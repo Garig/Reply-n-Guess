@@ -3,6 +3,7 @@
  */
 // Verification si logger
 export const LOGGED_IN = 'actions/LOGGED_IN';
+export const DISCONNECT = 'actions/DISCONNECT';
 
 // Pour le Signup
 export const SET_GENDER = 'actions/SET_GENDER';
@@ -20,6 +21,11 @@ export const UPDATE_CONNECTION = 'actions/UPDATE_CONNECTION';
 // Verification si logger
 export const loggedIn = () => ({
   type: LOGGED_IN
+});
+
+// Deconnecter le user
+export const disconnect = () => ({
+  type: DISCONNECT
 });
 
 // Pour le Signup

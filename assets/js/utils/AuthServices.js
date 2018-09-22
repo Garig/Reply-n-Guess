@@ -75,4 +75,9 @@ export class AuthService {
     // Retrieves the user token from localStorage
     return localStorage.getItem('token');
   }
+
+  logout() {
+    // Clear user token and profile data from localStorage
+    localStorage.removeItem('token');
+  }
 }
