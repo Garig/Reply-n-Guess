@@ -56,6 +56,7 @@ const userMiddleware = store => next => (action) => {
         if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
         else {
           store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
+          // Demande d'inscription
           Auth.signup(payload)
             .then(objectUserCreated => {
               store.dispatch(displayAlert({type: 'success', message: 'Inscription réussie !'}));
@@ -71,6 +72,7 @@ const userMiddleware = store => next => (action) => {
       });
     };
       break;
+
     case SUBMIT_LOGIN: {
       const { username, password } = store.getState().user;
 
@@ -83,38 +85,23 @@ const userMiddleware = store => next => (action) => {
         if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
         else {
           store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
-          axios
-            .post(`${URL}/login_check`, payload)
-            .then(function(response) {
-              let token = response.data.token;
-              console.log('---------TOKEN--------');
-              console.log(token);
-              console.log('---------DECODE--------');
-              const decoded = decode(response.data.token);
-              console.log(decoded);
-              axios
-                .get('/api/jwt', {
-                  headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  }
-                })
-                .then(function(response) {
-                  console.log('Réponse en retour : ', response.data);
+          // Demande de connexion
+          Auth.getTokenFromAPI(payload)
+            .then(token => {
+              // Demande de confirmation
+              Auth.connectWithToken(token)
+                .then(response => {
                   store.dispatch(displayAlert({type: 'success', message: 'Connexion réussie !'}));
-                  localStorage.setItem('token', token);
                   setTimeout(() => {
                     store.dispatch(updateConnection(true));
                     store.dispatch(makeRedirect('/'));
                   }, 1000);
                 })
-                .catch(function(error) {
-                  if (err) store.dispatch(displayAlert({type: 'error', message: 'Problème de connexion merci de ressayer'}));
-                  console.log('error token : ', error);
+                .catch(error => {
+                  if (error) store.dispatch(displayAlert({type: 'error', message: 'Problème de connexion merci de ressayer'}));
                 });
             })
-            .catch(function(error) {
+            .catch(error => {
               if (error) store.dispatch(displayAlert({type: 'error', message: 'Identifiants invalides !'}));
             });
         }
