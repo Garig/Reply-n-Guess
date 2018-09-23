@@ -16,9 +16,9 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/{reactRouting}", name="index", defaults={"reactRouting": null})
+     * Route("/{reactRouting}", name="index", defaults={"reactRouting": null})
      * 
-     * Route("/{reactRouting}", name="index", requirements={"reactRouting"="^(?!api).+"}, defaults={"reactRouting": null})
+     * @Route("/{reactRouting}", name="index", requirements={"reactRouting"="^(?!api).+"}, defaults={"reactRouting": null})
      */
     public function Index()
     {

@@ -10,7 +10,7 @@ import { Button, Icon } from 'antd';
  */
 
 // Styles et assets
-import './PageNotFound.css';
+import './pageNotFound.css';
 
 /**
  * Code
@@ -26,7 +26,7 @@ const PageNotFound = () => {
         <span><span className="screen-reader-text">0</span></span>
         <span>4</span><br />
       </section>
-      <div className="wrapper">
+      <div className="wrapperPageNotFound">
         <Button type="primary" className="link-container">
           <NavLink to="/">Retour en terrain connu</NavLink>
         </Button>

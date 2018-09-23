@@ -17,7 +17,7 @@ import './header.sass';
  * Code
  */
 const Header = ({ userInterface, disconnect }) => (
-  <header>
+  <header className="headerNav">
     <Menu
       mode="horizontal"
       selectedKeys={[window.location.pathname]}
