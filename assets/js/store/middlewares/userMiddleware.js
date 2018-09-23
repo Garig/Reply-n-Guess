@@ -16,7 +16,8 @@ import {
   SUBMIT_LOGIN,
   updateConnection,
   LOGGED_IN,
-  DISCONNECT
+  DISCONNECT,
+  setUserInfos
 } from '../actions/userActions';
 
 // Validations des données
@@ -109,7 +110,11 @@ const userMiddleware = store => next => (action) => {
     }
 
     case LOGGED_IN: {
-      if (Auth.loggedIn()) store.dispatch(updateConnection(true));
+      if (Auth.loggedIn()) {
+        store.dispatch(updateConnection(true));
+        const userObject = Auth.getProfile();
+        store.dispatch(setUserInfos(userObject));
+      }
       break;
     }
 

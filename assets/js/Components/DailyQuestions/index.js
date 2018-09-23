@@ -16,7 +16,7 @@ import './dailyQuestions.sass';
 /**
  * Code
  */
-const DailyQuestions = ({ questions }) => (
+const DailyQuestions = ({ questions, userInterface }) => (
   <div>
     {
       questions.map(current =>
@@ -24,6 +24,8 @@ const DailyQuestions = ({ questions }) => (
           key={current.id}
           title={current.title}
         >
+          <p>Réponse 1 : {current.prop_1}</p>
+          <p>Réponse 2 : {current.prop_2}</p>
           <p>PROP 1 : {current.prop_1}</p>
           <p>PROP 2 : {current.prop_2}</p>
           <p>SUBMIT : {current.submit_date}</p>

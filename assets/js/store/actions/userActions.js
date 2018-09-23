@@ -4,6 +4,7 @@
 // Verification si logger
 export const LOGGED_IN = 'actions/LOGGED_IN';
 export const DISCONNECT = 'actions/DISCONNECT';
+export const SET_USER_INFOS = 'actions/SET_USER_INFOS';
 
 // Pour le Signup
 export const SET_GENDER = 'actions/SET_GENDER';
@@ -26,6 +27,12 @@ export const loggedIn = () => ({
 // Deconnecter le user
 export const disconnect = () => ({
   type: DISCONNECT
+});
+
+// Stock les infos user dans le state
+export const setUserInfos = payload => ({
+  type: SET_USER_INFOS,
+  payload
 });
 
 // Pour le Signup

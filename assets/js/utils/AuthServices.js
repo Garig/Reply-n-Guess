@@ -32,9 +32,6 @@ export class AuthService {
           const token = response.data.token;
           console.log('---------TOKEN--------');
           console.log(token);
-          console.log('---------DECODE--------');
-          const decoded = decode(response.data.token);
-          console.log(decoded);
           resolve(token);
         })
         .catch(error => reject(error))
@@ -74,6 +71,13 @@ export class AuthService {
   getToken() {
     // Retrieves the user token from localStorage
     return localStorage.getItem('token');
+  }
+
+  getProfile() {
+    // Using jwt-decode npm package to decode the token
+    console.log('---------DECODE--------');
+    console.log(decode(this.getToken()));
+    return decode(this.getToken());
   }
 
   logout() {

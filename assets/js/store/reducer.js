@@ -15,14 +15,20 @@ import {
   SET_GENDER,
   SET_DATE,
   UPDATE_CONNECTION,
-  DISCONNECT
+  DISCONNECT,
+  SET_USER_INFOS
 } from './actions/userActions';
 
 /**
  * Initial State
  */
 const initialState = {
-  answers: [],
+  answers: {
+    'userChoice': null,
+    'userPredict': null,
+    'users': '',
+    'questions': ''
+  },
   questions: [],
   results: [],
   user: {
@@ -91,7 +97,15 @@ const reducer = (state = initialState, action = {}) => {
           }
         }
       };
-    case UPDATE_CONNECTION: {
+    case SET_USER_INFOS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload
+        }
+      };
+    case UPDATE_CONNECTION:
       return {
         ...state,
         userInterface: {
@@ -99,8 +113,7 @@ const reducer = (state = initialState, action = {}) => {
           isConnected: action.payload
         }
       };
-    }
-    case MAKE_REDIRECT: {
+    case MAKE_REDIRECT:
       return {
         ...state,
         user: {
@@ -118,13 +131,11 @@ const reducer = (state = initialState, action = {}) => {
           }
         }
       };
-    }
-    case DISCONNECT: {
+    case DISCONNECT:
       return {
         ...initialState,
         questions: state.questions
       };
-    }
     default:
       return state;
   }

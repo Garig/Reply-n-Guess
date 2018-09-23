@@ -16,7 +16,9 @@ import DailyQuestions from '../Components/DailyQuestions';
  * Pas de data à transmettre ? ==> alors const mapStateToProps = null;
  */
 const mapStateToProps = state => ({
-  questions: state.questions
+  questions: state.questions,
+  user: state.user,
+  userInterface: state.userInterface
 });
 
 /* === Actions ===
