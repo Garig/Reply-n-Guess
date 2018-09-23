@@ -8,19 +8,19 @@ import React from 'react';
  */
 
 // Styles et assets
-import './profil.sass';
+import './ranking.sass';
 
 /**
  * Code
  */
-const Profil = ({ user, userInterface, questions, results }) => (
+const Ranking = ({ user, userInterface, questions, results }) => (
   // userInterface.isConnected
   //   ? <div>Profil</div>
   //   : <Redirect to={'/login'} />
-  <div>Profil</div>
+  <div>Ranking</div>
 );
 
 /**
  * Export
  */
-export default Profil;
+export default Ranking;

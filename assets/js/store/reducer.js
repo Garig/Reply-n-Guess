@@ -34,7 +34,7 @@ const initialState = {
     birthDate: ''
   },
   userInterface: {
-    isConnected: false, // TODO : stocker le JWT + gérer les redirections
+    isConnected: false,
     redirection: '',
     alert: {
       display: false,
@@ -103,9 +103,19 @@ const reducer = (state = initialState, action = {}) => {
     case MAKE_REDIRECT: {
       return {
         ...state,
+        user: {
+          ...state.user,
+          password: '',
+          passwordConfirm: ''
+        },
         userInterface: {
           ...state.userInterface,
-          redirection: action.payload
+          redirection: action.payload,
+          alert: {
+            display: false,
+            type: '',
+            message: ''
+          }
         }
       };
     }
