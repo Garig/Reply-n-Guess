@@ -6,6 +6,10 @@ import {
 } from './actions/questionsActions';
 
 import {
+  SET_ANSWER
+} from './actions/answersActions';
+
+import {
   DISPLAY_ALERT,
   SET_INPUT,
   MAKE_REDIRECT
@@ -32,6 +36,7 @@ const initialState = {
   questions: [],
   results: [],
   user: {
+    id: null,
     username: '',
     password: '',
     passwordConfirm: '',
@@ -135,6 +140,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
         questions: state.questions
+      };
+    case SET_ANSWER:
+      return {
+        ...state,
+        answers: {
+          ...state.answers,
+          [action.payload.radioName]: action.payload.value,
+          questions: '/api/questions/' + action.payload.questions,
+          users: '/api/users/' + state.user.id
+        }
       };
     default:
       return state;

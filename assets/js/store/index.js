@@ -13,6 +13,7 @@ import reducer from './reducer.js'; // notre reducer custom
 // Middlewares
 import questionsMiddleware from './middlewares/questionsMiddleware'; // notre middleware pour la page d'accueil
 import userMiddleware from './middlewares/userMiddleware'; // notre middleware pour la gestion de l'user
+import answersMiddleware from './middlewares/answersMiddleware'; // notre middleware pour la gestion des réponses
 
 /*
  * Code
@@ -30,6 +31,7 @@ if (window.devToolsExtension) {
 const middleware = applyMiddleware(
   questionsMiddleware,
   userMiddleware,
+  answersMiddleware,
   thunk
 );
 
