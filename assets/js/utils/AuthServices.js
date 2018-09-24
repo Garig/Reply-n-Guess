@@ -60,7 +60,7 @@ export class AuthService {
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken(); // Getting token from localstorage
-    return token ? true : false;
+    return !!token;
   }
 
   setToken(token) {
@@ -81,5 +81,20 @@ export class AuthService {
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('token');
+  }
+
+  getQuestion(userId) {
+    return new Promise((resolve, reject) =>
+      axios
+        .get(`/api/users/${userId}/answeredQuestions`)
+        .then(response => {
+          let arrayQuestionAnswered = [];
+          response.data['hydra:member'].map(current => {
+            arrayQuestionAnswered.push(current.id);
+          });
+          return resolve(arrayQuestionAnswered);
+        })
+        .catch(error => reject(error))
+    );
   }
 }

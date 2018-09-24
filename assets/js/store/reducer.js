@@ -57,7 +57,7 @@ const initialState = {
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_ANSWER:
+    case SET_ANSWER: {
       const newAnswer = {
         questions: '/api/questions/' + action.payload.questions,
         users: '/api/users/' + state.user.id,
@@ -72,21 +72,21 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         answers: {...answersArray}
       };
+    }
     case SET_ANSWERED:
-      let questionAnswered = action.payload;
-      let questionToUpdate = state.questions;
+      const questionAnswered = action.payload;
+      const questionToUpdate = state.questions;
+      let answersArray = state.answers;
+      delete answersArray[questionAnswered];
       questionToUpdate.map(currentQuestion => {
         if (questionAnswered.includes(currentQuestion.id)) {
           currentQuestion.answered = true;
-        } else {
-          currentQuestion.answered = false;
         }
       });
-      console.log(questionToUpdate);
-
       return {
         ...state,
-        questions: [...questionToUpdate]
+        questions: [...questionToUpdate],
+        answers: {...answersArray}
       };
     case RECEIVE_DAILY_QUESTIONS:
       return {

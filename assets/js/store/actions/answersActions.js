@@ -15,8 +15,9 @@ export const setAnswer = payload => ({
   payload
 });
 
-export const sendAnswer = () => ({
-  type: SEND_ANSWER
+export const sendAnswer = payload => ({
+  type: SEND_ANSWER,
+  payload
 });
 
 export const setAnswered = payload => ({

@@ -10,6 +10,7 @@ import axios from 'axios';
 
 // Actions générales
 import { displayAlert, makeRedirect } from '../actions/actions';
+import { setAnswered } from '../actions/answersActions';
 
 // Actions spécifiques à l'user
 import {
@@ -115,6 +116,9 @@ const userMiddleware = store => next => (action) => {
         store.dispatch(updateConnection(true));
         const userObject = Auth.getProfile();
         store.dispatch(setUserInfos(userObject));
+        Auth.getQuestion(userObject.id)
+          .then(arrayQuestionAnswered => store.dispatch(setAnswered(arrayQuestionAnswered)))
+          .catch(err => console.log(err));
       }
       break;
     }

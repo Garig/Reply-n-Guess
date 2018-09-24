@@ -21,21 +21,12 @@ const answersMiddleware = store => next => (action) => {
         if (currentAnswer.userChoice) {
           if (currentAnswer.userPredict) {
             if (currentAnswer.userChoice !== null && currentAnswer.userPredict !== null) {
+              console.log('SEND');
+              console.log(currentAnswer);
               axios
                 .post(`${URL}/api/answers`, currentAnswer)
                 .then(response => {
-                  console.log(response);
-                  const { id } = store.getState().user;
-                  axios
-                    .get(`/api/users/${id}/answeredQuestions`)
-                    .then(response => {
-                      let arrayQuestionAnswered = [];
-                      response.data['hydra:member'].map(current => {
-                        arrayQuestionAnswered.push(current.id);
-                      });
-                      store.dispatch(setAnswered(arrayQuestionAnswered));
-                    })
-                    .catch(error => console.log(error));
+                  store.dispatch(setAnswered([action.payload]));
                 })
                 .catch(error => console.log(error));
             }
