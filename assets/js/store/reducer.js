@@ -74,30 +74,19 @@ const reducer = (state = initialState, action = {}) => {
       };
     case SET_ANSWERED:
       let questionAnswered = action.payload;
-      let checkedQuestion = state.questions.map(currentDaily => {
-        console.log('currentdaily');
-        if (currentDaily.id !==
-          questionAnswered.map(currentQuestionOfUserHistory =>
-            currentQuestionOfUserHistory.id
-          )) {
-          console.log('différent');
-          currentDaily = {
-            ...currentDaily,
-            anwsered: true
-          };
+      let questionToUpdate = state.questions;
+      questionToUpdate.map(currentQuestion => {
+        if (questionAnswered.includes(currentQuestion.id)) {
+          currentQuestion.answered = true;
+        } else {
+          currentQuestion.answered = false;
         }
       });
-      // state.questions.filter(currentQuestionToCheck =>
-      //   currentQuestionToCheck.id ===
-      //   action.payload.map(currentQuestionOfUserHistory => console.log(currentQuestionOfUserHistory.id))
-      // );
-      console.log(checkedQuestion);
-      // const updatedQuestion = {
-      //   ...questionAnswered,
-      //   answered: true
-      // }
+      console.log(questionToUpdate);
+
       return {
-        ...state
+        ...state,
+        questions: [...questionToUpdate]
       };
     case RECEIVE_DAILY_QUESTIONS:
       return {

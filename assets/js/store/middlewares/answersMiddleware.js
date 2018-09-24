@@ -28,7 +28,12 @@ const answersMiddleware = store => next => (action) => {
                   axios
                     .get(`/api/users/${id}/answeredQuestions`)
                     .then(response => {
-                      const arrayQuestionAnswered = response.data['hydra:member'];
+                      let arrayQuestionAnswered = [];
+                      response.data['hydra:member'].map(current => {
+                        arrayQuestionAnswered.push(current.id);
+                      });
+                      console.log('-----TOUTES LES ID QUESTIONS REPONDUS-----');
+                      console.log(arrayQuestionAnswered);
                       store.dispatch(setAnswered(arrayQuestionAnswered));
                     })
                     .catch(error => console.log(error));
