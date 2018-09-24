@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
       value
     };
     dispatch(setAnswer(payload));
-    dispatch(sendAnswer(questions));
+    dispatch(sendAnswer());
   }
 });
 

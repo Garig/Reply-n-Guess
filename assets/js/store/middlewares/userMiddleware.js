@@ -2,6 +2,7 @@
  * Package Import
  */
 import * as Joi from 'joi-browser';
+import axios from 'axios';
 
 /*
  * Local import

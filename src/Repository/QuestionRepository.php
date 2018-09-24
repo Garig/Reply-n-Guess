@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Question;
 use App\Entity\User;
+use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Query\Expr\Join;
@@ -21,25 +22,27 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    // /**
-    // * @return Question[] Returns an array of 3 Questions objects
-    // */
-    // public function findThreeByrandom()
-    // {
-    //     $entityManager = $this->getEntityManager();
+    /**
+    * SELECT question.id   
+    * FROM question
+    * INNER JOIN answer ON answer.questions_id = question.id
+    * INNER JOIN app_users ON app_users.id = answer.users_id
+    * WHERE app_users.id = 1
+    * @return QuestionIds[] Returns an array of Questions ids
+    */
+    public function findUserAnsweredQuestions($id)
+    {
+        $entityManager = $this->getEntityManager();
 
-    //     $query = $entityManager->createQuery(
-    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
-    //         FROM App\Entity\Question q 
-    //         INNER JOIN App\Entity\User u
-    //         WITH q.users = u.id 
-    //         ORDER BY rand()'
-    // )->setMaxResults(3);
-
-    // // returns an array of 3 Questions objects
-    // return $query->execute();  
-    // }
-
+        $query = $entityManager->createQuery(
+            "SELECT q.id
+            FROM App\Entity\Question q
+            INNER JOIN App\Entity\Answer a WITH a.questions = q.id
+            INNER JOIN App\Entity\User u WITH u.id = a.users
+            WHERE u.id = '$id'"
+        );
+    return $query->execute();  
+    }
 
     /**
     * @return Question[] Returns an array of 3 Questions objects
@@ -57,9 +60,9 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
 
-//    /**
-//     * @return Question[] Returns an array of Question objects
-//     */
+   /**
+    * @return Question[] Returns an array of Question objects
+    */
     /*
     public function findByExampleField($value)
     {
@@ -85,4 +88,25 @@ class QuestionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    // /**
+    // * @return Question[] Returns an array of 3 Questions objects
+    // */
+    // public function findThreeByrandom()
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
+    //         FROM App\Entity\Question q 
+    //         INNER JOIN App\Entity\User u
+    //         WITH q.users = u.id 
+    //         ORDER BY rand()'
+    // )->setMaxResults(3);
+
+    // // returns an array of 3 Questions objects
+    // return $query->execute();  
+    // }
+
 }

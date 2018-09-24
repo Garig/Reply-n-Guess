@@ -7,12 +7,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Controller\QuestionAnsweredController;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *          "get",
+ *          "post",
+ *          "AnsweredQuestions"={
+ *              "method"="GET",
+ *              "path"="/users/{id}/answeredQuestions/",
+ *              "controller"=QuestionAnsweredController::class
+ *          }
+ *      },
+ *      attributes={"formats"={"jsonld"}}
+ * )
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
+
 class User implements UserInterface, \Serializable
 {
     /**

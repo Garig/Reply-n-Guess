@@ -28,7 +28,7 @@ import {
  * Initial State
  */
 const initialState = {
-  answers: [],
+  answers: {},
   questions: [],
   results: [],
   user: {
@@ -70,18 +70,34 @@ const reducer = (state = initialState, action = {}) => {
       };
       return {
         ...state,
-        answers: [...answersArray]
+        answers: {...answersArray}
       };
     case SET_ANSWERED:
-      const questionAnswered = state.questions.filter(currentQuestion => currentQuestion.id === action.payload);
-      console.log(questionAnswered);
-      const updatedQuestion = {
-        ...questionAnswered,
-        answered: true
-      }
+      let questionAnswered = action.payload;
+      let checkedQuestion = state.questions.map(currentDaily => {
+        console.log('currentdaily');
+        if (currentDaily.id !==
+          questionAnswered.map(currentQuestionOfUserHistory =>
+            currentQuestionOfUserHistory.id
+          )) {
+          console.log('différent');
+          currentDaily = {
+            ...currentDaily,
+            anwsered: true
+          };
+        }
+      });
+      // state.questions.filter(currentQuestionToCheck =>
+      //   currentQuestionToCheck.id ===
+      //   action.payload.map(currentQuestionOfUserHistory => console.log(currentQuestionOfUserHistory.id))
+      // );
+      console.log(checkedQuestion);
+      // const updatedQuestion = {
+      //   ...questionAnswered,
+      //   answered: true
+      // }
       return {
-        ...state,
-        questions: [...state.questions, updatedQuestion]
+        ...state
       };
     case RECEIVE_DAILY_QUESTIONS:
       return {

@@ -15,28 +15,25 @@ import {
 const answersMiddleware = store => next => (action) => {
   switch (action.type) {
     case SEND_ANSWER: {
-      const arrayAnswers = store.getState().answers;
-      arrayAnswers.map(currentAnswer => {
-        if (typeof (currentAnswer) === 'object') {
-          if (currentAnswer.userChoice) {
-            if (currentAnswer.userPredict) {
-              if (currentAnswer.userChoice !== null && currentAnswer.userPredict !== null) {
-                console.log('SEND');
-                console.log(currentAnswer);
-                axios
-                  .post(`${URL}/api/answers`, currentAnswer)
-                  .then(response => {
-                    // store.dispatch(setAnswered(action.payload));
-                    // console.log(response);
-                    // axios
-                    //   .get(`${currentAnswer.users}`)
-                    //   .then(response => {
-                    //     console.log(response.data.answers);
-                    //   })
-                    //   .catch(error => console.log(error));
-                  })
-                  .catch(error => console.log(error));
-              }
+      const objectAnswers = store.getState().answers;
+      Object.keys(objectAnswers).map((valueKey, index) => {
+        var currentAnswer = objectAnswers[valueKey];
+        if (currentAnswer.userChoice) {
+          if (currentAnswer.userPredict) {
+            if (currentAnswer.userChoice !== null && currentAnswer.userPredict !== null) {
+              axios
+                .post(`${URL}/api/answers`, currentAnswer)
+                .then(response => {
+                  const { id } = store.getState().user;
+                  axios
+                    .get(`/api/users/${id}/answeredQuestions`)
+                    .then(response => {
+                      const arrayQuestionAnswered = response.data['hydra:member'];
+                      store.dispatch(setAnswered(arrayQuestionAnswered));
+                    })
+                    .catch(error => console.log(error));
+                })
+                .catch(error => console.log(error));
             }
           }
         }
