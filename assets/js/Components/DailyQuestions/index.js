@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Redirect, WithRouter } from 'react-router-dom';
-import { Card, Icon, Radio } from 'antd';
+import { Alert, Avatar, Card, Icon, Radio } from 'antd';
 
 /**
  * Local import
@@ -25,36 +25,40 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
         <Card
           key={current.id}
           title={current.title}
-          // onClick={userInterface.isConnected
-          //   ?  : <Redirect to='/login' />}
         >
-          <React.Fragment>
-            <div className="answer">
-              <div className="choice">
-                <Radio.Group onChange={setAnswer} name={current.id + '-userChoice'} disabled={current.answered} buttonStyle="solid">
-                  <Radio.Button value="1">{current.prop_1}</Radio.Button>
-                  <Radio.Button value="" disabled>
-                    <Icon type="left" theme="outlined" />
-                    <span className="textVote">Choix</span>
-                    <Icon type="right" theme="outlined" />
-                  </Radio.Button>
-                  <Radio.Button value="2">{current.prop_2}</Radio.Button>
-                </Radio.Group>
-              </div>
-              <div className="purpose">
-                <Radio.Group onChange={setAnswer} name={current.id + '-userPredict'} disabled={current.answered} buttonStyle="solid">
-                  <Radio.Button value="1">{current.prop_1}</Radio.Button>
-                  <Radio.Button value="" disabled>
-                    <Icon type="left" theme="outlined" />
-                    <span className="textVote">Prédictions</span>
-                    <Icon type="right" theme="outlined" />
-                  </Radio.Button>
-                  <Radio.Button value="2">{current.prop_2}</Radio.Button>
-                </Radio.Group>
-              </div>
+          <div className="answer">
+            <div className="choice">
+              <Radio.Group onChange={setAnswer} name={current.id + '-userChoice'} disabled={current.answered} buttonStyle="solid">
+                <Radio.Button value="1">{current.prop_1}</Radio.Button>
+                <Radio.Button value="" disabled>
+                  <Icon type="left" theme="outlined" />
+                  <span className="textVote">Choix</span>
+                  <Icon type="right" theme="outlined" />
+                </Radio.Button>
+                <Radio.Button value="2">{current.prop_2}</Radio.Button>
+              </Radio.Group>
             </div>
-            <p>SUBMIT : {current.submit_date}</p>
-          </React.Fragment>
+            {
+              userInterface.isConnected
+                ? <div className="purpose">
+                  <Radio.Group onChange={setAnswer} name={current.id + '-userPredict'} disabled={current.answered} buttonStyle="solid">
+                    <Radio.Button value="1">{current.prop_1}</Radio.Button>
+                    <Radio.Button value="" disabled>
+                      <Icon type="left" theme="outlined" />
+                      <span className="textVote">Prédictions</span>
+                      <Icon type="right" theme="outlined" />
+                    </Radio.Button>
+                    <Radio.Button value="2">{current.prop_2}</Radio.Button>
+                  </Radio.Group>
+                </div>
+                : null
+            }
+            {
+              current.answered
+                ? <Alert message="Vous avez répondu à cette question" type="success" showIcon />
+                : null
+            }
+          </div>
         </Card>
       )
     }

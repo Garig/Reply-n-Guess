@@ -11,8 +11,14 @@
 // .textVote
 //   margin: 0 1em
 
+.ant-card
+  min-width: fit-content
+  
+.ant-card,
 .answer
   width: fit-content
+  margin-left: auto
+  margin-right: auto
 
   .choice,
   .purpose
@@ -21,17 +27,22 @@
 
   .purpose
     margin-top: 1em
+    margin-bottom: 1em
 
+.ant-radio-button
+  min-width: fit-content
 
-.ant-radio-button-wrapper-disabled
-  background-color: #fff
-  cursor: default
-  color: #000
-
-.ant-radio-button-wrapper-disabled:hover
-    border-color: #d9d9d9
+  &-wrapper-disabled
+    min-width: fit-content
     background-color: #fff
+    cursor: default
     color: #000
+
+    &:hover
+      min-width: fit-content
+      border-color: #d9d9d9
+      background-color: #fff
+      color: #000
 
 .textVote
   margin: 0 1em
