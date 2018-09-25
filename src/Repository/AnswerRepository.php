@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Answer;
 
 /**
  * @method Answer|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +19,16 @@ class AnswerRepository extends ServiceEntityRepository
         parent::__construct($registry, Answer::class);
     }
 
-//    /**
-//     * @return Answer[] Returns an array of Answer objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     *
+     */
+    public function findUserAnsweredQuestions($userId)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+                ->where('a.users = ?1')
+                ->setParameter(1, $userId)
+                ->getQuery()
+                ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Answer
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

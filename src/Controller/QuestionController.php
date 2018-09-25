@@ -19,7 +19,6 @@ class QuestionController extends AbstractController
     public function __invoke()
     {
         $data = $this->dailyQuestions();
-        dump($data);
         return $data;
     }
 
@@ -27,6 +26,6 @@ class QuestionController extends AbstractController
     {
         return $this->getDoctrine()
                     ->getRepository(Question::class)
-                    ->findThreeByrandom();  
+                    ->findThreeByrandom();
     }
 }

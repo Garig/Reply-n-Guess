@@ -86,9 +86,10 @@ export class AuthService {
   getQuestion(userId) {
     return new Promise((resolve, reject) =>
       axios
-        .get(`/api/users/${userId}/answeredQuestions`)
+        .get(`/api/answers/answeredQuestionsByUser/${userId}`)
         .then(response => {
           let arrayQuestionAnswered = [];
+          console.log(response.data['hydra:member']);
           response.data['hydra:member'].map(current => {
             arrayQuestionAnswered.push(current.id);
           });

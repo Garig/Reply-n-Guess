@@ -24,7 +24,11 @@ const answersMiddleware = store => next => (action) => {
               console.log('SEND');
               console.log(currentAnswer);
               axios
-                .post(`${URL}/api/answers`, currentAnswer)
+                .post(`${URL}/api/answers`, currentAnswer, {
+                  headers: {
+                    'Content-Type': 'application/ld+json'
+                  }
+                })
                 .then(response => {
                   store.dispatch(setAnswered([action.payload]));
                 })
