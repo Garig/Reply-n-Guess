@@ -32,7 +32,7 @@ class QuestionRepository extends ServiceEntityRepository
             ->innerJoin('q.users', 'u')
             ->where('q.users = u.id')
             ->andWhere('q.statuses = 1')
-            ->orderBy('q.published_date')
+            ->orderBy('q.published_date', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
