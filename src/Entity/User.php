@@ -10,18 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use App\Controller\QuestionAnsweredController;
 
 /**
- * @ApiResource(
- *      collectionOperations={
- *          "get",
- *          "post",
- *          "AnsweredQuestions"={
- *              "method"="GET",
- *              "path"="/users/{id}/answeredQuestions/",
- *              "controller"=QuestionAnsweredController::class
- *          }
- *      },
- *      attributes={"formats"={"jsonld"}}
- * )
+ * @ApiResource()
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */

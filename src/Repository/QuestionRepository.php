@@ -62,6 +62,28 @@ class QuestionRepository extends ServiceEntityRepository
 // ORDER BY rand()
 // LIMIT 3;
 
+
+
+    /**
+    * @return Question[] Returns an array of 3 Questions objects
+    */
+    public function findThreeByStatus1OrderedByOldestPublishedDate()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id as question_id, q.title, q.prop_1, q.prop_2, q.published_date, q.closed_date, u.id as user_id, u.username, u.avatar, s.id as status_id')
+            ->innerJoin('q.statuses', 's')
+            ->where('q.statuses = s.id')
+            ->innerJoin('q.users', 'u')
+            ->where('q.users = u.id')
+            ->andWhere('q.statuses = 1')
+            ->orderBy('q.published_date')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
    /**
     * @return Question[] Returns an array of Question objects
     */
