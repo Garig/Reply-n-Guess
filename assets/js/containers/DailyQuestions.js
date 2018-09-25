@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setAnswer: (evt) => {
     const index = evt.target.name.indexOf('-');
-    const questions = evt.target.name.slice(0, index);
+    const questions = parseInt(evt.target.name.slice(0, index));
     const radioName = evt.target.name.slice(index + 1);
     const value = parseInt(evt.target.value, 10);
     const payload = {
@@ -35,10 +35,8 @@ const mapDispatchToProps = dispatch => ({
       radioName,
       value
     };
-    console.log('PREPARATION : ');
-    console.log(payload);
     dispatch(setAnswer(payload));
-    dispatch(sendAnswer(payload));
+    dispatch(sendAnswer(questions));
   }
 });
 

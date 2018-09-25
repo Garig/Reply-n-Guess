@@ -6,7 +6,8 @@ import {
 } from './actions/questionsActions';
 
 import {
-  SET_ANSWER
+  SET_ANSWER,
+  SET_ANSWERED
 } from './actions/answersActions';
 
 import {
@@ -27,12 +28,7 @@ import {
  * Initial State
  */
 const initialState = {
-  answers: {
-    'userChoice': null,
-    'userPredict': null,
-    'users': '',
-    'questions': ''
-  },
+  answers: {},
   questions: [],
   results: [],
   user: {
@@ -61,6 +57,37 @@ const initialState = {
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_ANSWER: {
+      const newAnswer = {
+        questions: '/api/questions/' + action.payload.questions,
+        users: '/api/users/' + state.user.id,
+        [action.payload.radioName]: action.payload.value
+      };
+      let answersArray = state.answers;
+      answersArray[action.payload.questions] = {
+        ...answersArray[action.payload.questions],
+        ...newAnswer
+      };
+      return {
+        ...state,
+        answers: {...answersArray}
+      };
+    }
+    case SET_ANSWERED:
+      const questionAnswered = action.payload;
+      const questionToUpdate = state.questions;
+      let answersArray = state.answers;
+      delete answersArray[questionAnswered];
+      questionToUpdate.map(currentQuestion => {
+        if (questionAnswered.includes(currentQuestion.id)) {
+          currentQuestion.answered = true;
+        }
+      });
+      return {
+        ...state,
+        questions: [...questionToUpdate],
+        answers: {...answersArray}
+      };
     case RECEIVE_DAILY_QUESTIONS:
       return {
         ...state,
@@ -140,16 +167,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
         questions: state.questions
-      };
-    case SET_ANSWER:
-      return {
-        ...state,
-        answers: {
-          ...state.answers,
-          [action.payload.radioName]: action.payload.value,
-          questions: '/api/questions/' + action.payload.questions,
-          users: '/api/users/' + state.user.id
-        }
       };
     default:
       return state;

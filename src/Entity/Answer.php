@@ -72,7 +72,7 @@ class Answer
         return $this->users;
     }
 
-    public function setUsers(?User $Users): self
+    public function setUsers(?User $users): self
     {
         $this->users = $users;
 

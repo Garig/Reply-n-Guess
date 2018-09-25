@@ -75,13 +75,26 @@ export class AuthService {
 
   getProfile() {
     // Using jwt-decode npm package to decode the token
-    console.log('---------DECODE--------');
-    console.log(decode(this.getToken()));
     return decode(this.getToken());
   }
 
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('token');
+  }
+
+  getQuestion(userId) {
+    return new Promise((resolve, reject) =>
+      axios
+        .get(`/api/users/${userId}/answeredQuestions`)
+        .then(response => {
+          let arrayQuestionAnswered = [];
+          response.data['hydra:member'].map(current => {
+            arrayQuestionAnswered.push(current.id);
+          });
+          return resolve(arrayQuestionAnswered);
+        })
+        .catch(error => reject(error))
+    );
   }
 }
