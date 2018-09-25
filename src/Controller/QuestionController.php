@@ -24,8 +24,28 @@ class QuestionController extends AbstractController
 
     public function dailyQuestions()
     {
-        return $this->getDoctrine()
+        $questions = $this->getDoctrine()
                     ->getRepository(Question::class)
-                    ->findThreeByrandom();
+                    ->findThreeByStatus2();
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $statusOne = $this->getDoctrine()
+                    ->getRepository(Status::class)
+                    ->find(1);
+            
+        for ($i=0; $i<3; $i++) {
+            $question = $this->getDoctrine()
+                        ->getRepository(Question::class)
+                        ->find($questions[$i]['question_id'])
+                        ->setPublishedDate(new \DateTime('now', new \DateTimeZone('Europe/Paris')))
+                        ->setStatuses($statusOne);
+            $question->getPublishedDate()->format("Y-m-d H:i:s");
+            
+            $entityManager->persist($question);
+            $questions[$i] = $question;
+        }
+            
+        $entityManager->flush();
+        return $questions;
     }
 }
