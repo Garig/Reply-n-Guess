@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import Home from '../Components/Home';
 import { makeRedirect } from '../store/actions/actions';
 import { loggedIn } from '../store/actions/userActions';
+import { loadDailyQuestions } from '../store/actions/questionsActions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -27,6 +28,9 @@ const mapDispatchToProps = dispatch => ({
   },
   loggedIn: () => {
     dispatch(loggedIn());
+  },
+  loadDailyQuestions: () => {
+    dispatch(loadDailyQuestions());
   }
 });
 

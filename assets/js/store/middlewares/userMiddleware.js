@@ -19,13 +19,15 @@ import {
   updateConnection,
   LOGGED_IN,
   DISCONNECT,
-  setUserInfos
+  setUserInfos,
+  UPDATE_PROFILE
 } from '../actions/userActions';
 
 // Validations des données
 import {
   schemaSignUp,
-  schemaLogin
+  schemaLogin,
+  updateProfile
 } from '../../utils/validationJoi';
 
 // Centralisation des méthodes correspondant aux connexions users
@@ -127,6 +129,49 @@ const userMiddleware = store => next => (action) => {
       Auth.logout();
       store.dispatch(makeRedirect('/'));
       store.dispatch(updateConnection(false));
+      break;
+    }
+
+    case UPDATE_PROFILE: {
+      console.log('UPDATE_PROFILE');
+      const { username, password, passwordConfirm, email, gender, birthDate } = store.getState().user;
+
+      let payload = {
+        username,
+        email,
+        gender,
+        birthDate
+      };
+
+      if (password !== '' && passwordConfirm !== '' && password === passwordConfirm) {
+        payload = {
+          ...payload,
+          password,
+          passwordConfirm
+        };
+      }
+
+      console.log(payload);
+
+      Joi.validate(payload, updateProfile, (err, value) => {
+        if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
+        else {
+          store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
+          Auth.updateProfile(payload)
+            .then(objectUserCreated => {
+              store.dispatch(displayAlert({type: 'success', message: 'Modifications validées !'}));
+              setTimeout(() => {
+                store.dispatch(makeRedirect('/profil'));
+              }, 1000);
+              
+            })
+            .catch(errorCodeAPI => {
+              console.log(errorCodeAPI);
+              // if (errorCodeAPI === 'F85E0677') store.dispatch(displayAlert({type: 'error', message: 'Pseudo déjà utilisé !'}));
+              // if (errorCodeAPI === 'E7927C74') store.dispatch(displayAlert({type: 'error', message: 'Email déjà utilisée !'}));
+            });
+        }
+      });
       break;
     }
     default:

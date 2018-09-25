@@ -19,8 +19,6 @@ import Login from '../../containers/Login';
 import Signup from '../../containers/Signup';
 import Footer from '../Footer';
 
-import { loadDailyQuestions } from '../../store/actions/questionsActions';
-
 import store from '../../store';
 
 // Styles et assets
@@ -34,8 +32,6 @@ import {
  */
 
 const Auth = new AuthService();
-
-store.dispatch(loadDailyQuestions());
 
 const PrivateRoute = ({ component: Component }) => (
   <Route render={(props) => (

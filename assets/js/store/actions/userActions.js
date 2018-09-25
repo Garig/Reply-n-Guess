@@ -10,6 +10,7 @@ export const SET_USER_INFOS = 'actions/SET_USER_INFOS';
 export const SET_GENDER = 'actions/SET_GENDER';
 export const SET_DATE = 'actions/SET_DATE';
 export const SUBMIT_SIGNUP = 'actions/SUBMIT_SIGNUP';
+export const UPDATE_PROFILE = 'actions/UPDATE_PROFILE';
 
 // Pour le Login
 export const SUBMIT_LOGIN = 'actions/SUBMIT_LOGIN';
@@ -49,6 +50,10 @@ export const setDate = payload => ({
 export const submitSignup = payload => ({
   type: SUBMIT_SIGNUP,
   payload
+});
+
+export const updateProfile = () => ({
+  type: UPDATE_PROFILE
 });
 
 // Pour le Login

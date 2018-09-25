@@ -2,6 +2,7 @@
  * Package Import
  */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 /**
  * Local import
@@ -10,14 +11,18 @@ import React from 'react';
 // Styles et assets
 import './profil.sass';
 
+import Informations from '../../containers/Informations';
 /**
  * Code
  */
-const Profil = ({ user, userInterface, questions, results }) => (
-  // userInterface.isConnected
-  //   ? <div>Profil</div>
-  //   : <Redirect to={'/login'} />
-  <div>Profil</div>
+const Profil = ({ user, userInterface, questions }) => (
+  !userInterface.isConnected
+    ? <Redirect to={'/login'} />
+    : <div>
+      {
+        <Informations />
+      }
+    </div>
 );
 
 /**
