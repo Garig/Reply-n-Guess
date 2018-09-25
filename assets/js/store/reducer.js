@@ -76,13 +76,16 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ANSWERED:
       const questionAnswered = action.payload;
       const questionToUpdate = state.questions;
+
       let answersArray = state.answers;
       delete answersArray[questionAnswered];
+
       questionToUpdate.map(currentQuestion => {
         if (questionAnswered.includes(currentQuestion.id)) {
           currentQuestion.answered = true;
         }
       });
+
       return {
         ...state,
         questions: [...questionToUpdate],
