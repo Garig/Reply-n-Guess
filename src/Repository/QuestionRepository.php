@@ -22,21 +22,24 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
+     * Permet de récupérer les questions du jour actuelles (celle en statut 1) , les plus récente (published date)
     * @return Question[] Returns an array of 3 Questions objects
     */
-    public function findThreeByrandom()
+    public function findDailyQuestions()
     {
         return $this->createQueryBuilder('q')
-            ->select('q.id, q.title, q.prop_1, q.prop_2, q.submit_date, u.id as user_id, u.username, u.avatar')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, q.published_date, q.submit_date, u.id as user_id, u.username, u.avatar')
             ->innerJoin('q.users', 'u')
             ->where('q.users = u.id')
-            ->orderBy('RAND()')
+            ->andWhere('q.statuses = 1')
+            ->orderBy('q.published_date')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
 
     /**
+    * Parmis les questions validée (statut 2), en selectionne trois au hasard
     * @return Question[] Returns an array of 3 Questions objects
     */
     public function findThreeByStatus2()
@@ -65,6 +68,7 @@ class QuestionRepository extends ServiceEntityRepository
 
 
     /**
+    * Renvoie les trois questions publiées (statut 1) les plus vieilles (avec la published date)
     * @return Question[] Returns an array of 3 Questions objects
     */
     public function findThreeByStatus1OrderedByOldestPublishedDate()

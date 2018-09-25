@@ -19,11 +19,11 @@ class QuestionController extends AbstractController
 {
     public function __invoke()
     {
-        $data = $this->dailyQuestions();
+        $data = $this->setdailyQuestions();
         return $data;
     }
 
-    public function dailyQuestions()
+    public function setDailyQuestions()
     {
         $questions = $this->getDoctrine()
                     ->getRepository(Question::class)
