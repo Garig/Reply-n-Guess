@@ -17,7 +17,11 @@ export class AuthService {
   signup(payload) {
     return new Promise((resolve, reject) =>
       axios
-        .post(`${URL}/api/users`, payload)
+        .post(`${URL}/api/users`, payload, {
+          headers: {
+            'Content-Type': 'application/ld+json'
+          }
+        })
         .then(response => resolve(response.data))
         .catch(error => reject(error.response.data['hydra:description'].slice(-9, -1)))
     );
