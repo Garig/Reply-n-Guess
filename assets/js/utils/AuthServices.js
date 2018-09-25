@@ -86,15 +86,18 @@ export class AuthService {
   getQuestion(userId) {
     return new Promise((resolve, reject) =>
       axios
-        .get(`/api/users/${userId}/answeredQuestions`)
+        .get(`/answers/answeredQuestionsByUser/${userId}`)
         .then(response => {
           let arrayQuestionAnswered = [];
+          console.log(response.data['hydra:member']);
           response.data['hydra:member'].map(current => {
             arrayQuestionAnswered.push(current.id);
           });
           return resolve(arrayQuestionAnswered);
         })
-        .catch(error => reject(error))
+        .catch(error => {
+          console.log(error);
+          reject(error)})
     );
   }
 }

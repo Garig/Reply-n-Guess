@@ -5,8 +5,21 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Controller\AnsweredController;
+
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *          "get",
+ *          "post",
+ *          "AnsweredQuestions"={
+ *              "method"="GET",
+ *              "path"="/answers/answeredQuestionsByUser/{userId}",
+ *              "controller"=AnsweredController::class
+ *          }
+ *      },
+ *      attributes={"formats"={"jsonld"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\AnswerRepository")
  */
 class Answer

@@ -19,6 +19,25 @@ class AnswerRepository extends ServiceEntityRepository
         parent::__construct($registry, Answer::class);
     }
 
+    /**
+    */
+    public function findUserAnsweredQuestions($id)
+    {
+        // SELECT question.id
+        // FROM question
+        // INNER JOIN answer ON answer.questions_id = question.id
+        // INNER JOIN app_users ON app_users.id = answer.users_id
+        // WHERE app_users.id = 1
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "SELECT a.questions
+            FROM App\Entity\Answer a
+            WHERE a.users = '$id'"
+        );
+    return $id;
+    // return $query->execute();
+    }
+
 //    /**
 //     * @return Answer[] Returns an array of Answer objects
 //     */
