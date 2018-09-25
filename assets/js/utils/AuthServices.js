@@ -86,7 +86,7 @@ export class AuthService {
   getQuestion(userId) {
     return new Promise((resolve, reject) =>
       axios
-        .get(`/answers/answeredQuestionsByUser/${userId}`)
+        .get(`/api/answers/answeredQuestionsByUser/${userId}`)
         .then(response => {
           let arrayQuestionAnswered = [];
           console.log(response.data['hydra:member']);

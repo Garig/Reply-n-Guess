@@ -16,7 +16,6 @@ use App\Entity\Question;
 
 class QuestionController extends AbstractController
 {
-    // public function __invoke(Question $data): Question
     public function __invoke()
     {
         $data = $this->dailyQuestions();

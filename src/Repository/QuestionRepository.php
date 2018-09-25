@@ -2,11 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\Question;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Query\Expr\Join;
+use App\Entity\Question;
+use App\Entity\User;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,15 +29,15 @@ class QuestionRepository extends ServiceEntityRepository
     //     $entityManager = $this->getEntityManager();
 
     //     $query = $entityManager->createQuery(
-    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
-    //         FROM App\Entity\Question q 
+    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar
+    //         FROM App\Entity\Question q
     //         INNER JOIN App\Entity\User u
-    //         WITH q.users = u.id 
+    //         WITH q.users = u.id
     //         ORDER BY rand()'
     // )->setMaxResults(3);
 
     // // returns an array of 3 Questions objects
-    // return $query->execute();  
+    // return $query->execute();
     // }
 
 

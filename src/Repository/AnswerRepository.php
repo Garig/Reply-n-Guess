@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Answer;
 
 /**
  * @method Answer|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,50 +20,15 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-    */
-    public function findUserAnsweredQuestions($id)
-    {
-        // SELECT question.id
-        // FROM question
-        // INNER JOIN answer ON answer.questions_id = question.id
-        // INNER JOIN app_users ON app_users.id = answer.users_id
-        // WHERE app_users.id = 1
-        $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery(
-            "SELECT a.questions
-            FROM App\Entity\Answer a
-            WHERE a.users = '$id'"
-        );
-    return $id;
-    // return $query->execute();
-    }
-
-//    /**
-//     * @return Answer[] Returns an array of Answer objects
-//     */
-    /*
-    public function findByExampleField($value)
+     *
+     */
+    public function findUserAnsweredQuestions($userId)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+                ->where('a.users = ?1')
+                ->setParameter(1, $userId)
+                ->getQuery()
+                ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Answer
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

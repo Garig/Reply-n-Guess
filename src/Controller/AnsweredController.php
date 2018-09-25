@@ -3,21 +3,22 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Answer;
+use Symfony\Component\HttpFoundation\Request;
 
+use App\Entity\Answer;
 
 class AnsweredController extends AbstractController
 {
-    public function __invoke($id)
+    public function __invoke($userId)
     {
-        $data = $this->AnsweredQuestions($id);
+        $data = $this->AnsweredQuestions($userId);
         return $data;
     }
 
-    public function AnsweredQuestions($id)
+    public function AnsweredQuestions($userId)
     {
         return $this->getDoctrine()
                     ->getRepository(Answer::class)
-                    ->findUserAnsweredQuestions($id);
+                    ->findUserAnsweredQuestions($userId);
     }
 }
