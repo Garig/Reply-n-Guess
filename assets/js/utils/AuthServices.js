@@ -109,11 +109,12 @@ export class AuthService {
       axios
         .get(`/api/answers/answeredQuestionsByUser/${userId}`)
         .then(response => {
-          let arrayQuestionAnswered = [];
+          let objectQuestionAnswered = {};
           response.data['hydra:member'].map(current => {
-            arrayQuestionAnswered.push(current.id);
+            objectQuestionAnswered[current.id] = current;
           });
-          return resolve(arrayQuestionAnswered);
+          console.log(objectQuestionAnswered);
+          return resolve(objectQuestionAnswered);
         })
         .catch(error => reject(error))
     );

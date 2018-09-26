@@ -81,8 +81,10 @@ const reducer = (state = initialState, action = {}) => {
       delete answersArray[questionAnswered];
 
       questionToUpdate.map(currentQuestion => {
-        if (questionAnswered.includes(currentQuestion.id)) {
+        if (currentQuestion.id in questionAnswered) {
           currentQuestion.answered = true;
+          currentQuestion.user_choice = questionAnswered[currentQuestion.id].user_choice;
+          currentQuestion.user_predict = questionAnswered[currentQuestion.id].user_predict;
         }
       });
 

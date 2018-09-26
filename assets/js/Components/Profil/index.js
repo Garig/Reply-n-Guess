@@ -7,23 +7,31 @@ import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
+import Informations from '../../containers/Informations';
+import AllQuestionsAnswered from './AllQuestionsAnswered';
 
 // Styles et assets
 import './profil.sass';
 
-import Informations from '../../containers/Informations';
 /**
  * Code
  */
-const Profil = ({ user, userInterface, questions }) => (
-  !userInterface.isConnected
-    ? <Redirect to={'/login'} />
-    : <div>
-      {
-        <Informations />
-      }
-    </div>
-);
+class Profil extends React.Component {
+  render() {
+    return (
+      !this.props.userInterface.isConnected
+        ? <Redirect to={'/login'} />
+        : <div>
+          {
+            <React.Fragment>
+              <Informations />
+              <AllQuestionsAnswered />
+            </React.Fragment>
+          }
+        </div>
+    );
+  }
+}
 
 /**
  * Export
