@@ -18,9 +18,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
  */
 // Components
 import App from './Components/App';
+import { loggedIn } from './store/actions/userActions';
 
 // Store
 import store from './store';
+
+store.dispatch(loggedIn());
 
 /**
  * Code

@@ -38,7 +38,8 @@ const initialState = {
     passwordConfirm: '',
     email: '',
     gender: '',
-    birthDate: ''
+    birthDate: '',
+    answeredQuestions: []
   },
   userInterface: {
     isConnected: false,
@@ -81,15 +82,32 @@ const reducer = (state = initialState, action = {}) => {
       delete answersArray[questionAnswered];
 
       questionToUpdate.map(currentQuestion => {
-        if (questionAnswered.includes(currentQuestion.id)) {
+        if (currentQuestion.id in questionAnswered) {
           currentQuestion.answered = true;
+          currentQuestion.user_choice = questionAnswered[currentQuestion.id].user_choice;
+          currentQuestion.user_predict = questionAnswered[currentQuestion.id].user_predict;
         }
+      });
+
+      let arrayAnswered = [];
+      Object.keys(questionAnswered).map((valueKey, index) => {
+        arrayAnswered.push(questionAnswered[valueKey]);
+      });
+
+      arrayAnswered.sort(function(a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.published_date) - new Date(a.published_date);
       });
 
       return {
         ...state,
         questions: [...questionToUpdate],
-        answers: {...answersArray}
+        answers: {...answersArray},
+        user: {
+          ...state.user,
+          answeredQuestions: [...arrayAnswered]
+        }
       };
     case RECEIVE_DAILY_QUESTIONS:
       return {

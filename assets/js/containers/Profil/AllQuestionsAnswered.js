@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
-import Home from '../Components/Home';
-import { makeRedirect } from '../store/actions/actions';
-import { loggedIn } from '../store/actions/userActions';
-import { loadDailyQuestions } from '../store/actions/questionsActions';
+import AllQuestionsAnswered from '../../Components/Profil/AllQuestionsAnswered';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -18,21 +15,15 @@ import { loadDailyQuestions } from '../store/actions/questionsActions';
  *  - ownProps : les props passées au container
  * Pas de data à transmettre ? ==> alors const mapStateToProps = null;
  */
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  user: state.user,
+  userInterface: state.userInterface,
+  results: state.results
+});
 
 /* === Actions ===
  */
-const mapDispatchToProps = dispatch => ({
-  makeRedirect: () => {
-    dispatch(makeRedirect(''));
-  },
-  loggedIn: () => {
-    dispatch(loggedIn());
-  },
-  loadDailyQuestions: () => {
-    dispatch(loadDailyQuestions());
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 /**
  * Export
@@ -41,4 +32,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps, // lecture
   mapDispatchToProps // écriture
-)(Home);
+)(AllQuestionsAnswered);

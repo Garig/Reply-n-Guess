@@ -27,6 +27,23 @@ export class AuthService {
     );
   }
 
+  // Modification des informations de l'utilisateur
+  updateProfile(payload) {
+    console.log('updateProfile');
+    let objectUser = this.getProfile();
+    let id = objectUser.id;
+    return new Promise((resolve, reject) =>
+      axios
+        .put(`${URL}/api/users/${id}`, payload, {
+          headers: {
+            'Content-Type': 'application/ld+json'
+          }
+        })
+        .then(response => resolve(response.data))
+        .catch(error => console.log(error))
+    );
+  }
+
   // Demande de connexion
   getTokenFromAPI(payload) {
     return new Promise((resolve, reject) =>
@@ -92,11 +109,11 @@ export class AuthService {
       axios
         .get(`/api/answers/answeredQuestionsByUser/${userId}`)
         .then(response => {
-          let arrayQuestionAnswered = [];
+          let objectQuestionAnswered = {};
           response.data['hydra:member'].map(current => {
-            arrayQuestionAnswered.push(current.id);
+            objectQuestionAnswered[current.id] = current;
           });
-          return resolve(arrayQuestionAnswered);
+          return resolve(objectQuestionAnswered);
         })
         .catch(error => reject(error))
     );
