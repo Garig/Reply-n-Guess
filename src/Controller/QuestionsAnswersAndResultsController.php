@@ -6,13 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 use App\Entity\Question;
+use App\Entity\Result;
+use App\Entity\Status;
 
 class QuestionsAnswersAndResultsController extends AbstractController
 {
     public function __invoke()
     {
-        $data = $this->getAnswers();
-        return $data;
+        $this->getAnswers();
     }
 
     public function getAnswers()
@@ -46,7 +47,47 @@ class QuestionsAnswersAndResultsController extends AbstractController
         $statsCalculated[1] = $this->getStatsCalculated($stats[1], $totalUsers[1], $totalGenderQ2);
         $statsCalculated[2] = $this->getStatsCalculated($stats[2], $totalUsers[2], $totalGenderQ3);
 
-        return $statsCalculated;
+        $entityManager = $this->getDoctrine()->getManager();
+
+
+
+        for ($i=0; $i < sizeof($ids); $i++) {
+            $result = $this->getDoctrine()
+                    ->getRepository(Result::class)
+                    ->find($ids[$i])
+                    ->setNbVoting($statsCalculated[$i]['nb_voting'])
+                    ->setNbAnswer1($statsCalculated[$i]['nb_answer_1'])
+                    ->setNbAnswer2($statsCalculated[$i]['nb_answer_2'])
+                    ->setNbPredict1($statsCalculated[$i]['nb_predict_1'])
+                    ->setNbPredict2($statsCalculated[$i]['nb_predict_2'])
+                    ->setPercAnswer1($statsCalculated[$i]['perc_answer_1'])
+                    ->setPercAnswer2($statsCalculated[$i]['perc_answer_2'])
+                    ->setPercPredict1True($statsCalculated[$i]['perc_predict_1_true'])
+                    ->setPercPredict1False($statsCalculated[$i]['perc_predict_1_false'])
+                    ->setPercPredict2True($statsCalculated[$i]['perc_predict_2_true'])
+                    ->setPercPredict2False($statsCalculated[$i]['perc_predict_2_false'])
+                    ->setPercMenAnswer1($statsCalculated[$i]['perc_men_answer_1'])
+                    ->setPercMenAnswer2($statsCalculated[$i]['perc_men_answer_2'])
+                    ->setPercWomenAnswer1($statsCalculated[$i]['perc_women_answer_1'])
+                    ->setPercWomenAnswer2($statsCalculated[$i]['perc_women_answer_2']);
+
+            $entityManager->persist($result);
+        }
+
+        $statusMinus1 = $this->getDoctrine()
+                    ->getRepository(Status::class)
+                    ->find(-1);
+
+        for ($i=0; $i < sizeof($ids); $i++) {
+            $question = $this->getDoctrine()
+                    ->getRepository(Question::class)
+                    ->find($ids[$i])
+                    ->setStatuses($statusMinus1);
+                    
+
+            $entityManager->persist($question);
+        }
+        $entityManager->flush();
     }
 
     public function getNbAnswersTot($Answers) {
