@@ -113,7 +113,6 @@ export class AuthService {
           response.data['hydra:member'].map(current => {
             objectQuestionAnswered[current.id] = current;
           });
-          console.log(objectQuestionAnswered);
           return resolve(objectQuestionAnswered);
         })
         .catch(error => reject(error))

@@ -15,7 +15,7 @@ import 'antd/lib/card/style/css';
 /**
  * Code
  */
-const AllQuestionsAnswered = () => (
+const AllQuestionsAnswered = ({ user, userInterface, results }) => (
   <div>
     AllQuestionsAnswered
   </div>

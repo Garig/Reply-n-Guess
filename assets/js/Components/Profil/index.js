@@ -7,8 +7,8 @@ import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
-import Informations from '../../containers/Informations';
-import AllQuestionsAnswered from './AllQuestionsAnswered';
+import Informations from '../../containers/Profil/Informations';
+import AllQuestionsAnswered from '../../containers/Profil/AllQuestionsAnswered';
 
 // Styles et assets
 import './profil.sass';
