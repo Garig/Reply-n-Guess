@@ -25,7 +25,7 @@ class AnswerRepository extends ServiceEntityRepository
     public function findUserAnsweredQuestions($userId)
     {
         return $this->createQueryBuilder('a')
-                ->select('q.id, q.title, q.prop_1, q.prop_2, a.user_choice, a.user_predict')
+                ->select('q.id, q.title, q.prop_1, q.prop_2, q.published_date, a.user_choice, a.user_predict')
                 ->innerJoin('a.questions', 'q')
                 ->where('a.users = ?1')
                 ->setParameter(1, $userId)

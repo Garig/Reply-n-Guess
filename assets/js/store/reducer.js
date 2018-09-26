@@ -93,6 +93,13 @@ const reducer = (state = initialState, action = {}) => {
       Object.keys(questionAnswered).map((valueKey, index) => {
         arrayAnswered.push(questionAnswered[valueKey]);
       });
+
+      arrayAnswered.sort(function(a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.published_date) - new Date(a.published_date);
+      });
+
       return {
         ...state,
         questions: [...questionToUpdate],
