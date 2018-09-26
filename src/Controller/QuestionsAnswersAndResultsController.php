@@ -35,34 +35,18 @@ class QuestionsAnswersAndResultsController extends AbstractController
         $totalGenderQ3 = $this->getTotalGender($Answers, $totalUsers[2]);
 
         // compte le nombre de réponse 1 et 2, le nombre d'hommes et de femmes ayant répondu aux différentes questions
-        $statsQ1 = $this->getStatsForQ($ids[0], $Answers, $nbAnswersTot);
-        $statsQ2 = $this->getStatsForQ($ids[1], $Answers, $nbAnswersTot);
-        $statsQ3 = $this->getStatsForQ($ids[2], $Answers, $nbAnswersTot);
-
         $stats = [];
-        $stats[0] = $statsQ1;
+        $stats[0] = $this->getStatsForQ($ids[0], $Answers, $nbAnswersTot);
+        $stats[1] = $this->getStatsForQ($ids[1], $Answers, $nbAnswersTot);
+        $stats[2] = $this->getStatsForQ($ids[2], $Answers, $nbAnswersTot);
 
+        // fonction qui retourne un tableau de tout les résulats en fonction des réponses des utilisateurs
+        $statsCalculated = [];
+        $statsCalculated[0] = $this->getStatsCalculated($stats[0], $totalUsers[0], $totalGenderQ1);
+        $statsCalculated[1] = $this->getStatsCalculated($stats[1], $totalUsers[1], $totalGenderQ2);
+        $statsCalculated[2] = $this->getStatsCalculated($stats[2], $totalUsers[2], $totalGenderQ3);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $stats[1] = $statsQ2;
-        $stats[2] = $statsQ3;
-
-        return $Answers;
+        return $statsCalculated;
     }
 
     public function getNbAnswersTot($Answers) {
@@ -187,52 +171,61 @@ class QuestionsAnswersAndResultsController extends AbstractController
 
         return $stats;
     }
+
+    public function getStatsCalculated($stats, $totalUsers, $totalGender) {
+        $statsCalculated = [];
+        $statsCalculated['nb_voting'] = $totalUsers;
+        $statsCalculated['nb_answer_1'] = $stats[0]['totalUserChoice1'];
+        $statsCalculated['nb_answer_2'] = $stats[0]['totalUserChoice2'];
+        $statsCalculated['nb_predict_1'] = $stats[0]['totalUserPredict1'];
+        $statsCalculated['nb_predict_2'] = $stats[0]['totalUserPredict2'];
+        $statsCalculated['perc_answer_1'] = $statsCalculated['nb_answer_1'] * 100 / $totalUsers;
+        $statsCalculated['perc_answer_2'] = $statsCalculated['nb_answer_2'] * 100 / $totalUsers;
+        $statsCalculated['perc_predict_1'] = $statsCalculated['nb_predict_1'] * 100 / $totalUsers;
+        $statsCalculated['perc_predict_2'] = $statsCalculated['nb_predict_2'] * 100 / $totalUsers;
+
+
+        $majority = $this->isMajority($statsCalculated['perc_answer_1'], $statsCalculated['perc_answer_2']);
+        
+        if ($majority == false) {
+            $statsCalculated['perc_predict_1_true'] = 0;
+            $statsCalculated['perc_predict_1_false'] = 1;
+            $statsCalculated['perc_predict_2_true'] = 1;
+            $statsCalculated['perc_predict_2_false'] = 0;
+        }
+
+        if ($majority == true) {
+            $statsCalculated['perc_predict_1_true'] = 1;
+            $statsCalculated['perc_predict_1_false'] = 0;
+            $statsCalculated['perc_predict_2_true'] = 0;
+            $statsCalculated['perc_predict_2_false'] = 1;
+        }
+        
+        
+
+        $statsCalculated['perc_men_answer_1'] = $stats[0]['totalManChoice1'] * 100 / $totalGender[0];
+        $statsCalculated['perc_men_answer_2'] = $stats[0]['totalManChoice2'] * 100 / $totalGender[0];
+        $statsCalculated['perc_women_answer_1'] = $stats[0]['totalWomenChoice1'] * 100 / $totalGender[1];
+        $statsCalculated['perc_women_answer_2'] = $stats[0]['totalWomenChoice2'] * 100 / $totalGender[1];
+
+        return $statsCalculated;
+    }
+
+    public function isMajority($percAns1, $percAns2) {
+        $majority = null;
+       
+        if ($percAns1 > 50) {
+            $majority = true;
+            
+        } else if ($percAns2 > 50) {
+            $majority = false;
+            
+        } else {
+            $majority = true;
+           
+        }
+        
+
+        return $majority;
+    }
 }
-
-
-
-
-// if ($Answers[$i]['question_id'] == $ids[1]) {
-//     if ($Answers[$i]['user_choice'] == 1) {
-//         $totalUserChoice1ForQ2++;
-//         if ($Answers[$i]['gender'] == 'homme') {
-//             $totalManChoice1ForQ2++;
-//         } else {
-//             $totalWomenChoice1ForQ2++;
-//         }
-//     } else {
-//         if ($Answers[$i]['gender'] == 'homme') {
-//             $totalManChoice2ForQ2++;
-//         } else {
-//             $totalWomenChoice2ForQ2++;
-//         }
-//         $totalUserChoice2ForQ2++;
-//     }
-//     if ($Answers[$i]['user_predict'] == 1) {
-//         $totalUserPredict1ForQ2++;
-//     } else {
-//         $totalUserPredict2ForQ2++;
-//     }
-// }
-// if ($Answers[$i]['question_id'] == $ids[2]) {
-//     if ($Answers[$i]['user_choice'] == 1) {
-//         $totalUserChoice1ForQ3++;
-//         if ($Answers[$i]['gender'] == 'homme') {
-//             $totalManChoice1ForQ3++;
-//         } else {
-//             $totalWomenChoice1ForQ3++;
-//         }
-//     } else {
-//         if ($Answers[$i]['gender'] == 'homme') {
-//             $totalManChoice2ForQ3++;
-//         } else {
-//             $totalWomenChoice2ForQ3++;
-//         }
-//         $totalUserChoice2ForQ3++;
-//     }
-//     if ($Answers[$i]['user_predict'] == 1) {
-//         $totalUserPredict1ForQ3++;
-//     } else {
-//         $totalUserPredict2ForQ3++;
-//     }
-// }
