@@ -92,11 +92,13 @@ class QuestionRepository extends ServiceEntityRepository
     public function findAnswersForClosedQuestions()
     {
         return $this->createQueryBuilder('q')
-            ->select('q.id as question_id, q.title, a.user_choice, a.user_predict')
+            ->select('q.id as question_id, q.title, a.user_choice, a.user_predict, IDENTITY(a.users) as user_id, u.gender')
             ->innerJoin('q.statuses', 's')
             ->where('q.statuses = s.id')
             ->innerJoin('q.answers', 'a')
             ->where('a.questions = q.id')
+            ->innerJoin('a.users', 'u')
+            ->where('u.id = a.users')
             ->andWhere('q.statuses = 0')
             ->getQuery()
             ->getResult();
