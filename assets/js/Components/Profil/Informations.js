@@ -20,7 +20,7 @@ import {
 } from '../../utils/validationPropTypes';
 
 // Styles et assets
-import './information.sass';
+import './profil.sass';
 import 'antd/lib/date-picker/style/css';
 
 const RadioGroup = Radio.Group;

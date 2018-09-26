@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { Tabs } from 'antd';
 
 /**
  * Local import
@@ -12,6 +13,7 @@ import AllQuestionsAnswered from '../../containers/Profil/AllQuestionsAnswered';
 
 // Styles et assets
 import './profil.sass';
+const TabPane = Tabs.TabPane;
 
 /**
  * Code
@@ -21,14 +23,10 @@ class Profil extends React.Component {
     return (
       !this.props.userInterface.isConnected
         ? <Redirect to={'/login'} />
-        : <div>
-          {
-            <React.Fragment>
-              <Informations />
-              <AllQuestionsAnswered />
-            </React.Fragment>
-          }
-        </div>
+        : <Tabs defaultActiveKey="1">
+          <TabPane tab="Informations" key="1"><Informations /></TabPane>
+          <TabPane tab="Toutes vos réponses" key="2"><AllQuestionsAnswered /></TabPane>
+        </Tabs>
     );
   }
 }
