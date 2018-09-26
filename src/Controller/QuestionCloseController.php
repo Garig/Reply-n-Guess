@@ -15,32 +15,32 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use App\Entity\Question;
 use App\Entity\Status;
 
-class QuestionController extends AbstractController
+class QuestionCloseController extends AbstractController
 {
     public function __invoke()
     {
-        $data = $this->setdailyQuestions();
+        $data = $this->closeDailyQuestions();
         return $data;
     }
 
-    public function setDailyQuestions()
+    public function closeDailyQuestions()
     {
         $questions = $this->getDoctrine()
                     ->getRepository(Question::class)
-                    ->findThreeByStatus2();
+                    ->findThreeByStatus1OrderedByOldestPublishedDate();
         $entityManager = $this->getDoctrine()->getManager();
         
-        $statusOne = $this->getDoctrine()
+        $statusZero = $this->getDoctrine()
                     ->getRepository(Status::class)
-                    ->find(1);
+                    ->find(0);
             
         for ($i=0; $i<3; $i++) {
             $question = $this->getDoctrine()
                         ->getRepository(Question::class)
                         ->find($questions[$i]['question_id'])
-                        ->setPublishedDate(new \DateTime('now', new \DateTimeZone('Europe/Paris')))
-                        ->setStatuses($statusOne);
-            $question->getPublishedDate()->format("Y-m-d H:i:s");
+                        ->setClosedDate(new \DateTime('now', new \DateTimeZone('Europe/Paris')))
+                        ->setStatuses($statusZero);
+            $question->getClosedDate()->format("Y-m-d H:i:s");
             
             $entityManager->persist($question);
             $questions[$i] = $question;

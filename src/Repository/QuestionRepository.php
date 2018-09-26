@@ -22,19 +22,71 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
+     * Permet de récupérer les questions du jour actuelles (celle en statut 1) , les plus récente (published date)
     * @return Question[] Returns an array of 3 Questions objects
     */
-    public function findThreeByrandom()
+    public function findDailyQuestions()
     {
         return $this->createQueryBuilder('q')
-            ->select('q.id, q.title, q.prop_1, q.prop_2, q.submit_date, u.id as user_id, u.username, u.avatar')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, q.published_date, q.submit_date, u.id as user_id, u.username, u.avatar')
             ->innerJoin('q.users', 'u')
             ->where('q.users = u.id')
+            ->andWhere('q.statuses = 1')
+            ->orderBy('q.published_date', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+    * Parmis les questions validée (statut 2), en selectionne trois au hasard
+    * @return Question[] Returns an array of 3 Questions objects
+    */
+    public function findThreeByStatus2()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id as question_id, q.title, q.prop_1, q.prop_2, q.published_date, q.submit_date, u.id as user_id, u.username, u.avatar, s.id as status_id')
+            ->innerJoin('q.statuses', 's')
+            ->where('q.statuses = s.id')
+            ->innerJoin('q.users', 'u')
+            ->where('q.users = u.id')
+            ->andWhere('q.statuses = 2')
             ->orderBy('RAND()')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
+
+//     SELECT question.id as question_id, question.title, question.prop_1, question.prop_2, question.submit_date, question.published_date, app_users.id as user_id, app_users.username, app_users.avatar, status.id as status_id
+// FROM question
+// INNER JOIN status ON question.statuses_id = status.id
+// INNER JOIN app_users ON app_users.id = question.users_id
+// WHERE question.statuses_id = 2
+// ORDER BY rand()
+// LIMIT 3;
+
+
+
+    /**
+    * Renvoie les trois questions publiées (statut 1) les plus vieilles (avec la published date)
+    * @return Question[] Returns an array of 3 Questions objects
+    */
+    public function findThreeByStatus1OrderedByOldestPublishedDate()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id as question_id, q.title, q.prop_1, q.prop_2, q.published_date, q.closed_date, u.id as user_id, u.username, u.avatar, s.id as status_id')
+            ->innerJoin('q.statuses', 's')
+            ->where('q.statuses = s.id')
+            ->innerJoin('q.users', 'u')
+            ->where('q.users = u.id')
+            ->andWhere('q.statuses = 1')
+            ->orderBy('q.published_date')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
    /**
     * @return Question[] Returns an array of Question objects

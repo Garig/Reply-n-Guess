@@ -7,16 +7,28 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\QuestionController;
+use App\Controller\QuestionCloseController;
+use App\Controller\QuestionGetController;
 
 /**
  * @ApiResource(
  *      collectionOperations={
  *          "get",
  *          "post",
- *          "dailyQuestions"={
+ *          "setDailyQuestions"={
  *              "method"="GET",
- *              "path"="/dailyQuestions",
+ *              "path"="/setDailyQuestions",
  *              "controller"=QuestionController::class
+ *          },
+ *          "getDailyQuestions"={
+ *              "method"="GET",
+ *              "path"="/getDailyQuestions",
+ *              "controller"=QuestionGetController::class
+ *          },
+ *          "closeDailyQuestions"={
+ *              "method"="GET",
+ *              "path"="/closeDailyQuestions",
+ *              "controller"=QuestionCloseController::class
  *          }
  *      },
  *      attributes={"formats"={"jsonld"}}
