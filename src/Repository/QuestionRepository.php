@@ -86,6 +86,40 @@ class QuestionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+    * 
+    */
+    public function findAnswersForClosedQuestions()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id as question_id, q.title, a.user_choice, a.user_predict, IDENTITY(a.users) as user_id, u.gender')
+            ->innerJoin('q.statuses', 's')
+            ->where('q.statuses = s.id')
+            ->innerJoin('q.answers', 'a')
+            ->where('a.questions = q.id')
+            ->innerJoin('a.users', 'u')
+            ->where('u.id = a.users')
+            ->andWhere('q.statuses = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
+    //  /**
+    // * @return Question[] Returns an array of 3 Questions objects
+    // */
+    // public function findThreeByrandom()
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT q.id, q.prop_1, q.prop_2, q.title, u.username, u.email, u.avatar  
+    //         FROM App\Entity\Question q 
+    //         INNER JOIN App\Entity\User u
+    //         WITH q.users = u.id 
+    //         ORDER BY rand()'
+    //     )->setMaxResults(3);
+    // }
+
 
 
    /**

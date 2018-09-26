@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Controller\QuestionController;
 use App\Controller\QuestionCloseController;
 use App\Controller\QuestionGetController;
+use App\Controller\QuestionsAnswersAndResultsController;
 
 /**
  * @ApiResource(
@@ -29,7 +30,12 @@ use App\Controller\QuestionGetController;
  *              "method"="GET",
  *              "path"="/closeDailyQuestions",
  *              "controller"=QuestionCloseController::class
- *          }
+ *          },
+ *          "getAnswerAndResultDailyQuestions"={
+ *              "method"="GET",
+ *              "path"="/getAnswerAndResultDailyQuestions",
+ *              "controller"=QuestionsAnswersAndResultsController::class
+ *          },
  *      },
  *      attributes={"formats"={"jsonld"}}
  * )
