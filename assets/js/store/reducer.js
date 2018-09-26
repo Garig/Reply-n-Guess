@@ -38,7 +38,8 @@ const initialState = {
     passwordConfirm: '',
     email: '',
     gender: '',
-    birthDate: ''
+    birthDate: '',
+    answeredQuestions: []
   },
   userInterface: {
     isConnected: false,
@@ -88,10 +89,18 @@ const reducer = (state = initialState, action = {}) => {
         }
       });
 
+      let arrayAnswered = [];
+      Object.keys(questionAnswered).map((valueKey, index) => {
+        arrayAnswered.push(questionAnswered[valueKey]);
+      });
       return {
         ...state,
         questions: [...questionToUpdate],
-        answers: {...answersArray}
+        answers: {...answersArray},
+        user: {
+          ...state.user,
+          answeredQuestions: [...arrayAnswered]
+        }
       };
     case RECEIVE_DAILY_QUESTIONS:
       return {
