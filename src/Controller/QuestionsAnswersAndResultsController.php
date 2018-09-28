@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Question;
 use App\Entity\Result;
 use App\Entity\Status;
+use App\Entity\User;
 
 class QuestionsAnswersAndResultsController extends AbstractController
 {
@@ -83,13 +84,53 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->getRepository(Question::class)
                     ->find($ids[$i])
                     ->setStatuses($statusMinus1);
-
-
+                    
             $entityManager->persist($question);
         }
-        $entityManager->flush();
+        
+        $addScore = 0;
+        $currentScore = 0;
+        $countQuestion = 0;
 
-        return $Answers;
+        // Permet de boucler sur la totalité des réponses de chaque question et de modifier le score de l'user de -1 ou +1 
+        // en fonction de sa prédiction (la clé score calc indique la prédiction majoritaire donc si l'user predic correspond 
+        // on ajoute un, sinon on soustrait un (seulement dans le cas ou le score de l'user est différent de 0)
+        while ($i < $nbAnswersTot) {
+            if ($Answers[$i]['question_id'] == $ids[$countQuestion]) {
+                if ($Answers[$i]['user_predict'] == $statsCalculated[$countQuestion]['score_calc']) {
+                    $addScore = 1;
+                    $user = $this->getDoctrine()
+                    ->getRepository(User::class)
+                    ->find($Answers[$i]['user_id']);
+                    $currentScore = $user->getScore();
+                    $user->setScore($currentScore + $addScore);
+                    $entityManager->persist($user);
+                    $addScore = 0;
+                    $currentScore = 0;
+                    
+                } else {
+                    $addScore = - 1;
+                    $user = $this->getDoctrine()
+                    ->getRepository(User::class)
+                    ->find($Answers[$i]['user_id']);
+                    $currentScore = $user->getScore();
+                    if($currentScore == 0) {
+                        $addScore = 0;
+                    } else {
+                        $user->setScore($currentScore + $addScore);
+                        $entityManager->persist($user);
+                        $addScore = 0;
+                        $currentScore = 0;
+                    }
+                }
+                $i++;
+            } else {
+                $countQuestion++;
+            }
+        }
+
+        $entityManager->flush();
+        return $statsCalculated;
     }
 
     public function getNbAnswersTot($Answers) {
@@ -227,24 +268,23 @@ class QuestionsAnswersAndResultsController extends AbstractController
         $statsCalculated['perc_predict_1'] = $statsCalculated['nb_predict_1'] * 100 / $totalUsers;
         $statsCalculated['perc_predict_2'] = $statsCalculated['nb_predict_2'] * 100 / $totalUsers;
 
-
         $majority = $this->isMajority($statsCalculated['perc_answer_1'], $statsCalculated['perc_answer_2']);
 
         if ($majority == false) {
-            $statsCalculated['perc_predict_1_true'] = 0;
+            $statsCalculated['perc_predict_1_true'] = 2;
             $statsCalculated['perc_predict_1_false'] = 1;
             $statsCalculated['perc_predict_2_true'] = 1;
-            $statsCalculated['perc_predict_2_false'] = 0;
+            $statsCalculated['perc_predict_2_false'] = 2;
+            $statsCalculated['score_calc'] = 2;
         }
 
         if ($majority == true) {
             $statsCalculated['perc_predict_1_true'] = 1;
-            $statsCalculated['perc_predict_1_false'] = 0;
-            $statsCalculated['perc_predict_2_true'] = 0;
+            $statsCalculated['perc_predict_1_false'] = 2;
+            $statsCalculated['perc_predict_2_true'] = 2;
             $statsCalculated['perc_predict_2_false'] = 1;
+            $statsCalculated['score_calc'] = 1;
         }
-
-
 
         $statsCalculated['perc_men_answer_1'] = $stats[0]['totalManChoice1'] * 100 / $totalGender[0];
         $statsCalculated['perc_men_answer_2'] = $stats[0]['totalManChoice2'] * 100 / $totalGender[0];
@@ -262,13 +302,8 @@ class QuestionsAnswersAndResultsController extends AbstractController
 
         } else if ($percAns2 > 50) {
             $majority = false;
-
-        } else {
-            $majority = true;
-
-        }
-
-
+            
+        } 
         return $majority;
     }
 }

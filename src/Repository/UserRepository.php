@@ -19,9 +19,27 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
+
+
+
+    /**
+    * Renvoie tous les users trié par leur score
+    * @return Users[] Returns an array of all users sorted by score
+    */
+    public function findAllUsersSortedByScore() 
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.id as user_id, u.username, u.avatar, u.score')
+            ->orderBy('u.score', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+
+    /**
+    * @return User[] Returns an array of User objects
+    */
     /*
     public function findByExampleField($value)
     {
@@ -31,8 +49,7 @@ class UserRepository extends ServiceEntityRepository
             ->orderBy('u.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
     */
 
