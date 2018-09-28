@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
  * Local import
  */
 // Component
-import Department from '../Department/Department';
+// import Department from '../Department/Department';
 
 // PropTypes
 import {

@@ -7,13 +7,15 @@ import {
 
 import {
   SET_ANSWER,
-  SET_ANSWERED
+  SET_ANSWERED,
+  SET_RESULT
 } from './actions/answersActions';
 
 import {
   DISPLAY_ALERT,
   SET_INPUT,
-  MAKE_REDIRECT
+  MAKE_REDIRECT,
+  DISPLAY_MODAL
 } from './actions/actions';
 
 import {
@@ -30,7 +32,7 @@ import {
 const initialState = {
   answers: {},
   questions: [],
-  results: [],
+  results: {},
   user: {
     id: null,
     username: '',
@@ -48,6 +50,9 @@ const initialState = {
       display: false,
       type: '',
       message: ''
+    },
+    modal: {
+      display: false
     }
   }
 };
@@ -77,7 +82,6 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ANSWERED:
       const questionAnswered = action.payload;
       const questionToUpdate = state.questions;
-      console.log(questionAnswered);
 
       let answersArray = state.answers;
       questionToUpdate.map(currentQuestion => {
@@ -149,6 +153,22 @@ const reducer = (state = initialState, action = {}) => {
             message: action.payload.message
           }
         }
+      };
+    case DISPLAY_MODAL:
+      return {
+        ...state,
+        userInterface: {
+          ...state.userInterface,
+          modal: {
+            ...state.userInterface.modal,
+            display: action.payload
+          }
+        }
+      };
+    case SET_RESULT:
+      return {
+        ...state,
+        results: action.payload
       };
     case SET_USER_INFOS:
       return {
