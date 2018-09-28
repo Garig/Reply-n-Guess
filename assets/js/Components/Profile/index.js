@@ -8,17 +8,25 @@ import { Tabs } from 'antd';
 /**
  * Local import
  */
-import Informations from '../../containers/Profil/Informations';
-import AllQuestionsAnswered from '../../containers/Profil/AllQuestionsAnswered';
+// Component
+import Informations from '../../containers/Profile/Informations';
+import AllQuestionsAnswered from '../../containers/Profile/AllQuestionsAnswered';
+
+// PropTypes
+import {
+  QuestionsType,
+  userInterfaceType,
+  setAnswerType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
-import './profil.sass';
+import './profile.sass';
 const TabPane = Tabs.TabPane;
 
 /**
  * Code
  */
-class Profil extends React.Component {
+class Profile extends React.Component {
   render() {
     return (
       !this.props.userInterface.isConnected
@@ -32,6 +40,13 @@ class Profil extends React.Component {
 }
 
 /**
+ * PropTypes
+ */
+Profile.propTypes = {
+  userInterface: userInterfaceType.isRequired,
+};
+
+/**
  * Export
  */
-export default Profil;
+export default Profile;

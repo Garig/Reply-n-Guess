@@ -77,15 +77,15 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ANSWERED:
       const questionAnswered = action.payload;
       const questionToUpdate = state.questions;
+      console.log(questionAnswered);
 
       let answersArray = state.answers;
-      delete answersArray[questionAnswered];
-
       questionToUpdate.map(currentQuestion => {
         if (currentQuestion.id in questionAnswered) {
           currentQuestion.answered = true;
-          currentQuestion.user_choice = questionAnswered[currentQuestion.id].user_choice;
-          currentQuestion.user_predict = questionAnswered[currentQuestion.id].user_predict;
+          currentQuestion.user_choice = questionAnswered[currentQuestion.id].user_choice || questionAnswered[currentQuestion.id].userChoice;
+          currentQuestion.user_predict = questionAnswered[currentQuestion.id].user_predict || questionAnswered[currentQuestion.id].userPredict;
+          delete answersArray[currentQuestion.id];
         }
       });
 

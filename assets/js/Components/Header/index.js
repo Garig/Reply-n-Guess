@@ -3,11 +3,15 @@
  */
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Icon, Menu } from 'antd';
 
 /**
  * Local import
  */
+import {
+  userInterfaceType,
+  disconnectType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import 'antd/lib/menu/style/css';
@@ -36,7 +40,7 @@ const Header = ({ userInterface, disconnect }) => (
       </Menu.Item>
       {
         userInterface.isConnected
-          ? <Menu.Item key="/profil"><NavLink to="/profil">Profil</NavLink></Menu.Item>
+          ? <Menu.Item key="/profile"><NavLink to="/profile">Profil</NavLink></Menu.Item>
           : <Menu.Item key="/login"><NavLink to="/login">Connexion</NavLink></Menu.Item>
       }
       {
@@ -48,6 +52,13 @@ const Header = ({ userInterface, disconnect }) => (
   </header>
 );
 
+/**
+ * PropTypes
+ */
+Header.propTypes = {
+  userInterface: userInterfaceType.isRequired,
+  disconnect: disconnectType.isRequired
+};
 /**
  * Export
  */

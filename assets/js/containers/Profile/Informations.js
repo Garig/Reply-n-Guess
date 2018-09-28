@@ -8,7 +8,7 @@ import { setInput } from '../../store/actions/actions';
 /**
  * Local import
  */
-import Informations from '../../Components/Profil/Informations';
+import Informations from '../../Components/Profile/Informations';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation

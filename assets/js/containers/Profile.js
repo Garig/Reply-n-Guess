@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
-import Profil from '../Components/Profil';
+import Profile from '../Components/Profile';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -16,10 +16,7 @@ import Profil from '../Components/Profil';
  * Pas de data à transmettre ? ==> alors const mapStateToProps = null;
  */
 const mapStateToProps = state => ({
-  user: state.user,
-  userInterface: state.userInterface,
-  questions: state.questions,
-  results: state.results
+  userInterface: state.userInterface
 });
 
 /* === Actions ===
@@ -33,4 +30,4 @@ const mapDispatchToProps = dispatch => ({});
 export default connect(
   mapStateToProps, // lecture
   mapDispatchToProps // écriture
-)(Profil);
+)(Profile);

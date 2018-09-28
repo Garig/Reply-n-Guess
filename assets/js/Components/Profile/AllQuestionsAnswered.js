@@ -8,7 +8,10 @@ import classNames from 'classnames';
 /**
  * Local import
  */
-// import { QuestionsType } from '../../utils/validationPropTypes';
+import {
+  userType,
+  userInterfaceType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import 'antd/lib/card/style/css';
@@ -71,6 +74,10 @@ const AllQuestionsAnswered = ({ user, userInterface, results }) => (
 /**
  * PropTypes
  */
+AllQuestionsAnswered.propTypes = {
+  user: userType.isRequired,
+  userInterface: userInterfaceType.isRequired
+};
 
 /**
  * Export

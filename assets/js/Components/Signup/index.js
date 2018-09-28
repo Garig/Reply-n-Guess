@@ -2,13 +2,16 @@
  * Package Import
  */
 import React from 'react';
-import { Form, Button, DatePicker, Radio, Input, Icon, Alert } from 'antd';
+import { Alert, Button, DatePicker, Form, Icon, Input, Radio } from 'antd';
 import moment from 'moment';
 import { Redirect } from 'react-router-dom';
 
 /**
  * Local import
  */
+// Component
+import Department from '../Department/Department';
+
 // PropTypes
 import {
   userType,
@@ -23,8 +26,8 @@ import {
 import './signup.sass';
 import 'antd/lib/date-picker/style/css';
 
-const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 
 /**
  * Code

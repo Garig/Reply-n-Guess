@@ -161,9 +161,9 @@ const userMiddleware = store => next => (action) => {
             .then(objectUserCreated => {
               store.dispatch(displayAlert({type: 'success', message: 'Modifications validées !'}));
               setTimeout(() => {
-                store.dispatch(makeRedirect('/profil'));
+                store.dispatch(makeRedirect('/profile'));
               }, 1000);
-              
+
             })
             .catch(errorCodeAPI => {
               console.log(errorCodeAPI);

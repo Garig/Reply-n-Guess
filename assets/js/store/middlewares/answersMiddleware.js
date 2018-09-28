@@ -30,7 +30,7 @@ const answersMiddleware = store => next => (action) => {
                   }
                 })
                 .then(response => {
-                  store.dispatch(setAnswered([action.payload]));
+                  store.dispatch(setAnswered({[action.payload]: currentAnswer}));
                 })
                 .catch(error => console.log(error));
             }

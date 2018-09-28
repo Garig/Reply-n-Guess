@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { Form, Button, DatePicker, Radio, Input, Icon, Alert } from 'antd';
+import { Alert, Button, DatePicker, Form, Icon, Input, Radio } from 'antd';
 import moment from 'moment';
 import { Redirect } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ import {
 } from '../../utils/validationPropTypes';
 
 // Styles et assets
-import './profil.sass';
+import './profile.sass';
 import 'antd/lib/date-picker/style/css';
 
 const RadioGroup = Radio.Group;

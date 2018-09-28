@@ -9,7 +9,12 @@ import classNames from 'classnames';
 /**
  * Local import
  */
-import { QuestionsType } from '../../utils/validationPropTypes';
+// PropTypes
+import {
+  QuestionsType,
+  userInterfaceType,
+  setAnswerType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import 'antd/lib/card/style/css';
@@ -119,7 +124,9 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
  * PropTypes
  */
 DailyQuestions.propTypes = {
-  questions: QuestionsType.isRequired
+  questions: QuestionsType.isRequired,
+  userInterface: userInterfaceType.isRequired,
+  setAnswer: setAnswerType.isRequired
 };
 
 /**

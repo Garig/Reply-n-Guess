@@ -46,11 +46,13 @@ export const userInterfaceType =
 
 // Validation pour les actions du reducer
 export const setInputType = PropTypes.func;
-
 export const submitLoginType = PropTypes.func;
-
 export const setGenderType = PropTypes.func;
 
 export const setDateType = PropTypes.func;
-
 export const submitSignupType = PropTypes.func;
+export const setAnswerType = PropTypes.func;
+export const disconnectType = PropTypes.func;
+export const loadDailyQuestionsType = PropTypes.func;
+export const makeRedirectType = PropTypes.func;
+export const loggedInType = PropTypes.func;

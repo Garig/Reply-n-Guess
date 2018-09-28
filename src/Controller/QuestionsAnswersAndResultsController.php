@@ -13,7 +13,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
 {
     public function __invoke()
     {
-        $this->getAnswers();
+        return $this->getAnswers();
     }
 
     public function getAnswers()
@@ -26,7 +26,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
 
         // récupère les id des différentes questions, ils seront liés à l'id des result car 1 question = 1 result
         $ids = $this->getIds($nbAnswersTot, $Answers);
-        
+
         // tableau contenant le nombre total d'utilisateurs ayant répondu pour chaque questions , exemple $totalUsers[0] = nombre total d'user ayant répondu à la question 1
         $totalUsers = $this->getNbTotalUsersForEachQuestions($Answers, $ids);
 
@@ -83,11 +83,13 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->getRepository(Question::class)
                     ->find($ids[$i])
                     ->setStatuses($statusMinus1);
-                    
+
 
             $entityManager->persist($question);
         }
         $entityManager->flush();
+
+        return $Answers;
     }
 
     public function getNbAnswersTot($Answers) {
@@ -114,7 +116,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
     }
 
     public function getNbTotalUsersForEachQuestions($Answers, $ids) {
-       
+
         $totalUsers = [];
         $totalUsersForQ1 = 0;
         $totalUsersForQ2 = 0;
@@ -227,7 +229,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
 
 
         $majority = $this->isMajority($statsCalculated['perc_answer_1'], $statsCalculated['perc_answer_2']);
-        
+
         if ($majority == false) {
             $statsCalculated['perc_predict_1_true'] = 0;
             $statsCalculated['perc_predict_1_false'] = 1;
@@ -241,8 +243,8 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_2_true'] = 0;
             $statsCalculated['perc_predict_2_false'] = 1;
         }
-        
-        
+
+
 
         $statsCalculated['perc_men_answer_1'] = $stats[0]['totalManChoice1'] * 100 / $totalGender[0];
         $statsCalculated['perc_men_answer_2'] = $stats[0]['totalManChoice2'] * 100 / $totalGender[0];
@@ -254,18 +256,18 @@ class QuestionsAnswersAndResultsController extends AbstractController
 
     public function isMajority($percAns1, $percAns2) {
         $majority = null;
-       
+
         if ($percAns1 > 50) {
             $majority = true;
-            
+
         } else if ($percAns2 > 50) {
             $majority = false;
-            
+
         } else {
             $majority = true;
-           
+
         }
-        
+
 
         return $majority;
     }

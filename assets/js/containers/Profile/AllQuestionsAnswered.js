@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
-import AllQuestionsAnswered from '../../Components/Profil/AllQuestionsAnswered';
+import AllQuestionsAnswered from '../../Components/Profile/AllQuestionsAnswered';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation

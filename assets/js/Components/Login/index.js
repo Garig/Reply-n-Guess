@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { Form, Button, Input, Icon, Alert } from 'antd';
+import { Alert, Button, Form, Icon, Input } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 /**

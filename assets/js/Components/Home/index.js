@@ -6,6 +6,12 @@ import React from 'react';
 /**
  * Local import
  */
+import {
+  loadDailyQuestionsType,
+  makeRedirectType,
+  loggedInType
+} from '../../utils/validationPropTypes';
+
 import DailyQuestions from '../../containers/DailyQuestions';
 
 // Styles et assets
@@ -29,6 +35,11 @@ class Home extends React.Component {
 /**
  * PropTypes
  */
+Home.propTypes = {
+  loadDailyQuestions: loadDailyQuestionsType.isRequired,
+  makeRedirect: makeRedirectType.isRequired,
+  loggedIn: loggedInType.isRequired
+};
 
 /**
  * Export

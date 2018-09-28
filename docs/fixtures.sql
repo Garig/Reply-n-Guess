@@ -7,8 +7,18 @@
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
+-- --------------------------------------------------------
+--
+-- Set parameters for the database
+--
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+-- --------------------------------------------------------
+--
+-- Delete existing data
+--
 
 DELETE FROM `answer`;
 DELETE FROM `question`;
@@ -18,6 +28,10 @@ DELETE FROM `status`;
 DELETE FROM `role`;
 DELETE FROM `result`;
 
+-- --------------------------------------------------------
+--
+-- Reset primary key
+--
 
 ALTER TABLE `answer` AUTO_INCREMENT=0;
 ALTER TABLE `departement` AUTO_INCREMENT=0;
@@ -27,23 +41,18 @@ ALTER TABLE `question` AUTO_INCREMENT=0;
 ALTER TABLE `app_users` AUTO_INCREMENT=0;
 ALTER TABLE `result` AUTO_INCREMENT=0;
 
-/*! ALTER TABLE `app_users` ADD UNIQUE(`username`, `email`)*/;
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `villes_fr`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `departement`
---
-
+-- -------------------------------------------------------- --
+-- -------------------------------------------------------- --
+--                                                          --
+--                  Database: `replynguess`                 --
+--                                                          --
+-- -------------------------------------------------------- --
+-- -------------------------------------------------------- --
 
 --
 -- Dumping data for table `departement`
@@ -71,8 +80,8 @@ INSERT INTO `departement` (`id`, `code`, `name`) VALUES
 (19, '19', 'Corrèze'),
 (20, '2a', 'Corse-du-sud'),
 (21, '2b', 'Haute-Corse'),
-(22, '21', 'Côte-d''or'),
-(23, '22', 'Côtes-d''armor'),
+(22, '21', "Côte-d'or"),
+(23, '22', "Côtes-d'armor"),
 (24, '23', 'Creuse'),
 (25, '24', 'Dordogne'),
 (26, '25', 'Doubs'),
@@ -145,18 +154,21 @@ INSERT INTO `departement` (`id`, `code`, `name`) VALUES
 (93, '92', 'Hauts-de-Seine'),
 (94, '93', 'Seine-Saint-Denis'),
 (95, '94', 'Val-de-Marne'),
-(96, '95', 'Val-d''oise'),
+(96, '95', "Val-d'oise"),
 (97, '976', 'Mayotte'),
 (98, '971', 'Guadeloupe'),
 (99, '973', 'Guyane'),
 (100, '972', 'Martinique'),
 (101, '974', 'Réunion');
 
-
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+--
+-- Dumping data for table `status`
+--
 
 INSERT INTO `status` (`id`, `code`) VALUES
 (3, 'proposée'),
@@ -166,21 +178,36 @@ INSERT INTO `status` (`id`, `code`) VALUES
 (0, 'fermée'),
 (-1, 'archivée');
 
+-- --------------------------------------------------------
+--
+-- Dumping data for table `role`
+--
+
 INSERT INTO `role` (`id`, `name`) VALUES
 (1, 'ROLE_USER'),
 (2, 'ROLE_MODERATOR'),
 (3, 'ROLE_ADMIN');
 
-INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`, `departements_id`) VALUES 
+-- --------------------------------------------------------
+--
+-- Dumping data for table `app_users`
+--
+
+INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`, `departements_id`) VALUES
 (1, 'Sylvère', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'sylvere@oclock.io', '01/01/1999', 'homme', 0, 1, 68),
 (1, 'Quentin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'quentin@oclock.io', '01/01/1999', 'homme', 0, 1, 20),
 (1, 'Justin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'justin@oclock.io', '01/01/1999', 'homme', 0, 1, 94),
 (1, 'Christophe', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'christophe@oclock.io', '01/01/1999', 'homme', 0, 1, 90),
-(1, 'username2', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'email2@oclock.io', '01/01/1999', 'homme', 0, 1, 75),
-(1, 'username3', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'email3@oclock.io', '01/01/1999', 'homme', 0, 1, 49),
-(1, 'username4', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'email4@oclock.io', '01/01/1999', 'femme', 0, 1, 03),
-(1, 'username5', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'email5@oclock.io', '01/01/1999', 'femme', 0, 1, 18),
+(1, 'Gérard', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'gerard@oclock.io', '01/01/1999', 'homme', 0, 1, 75),
+(1, 'Camille', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'camille@oclock.io', '01/01/1999', 'femme', 0, 1, 49),
+(1, 'usernameX', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'emailX@oclock.io', '01/01/1999', 'homme', 0, 1, 03),
+(1, 'usernameY', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'emailY@oclock.io', '01/01/1999', 'femme', 0, 1, 18),
 (1, 'admintest', '$2y$13$RK16q4E32Ck6R07l0ePFnOfZjfv/Nmux24wBJbdXedb.mObnMmmfy', 'admintest@admin.test', '01/01/1999', 'homme', 0, 3, 16);
+
+-- --------------------------------------------------------
+--
+-- Dumping data for table `result`
+--
 
 INSERT INTO `result` (`nb_voting`, `nb_answer_1`, `nb_answer_2`, `nb_predict_1`, `nb_predict_2`, `perc_answer_1`, `perc_answer_2`, `perc_predict_1_true`, `perc_predict_1_false`, `perc_predict_2_true`, `perc_predict_2_false`, `perc_men_answer_1`, `perc_men_answer_2`, `perc_women_answer_1`, `perc_women_answer_2`) VALUES
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -230,8 +257,10 @@ INSERT INTO `result` (`nb_voting`, `nb_answer_1`, `nb_answer_2`, `nb_predict_1`,
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-
-
+-- --------------------------------------------------------
+--
+-- Dumping data for table `question`
+--
 
 INSERT INTO `question` (`users_id`,`title`,`prop_1`,`prop_2`, `submit_date`, `nb_vote_moderator`, `statuses_id`, `results_id`) VALUES
 (1,'Han Solo ou Chewbaca','Han Solo','Chewbaca', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 1),
@@ -246,40 +275,45 @@ INSERT INTO `question` (`users_id`,`title`,`prop_1`,`prop_2`, `submit_date`, `nb
 (1,'Voyager 200 ans dans le passé ou dans le futur ?','Le passé','Le futur', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 10),
 (2,'Aimeriez-vous devenir un ninja ou un pirate ?','Ninja','Pirate', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 11),
 (3,'Se battre à coups de poing avec Justin Bieber ou avec Kim Jong Un ?.','Justin Bieber','Kim Jong Un', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 12),
-(1,'Avoir Rendez-vous avec Jennifer Lawrence ou avoir toutes les pizzas du monde ?','Le rendez-vous','Les pizzas', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 13),
+(1,'Plutôt kebab ou pizza ?','Kebab','Pizza', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 13),
 (2,'Maîtriser tous les instruments de musique ou tous les sports?','Instruments de musique','Sports', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 14),
 (3,'Être capable de voler ou lire dans les pensées ?','Voler','Lire dans les pensées', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 15),
-(4,"Réussir à voler une banque ou réussir à voler un objet d’art inestimable ?",'La banque',"L'objet d'art inestimable", timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 16),
+(4,"Réussir à voler une banque ou réussir à voler un objet d’art inestimable ?",'La banque',"L’objet d’art inestimable", timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 16),
 (1,'Te passer de ton téléphone ou de ton ordinateur pour toujours?','Téléphone','Ordinateur', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 17),
 (3,'Ne plus jamais manger ou dormir ?','Plus jamais manger','Plus jamais dormir', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 18),
 (3,'Devenir sourd ou aveugle ?','Sourd','Aveugle', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 19),
 (1,'Te faire amputer un pied ou une main ?','Un pied','Une main', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 20),
 (2,'Mario ou Sonic ?','Mario','Sonic', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 21),
 (4,'Pokemon ou Yu-Hi-Yo ?','Pokemon','Yu-Hi-Yo', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 22),
-(6,'Anakin ou Obi-Wan ?','Anakin','Obi-Wan', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 23),
+(5,'Anakin ou Obi-Wan ?','Anakin','Obi-Wan', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 23),
 (4,'Pain au chocolat ou chocolatine?','Pain au chocolat','Chocolatine', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 24),
 (1,'Thé ou café ?','Thé','Café', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 25),
 (2,'Mouiller sa brosse à dent avant ou après avoir mis le dentifrice ?','Avant','Après', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 26),
 (3,'Être un mètre plus grand ou un mètre plus petit ?','Plus grand','Plus petit', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 27),
 (4,'Découvrir que ses parents sont agents secrets ou aliens ?','Agents secrets','Aliens', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 28),
 (5,'Vivre dans un monde où existent les Pokemons ou les Supers Héros ?','Les Pokemons','Les Supers Héros', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 29),
-(6,'Utiliser un écran tactile ou une souris pour tous tes appareils ?','Ecran tactil','La souris', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 30),
-(7,'Porter les mêmes habits ou ne pas prendre de douche pendant une semaine ?','Porter les mêmes habits','Ne pas prendre de douche', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 31),
-(8,'Avoir 10 enfants ou ne pas en avoir du tout ?','10 enfants','Ne pas en avoir du tout', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 32),
-(9,'Se priver de musique ou jeux vidéo pendant un an ?','Sans musique','Sans jeux vidéo', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 33),
+(1,'Utiliser un écran tactile ou une souris pour tous tes appareils ?','Ecran tactil','La souris', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 30),
+(3,'Porter les mêmes habits ou ne pas prendre de douche pendant une semaine ?','Porter les mêmes habits','Ne pas prendre de douche', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 31),
+(1,'Avoir 10 enfants ou ne pas en avoir du tout ?','10 enfants','Ne pas en avoir du tout', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 32),
+(2,'Se priver de musique ou jeux vidéo pendant un an ?','Sans musique','Sans jeux vidéo', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 33),
 (1,'Etre sujet d’une téléréalité toute sa vie ou que personne ne se souvienne de vous au jour le jour ?','Etre sujet d’une téléréalité','Personne ne se souvienne de vous', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 34),
 (2,'Savoir quand ou comment est la fin du monde ?','Quand','Comment', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 35),
 (3,'Être immortel et n’avoir aucun ami ou mortel avec des amis ?','Immortel sans ami','Mortel avec des amis', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 36),
 (4,'Regarder la tv ou dormir toute la journée ?','Regarder la tv','Dormir', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 37),
 (5,'Être mortel dans un monde d’immortel ou immortel dans un monde de mortel ?','Mortel dans un monde d’immortel','Immortel dans un monde de mortel', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 38),
-(6,'Tout l’argent gagné doublé ou avoir accès a internet mentalement ?','Argent gagné doublé','Accès a internet mentalement', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 39),
-(7,'Vivre une invasion d’aliens ou de zombies ?','Aliens','Zombies', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 40),
-(8,'Vivre un an dans le désert ou en Antarctique ?','Désert','Antarctique', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 41),
-(9,'Avoir un sable laser ou un IA personnelle ?','Sabre laser','IA personnelle', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 42),
+(5,'Tout l’argent gagné doublé ou avoir accès a internet mentalement ?','Argent gagné doublé','Accès a internet mentalement', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 39),
+(4,'Vivre une invasion d’aliens ou de zombies ?','Aliens','Zombies', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 40),
+(3,'Vivre un an dans le désert ou en Antarctique ?','Désert','Antarctique', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 41),
+(5,'Avoir un sable laser ou un IA personnelle ?','Sabre laser','IA personnelle', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 42),
 (1,'Ne plus toucher ou ne plus parler à personne pendant un an ?','Ne plus toucher','Ne plus parler', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 43),
 (2,'Tout avoir ou tout savoir ?','Tout avoir','Tout savoir', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 44),
 (3,'Être le meilleurs dans une équipe de mauvait ou le pire dans une équipe de bon?','Le meilleurs','Le pire', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 45),
 (2,'Doubler ton espérance de vie ou réfléchir deux fois plus vite ?','Doubler l’espérance de vie','Réfléchir deux fois plus vite', timestamp('2018-10-01 14:53:27') - INTERVAL FLOOR( RAND( ) * 366) DAY, 0, 2, 46);
+
+-- --------------------------------------------------------
+--
+-- Dumping data for table `question`
+--
 
 INSERT INTO `answer` (`users_id`, `questions_id`, `user_choice`, `user_predict`) VALUES
 (1, 1, 1, 2),
