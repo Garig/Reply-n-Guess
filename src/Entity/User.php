@@ -7,10 +7,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Controller\QuestionAnsweredController;
+use App\Controller\UserController;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *          "get",
+ *          "post",
+ *          "getRanking"={
+ *              "method"="GET",
+ *              "path"="/getRanking",
+ *              "controller"=UserController::class
+ *          },
+ *      },
+ *      attributes={"formats"={"jsonld"}}
+ * )
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
