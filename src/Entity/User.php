@@ -60,7 +60,7 @@ class User implements UserInterface, \Serializable
     private $gender;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, options={"unsigned":true}))
      */
     private $score;
 

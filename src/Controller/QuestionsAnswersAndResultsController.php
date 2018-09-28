@@ -86,22 +86,17 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->find($ids[$i])
                     ->setStatuses($statusMinus1);
                     
-
             $entityManager->persist($question);
         }
         
-        $predict1True = [];
-        $predict1True[0] = $statsCalculated[0]['perc_predict_1_true'];
-        $predict1True[1] = $statsCalculated[1]['perc_predict_1_true'];
-        $predict1True[2] = $statsCalculated[2]['perc_predict_1_true'];
-
         $addScore = 0;
         $currentScore = 0;
         $countQuestion = 0;
 
+        // Permet de boucler sur la totalité des réponses de chaque questions et de modifier le score de l'user de -1 ou +1 en fonction de sa prédiction (la clé score calc indique la prédiction majoritaire donc si l'user predic correspond on ajoute un, sinon on soustrait un (seulement dans le cas ou le score de l'user est différent de 0)
         while ($i < $nbAnswersTot) {
             if ($Answers[$i]['question_id'] == $ids[$countQuestion]) {
-                if ($Answers[$i]['user_predict'] == $predict1True[$countQuestion]) {
+                if ($Answers[$i]['user_predict'] == $statsCalculated[$countQuestion]['score_calc']) {
                     $addScore = 1;
                     $user = $this->getDoctrine()
                     ->getRepository(User::class)
@@ -111,16 +106,21 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     $entityManager->persist($user);
                     $addScore = 0;
                     $currentScore = 0;
+                    
                 } else {
                     $addScore = - 1;
                     $user = $this->getDoctrine()
                     ->getRepository(User::class)
                     ->find($Answers[$i]['user_id']);
                     $currentScore = $user->getScore();
-                    $user->setScore($currentScore + $addScore);
-                    $entityManager->persist($user);
-                    $addScore = 0;
-                    $currentScore = 0;
+                    if($currentScore == 0) {
+                        $addScore = 0;
+                    } else {
+                        $user->setScore($currentScore + $addScore);
+                        $entityManager->persist($user);
+                        $addScore = 0;
+                        $currentScore = 0;
+                    }
                 }
                 $i++;
             } else {
@@ -128,13 +128,8 @@ class QuestionsAnswersAndResultsController extends AbstractController
             }
         }
 
-        $test[0] = $predict1True[0] = $statsCalculated[0]['perc_predict_1_true'];
-        $test[1] = $statsCalculated[0];
-
-
-
         $entityManager->flush();
-        return $test;
+        return $statsCalculated;
     }
 
     public function getNbAnswersTot($Answers) {
@@ -280,6 +275,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 1;
             $statsCalculated['perc_predict_2_true'] = 1;
             $statsCalculated['perc_predict_2_false'] = 2;
+            $statsCalculated['score_calc'] = 2;
         }
 
         if ($majority == true) {
@@ -287,7 +283,9 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 2;
             $statsCalculated['perc_predict_2_true'] = 2;
             $statsCalculated['perc_predict_2_false'] = 1;
+            $statsCalculated['score_calc'] = 1;
         }
+
         
         
 
@@ -308,12 +306,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
         } else if ($percAns2 > 50) {
             $majority = false;
             
-        } else {
-            $majority = true;
-           
-        }
-        
-
+        } 
         return $majority;
     }
 }
