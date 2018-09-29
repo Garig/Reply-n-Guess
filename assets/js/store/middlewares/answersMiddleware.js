@@ -9,7 +9,9 @@ import axios from 'axios';
 import { URL } from './middleware';
 import {
   SEND_ANSWER,
-  setAnswered
+  setAnswered,
+  GET_RESULT,
+  setResult
 } from '../actions/answersActions';
 
 const answersMiddleware = store => next => (action) => {
@@ -21,8 +23,6 @@ const answersMiddleware = store => next => (action) => {
         if (currentAnswer.userChoice) {
           if (currentAnswer.userPredict) {
             if (currentAnswer.userChoice !== null && currentAnswer.userPredict !== null) {
-              console.log('SEND');
-              console.log(currentAnswer);
               axios
                 .post(`${URL}/api/answers`, currentAnswer, {
                   headers: {
@@ -37,6 +37,13 @@ const answersMiddleware = store => next => (action) => {
           }
         }
       });
+      break;
+    }
+    case GET_RESULT: {
+      axios
+        .get(`/api/results/${action.payload}`)
+        .then(response => store.dispatch(setResult(response.data)))
+        .catch(err => console.log(err));
       break;
     }
     default:

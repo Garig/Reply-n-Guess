@@ -10,6 +10,9 @@ export const SET_INPUT = 'actions/SET_INPUT';
 // Pour display une alert
 export const DISPLAY_ALERT = 'actions/DISPLAY_ALERT';
 
+// Pour display une modal
+export const DISPLAY_MODAL = 'actions/DISPLAY_MODAL';
+
 // Pour display une alert
 export const HIDE_ALERT = 'actions/HIDE_ALERT';
 
@@ -33,6 +36,12 @@ export const setInput = payload => ({
 // Pour display une alert
 export const displayAlert = payload => ({
   type: DISPLAY_ALERT,
+  payload
+});
+
+// Pour display une modal
+export const displayModal = payload => ({
+  type: DISPLAY_MODAL,
   payload
 });
 
