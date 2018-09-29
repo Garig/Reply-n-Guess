@@ -2,15 +2,15 @@
  * Package Import
  */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Alert, Button, DatePicker, Form, Icon, Input, Radio } from 'antd';
 import moment from 'moment';
-import { Redirect } from 'react-router-dom';
 
 /**
  * Local import
  */
-// Component
-import Department from '../Department/Department';
+// containers
+import Departments from '../../containers/Departments';
 
 // PropTypes
 import {
@@ -32,7 +32,7 @@ const RadioGroup = Radio.Group;
 /**
  * Code
  */
-const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
+const Signup = ({ user, userInterface, setInput, setGender, setDate, setDepartment, submitSignup }) => (
   userInterface.redirection === '/login'
     ? <Redirect to={'/login'} />
     : <Form onSubmit={submitSignup}>
@@ -74,6 +74,9 @@ const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignu
           <Radio defaultChecked value={'homme'}>Homme</Radio>
           <Radio value={'femme'}>Femme</Radio>
         </RadioGroup>
+      </FormItem>
+      <FormItem>
+        <Departments />
       </FormItem>
       <FormItem>
         <DatePicker onChange={setDate} placeholder="Votre date de naissance" defaultValue={moment('2000-01-01', 'YYYY-MM-DD')} />

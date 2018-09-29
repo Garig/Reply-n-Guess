@@ -8,6 +8,7 @@ export const SET_USER_INFOS = 'actions/SET_USER_INFOS';
 
 // Pour le Signup
 export const SET_GENDER = 'actions/SET_GENDER';
+export const SET_DEPARTMENT = 'actions/SET_DEPARTMENT';
 export const SET_DATE = 'actions/SET_DATE';
 export const SUBMIT_SIGNUP = 'actions/SUBMIT_SIGNUP';
 export const UPDATE_PROFILE = 'actions/UPDATE_PROFILE';
@@ -39,6 +40,11 @@ export const setUserInfos = payload => ({
 // Pour le Signup
 export const setGender = payload => ({
   type: SET_GENDER,
+  payload
+});
+
+export const setDepartment = payload => ({
+  type: SET_DEPARTMENT,
   payload
 });
 

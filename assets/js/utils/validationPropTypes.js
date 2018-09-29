@@ -29,6 +29,10 @@ export const userType =
     passwordConfirm: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     gender: PropTypes.string.isRequired,
+    departments: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
+    ]).isRequired,
     birthDate: PropTypes.string.isRequired
   });
 
@@ -48,9 +52,10 @@ export const userInterfaceType =
 export const setInputType = PropTypes.func;
 export const submitLoginType = PropTypes.func;
 export const setGenderType = PropTypes.func;
-
+export const setDepartmentType = PropTypes.func;
 export const setDateType = PropTypes.func;
 export const submitSignupType = PropTypes.func;
+export const updateProfileType = PropTypes.func;
 export const setAnswerType = PropTypes.func;
 export const disconnectType = PropTypes.func;
 export const loadDailyQuestionsType = PropTypes.func;

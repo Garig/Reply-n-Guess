@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
+
 // PropTypes
 import {
   userType,

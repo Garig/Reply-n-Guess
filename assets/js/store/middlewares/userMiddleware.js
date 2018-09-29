@@ -44,7 +44,7 @@ const Auth = new AuthService();
 const userMiddleware = store => next => (action) => {
   switch (action.type) {
     case SUBMIT_SIGNUP: {
-      const { username, password, passwordConfirm, email, gender, birthDate } = store.getState().user;
+      const { username, password, passwordConfirm, email, gender, departments, birthDate } = store.getState().user;
 
       const payload = {
         username,
@@ -53,7 +53,8 @@ const userMiddleware = store => next => (action) => {
         email,
         gender,
         birthDate,
-        'role': '/api/roles/1'
+        'role': '/api/roles/1',
+        'departments': `/api/departments/${departments}`
       };
 
       Joi.validate(payload, schemaSignUp, (err, value) => {
@@ -133,13 +134,13 @@ const userMiddleware = store => next => (action) => {
     }
 
     case UPDATE_PROFILE: {
-      console.log('UPDATE_PROFILE');
-      const { username, password, passwordConfirm, email, gender, birthDate } = store.getState().user;
+      const { username, password, passwordConfirm, email, gender, departments, birthDate } = store.getState().user;
 
       let payload = {
         username,
         email,
         gender,
+        'departments': `/api/departments/${departments}`,
         birthDate
       };
 
@@ -163,7 +164,6 @@ const userMiddleware = store => next => (action) => {
               setTimeout(() => {
                 store.dispatch(makeRedirect('/profile'));
               }, 1000);
-
             })
             .catch(errorCodeAPI => {
               console.log(errorCodeAPI);

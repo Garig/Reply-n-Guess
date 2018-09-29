@@ -27,6 +27,11 @@ export const schemaSignUp = {
     .equal(['M', 'F', 'MALE', 'FEMALE', 'H', 'Homme', 'homme', 'Femme', 'femme'])
     .required()
     .error(new Error('Merci de renseigner votre genre :)')),
+  departments: Joi.string()
+    .min(18)
+    .max(20)
+    .required()
+    .error(new Error('Merci de renseigner votre département :)')),
   birthDate: Joi.string()
     .required()
     .error(new Error('Merci de renseigner votre date de naissance :)')),
@@ -72,5 +77,9 @@ export const updateProfile = {
     .error(new Error('Merci de renseigner votre genre :)')),
   birthDate: Joi.string()
     .error(new Error('Merci de renseigner votre date de naissance :)')),
+  departments: Joi.string()
+    .min(18)
+    .max(20)
+    .error(new Error('Merci de renseigner votre département :)')),
   role: Joi.string().optional()
 };
