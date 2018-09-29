@@ -20,6 +20,7 @@ import {
 
 import {
   SET_GENDER,
+  SET_DEPARTMENT,
   SET_DATE,
   UPDATE_CONNECTION,
   DISCONNECT,
@@ -40,6 +41,7 @@ const initialState = {
     passwordConfirm: '',
     email: '',
     gender: '',
+    departments: '',
     birthDate: '',
     answeredQuestions: []
   },
@@ -140,6 +142,14 @@ const reducer = (state = initialState, action = {}) => {
         user: {
           ...state.user,
           gender: action.payload
+        }
+      };
+    case SET_DEPARTMENT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          departments: action.payload
         }
       };
     case DISPLAY_ALERT:

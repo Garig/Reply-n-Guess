@@ -38,7 +38,7 @@ class JWTCreatedListener {
         $payload['avatar'] = $user->getAvatar();
         $payload['birthDate'] = $user->getBirthDate();
         $payload['score'] = $user->getScore();
-        $payload['departement'] = $user->getDepartements();
+        $payload['departments'] = $user->getDepartmentUser();
 
         $event->setData($payload);
         

@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 DELETE FROM `answer`;
 DELETE FROM `question`;
 DELETE FROM `app_users`;
-DELETE FROM `departement`;
+DELETE FROM `department`;
 DELETE FROM `status`;
 DELETE FROM `role`;
 DELETE FROM `result`;
@@ -34,7 +34,7 @@ DELETE FROM `result`;
 --
 
 ALTER TABLE `answer` AUTO_INCREMENT=0;
-ALTER TABLE `departement` AUTO_INCREMENT=0;
+ALTER TABLE `department` AUTO_INCREMENT=0;
 ALTER TABLE `status` AUTO_INCREMENT=0;
 ALTER TABLE `role` AUTO_INCREMENT=0;
 ALTER TABLE `question` AUTO_INCREMENT=0;
@@ -55,15 +55,15 @@ ALTER TABLE `result` AUTO_INCREMENT=0;
 -- -------------------------------------------------------- --
 
 --
--- Dumping data for table `departement`
+-- Dumping data for table `department`
 --
 
-INSERT INTO `departement` (`id`, `code`, `name`) VALUES
+INSERT INTO `department` (`id`, `code`, `name`) VALUES
 (1, '01', 'Ain'),
 (2, '02', 'Aisne'),
 (3, '03', 'Allier'),
-(5, '05', 'Hautes-Alpes'),
 (4, '04', 'Alpes-de-Haute-Provence'),
+(5, '05', 'Hautes-Alpes'),
 (6, '06', 'Alpes-Maritimes'),
 (7, '07', 'Ardèche'),
 (8, '08', 'Ardennes'),
@@ -155,11 +155,11 @@ INSERT INTO `departement` (`id`, `code`, `name`) VALUES
 (94, '93', 'Seine-Saint-Denis'),
 (95, '94', 'Val-de-Marne'),
 (96, '95', "Val-d'oise"),
-(97, '976', 'Mayotte'),
-(98, '971', 'Guadeloupe'),
+(97, '971', 'Guadeloupe'),
+(98, '972', 'Martinique'),
 (99, '973', 'Guyane'),
-(100, '972', 'Martinique'),
-(101, '974', 'Réunion');
+(100, '974', 'Réunion'),
+(101, '976', 'Mayotte');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
@@ -193,7 +193,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- Dumping data for table `app_users`
 --
 
-INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`, `departements_id`) VALUES
+INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`, `departments_id`) VALUES
 (1, 'Sylvère', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'sylvere@oclock.io', '01/01/1999', 'homme', 0, 1, 68),
 (1, 'Quentin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'quentin@oclock.io', '01/01/1999', 'homme', 0, 1, 20),
 (1, 'Justin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'justin@oclock.io', '01/01/1999', 'homme', 0, 1, 94),

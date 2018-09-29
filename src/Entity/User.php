@@ -76,9 +76,9 @@ class User implements UserInterface, \Serializable
     private $score;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Departement", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Department", inversedBy="users")
      */
-    private $departements;
+    private $departments;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
@@ -216,14 +216,19 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getDepartements(): ?Departement
+    public function getDepartments(): ?Department
     {
-        return $this->departements;
+        return $this->departments;
     }
 
-    public function setDepartements(?Departement $departements): self
+    public function getDepartmentUser(): ?array
     {
-        $this->departements = $departements;
+        return array($this->departments->getId());
+    }
+
+    public function setDepartments(?Department $departments): self
+    {
+        $this->departments = $departments;
 
         return $this;
     }

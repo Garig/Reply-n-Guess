@@ -9,6 +9,9 @@ import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
+// containers
+import Departments from '../../containers/Departments';
+
 // PropTypes
 import {
   userType,
@@ -16,7 +19,7 @@ import {
   setInputType,
   setGenderType,
   setDateType,
-  submitSignupType
+  updateProfileType
 } from '../../utils/validationPropTypes';
 
 // Styles et assets
@@ -69,6 +72,9 @@ const Informations = ({ user, userInterface, setInput, setGender, setDate, updat
         </RadioGroup>
       </FormItem>
       <FormItem>
+        <Departments value={user.departments}/>
+      </FormItem>
+      <FormItem>
         <DatePicker onChange={setDate} placeholder="Votre date de naissance"
           defaultValue={moment(`${user.birthDate}`, 'YYYY-MM-DD')} />
       </FormItem>
@@ -84,14 +90,14 @@ const Informations = ({ user, userInterface, setInput, setGender, setDate, updat
 /**
  * PropTypes
  */
-// Signup.propTypes = {
-//   user: userType.isRequired,
-//   userInterface: userInterfaceType.isRequired,
-//   setInput: setInputType.isRequired,
-//   setGender: setGenderType.isRequired,
-//   setDate: setDateType.isRequired,
-//   submitSignup: submitSignupType.isRequired
-// };
+Informations.propTypes = {
+  user: userType.isRequired,
+  userInterface: userInterfaceType.isRequired,
+  setInput: setInputType.isRequired,
+  setGender: setGenderType.isRequired,
+  setDate: setDateType.isRequired,
+  updateProfile: updateProfileType.isRequired
+};
 
 /**
    * Export

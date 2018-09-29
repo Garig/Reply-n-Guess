@@ -9,9 +9,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\DepartementRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DepartmentRepository")
  */
-class Departement
+class Department
 {
     /**
      * @ORM\Id()
@@ -31,7 +31,7 @@ class Departement
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="departements")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="departments")
      */
     private $users;
 
@@ -81,7 +81,7 @@ class Departement
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setDepartements($this);
+            $user->setDepartments($this);
         }
 
         return $this;
@@ -92,8 +92,8 @@ class Departement
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getDepartements() === $this) {
-                $user->setDepartements(null);
+            if ($user->getDepartments() === $this) {
+                $user->setDepartments(null);
             }
         }
 
