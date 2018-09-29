@@ -32,14 +32,14 @@ const AllQuestionsAnswered = ({ user, userInterface, results, displayModal }) =>
   return (
     <div className="questionsAnswered">
       <Modal
-        title="Basic Modal"
+        title="Resultats"
         visible={userInterface.modal.display}
         centered={true}
         onOk={displayModal}
         okText="Fermer"
         wrapClassName="modal"
       >
-      {result}
+        {result}
       </Modal>
       {
         user.answeredQuestions.map(current => {

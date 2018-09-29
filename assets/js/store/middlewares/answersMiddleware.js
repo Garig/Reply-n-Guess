@@ -40,7 +40,6 @@ const answersMiddleware = store => next => (action) => {
       break;
     }
     case GET_RESULT: {
-      console.log(action.payload);
       axios
         .get(`/api/results/${action.payload}`)
         .then(response => store.dispatch(setResult(response.data)))
