@@ -1,46 +1,21 @@
+@import '../../styles/vars'
+.ant-tabs-tab
+  color: $header-textcolor
+
+.genderRadio
+  color: $header-textcolor
+ 
 .questionsAnswered
   display: flex
   flex-wrap: wrap
-
-.choiceLeft,
-.predictLeft
-  background-color: red!important
-  color: #fff!important
-
-.choiceRight,
-.predictRight
-  background-color: green!important
-  color: #fff!important
-
-.button
-  display: inline-block
-  margin: 0 1em
-  padding: .5em
-  border-radius: 8px
-
-.answer
-  width: fit-content
-
-  .choice,
-  .purpose
-    margin: auto
-    width: fit-content
-
-  .purpose
-    margin-top: 1em
-    margin-bottom: 1em
-
-.ant-modal-body
-  text-align: center
 
 .ant-progress-bg,
 .ant-progress-success-bg
   height: 20px!important
 
 .ant-progress-inner
-  background-color: green!important
+  background-color: $btn-choice-right-bgcolor
 
 .ant-progress-success-bg
-  background-color: red!important
+  background-color: $btn-choice-left-bgcolor
   border-radius: 100px 0 0 100px!important
-

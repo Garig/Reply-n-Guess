@@ -67,8 +67,8 @@ const Informations = ({ user, userInterface, setInput, setGender, setDate, updat
       </FormItem>
       <FormItem>
         <RadioGroup onChange={setGender} defaultValue={user.gender} value={user.gender}>
-          <Radio value={'homme'}>Homme</Radio>
-          <Radio value={'femme'}>Femme</Radio>
+          <Radio value={'homme'}><span className="genderRadio">Homme</span></Radio>
+          <Radio value={'femme'}><span className="genderRadio">Femme</span></Radio>
         </RadioGroup>
       </FormItem>
       <FormItem>

@@ -2,7 +2,8 @@
  * Package Import
  */
 import React from 'react';
-import { Button, Card, Icon, Modal, Spin, Tag } from 'antd';
+import { Button, Card, Icon, Modal, Spin, Tag, Alert, Divider, Radio, Tooltip } from 'antd';
+
 import classNames from 'classnames';
 
 /**
@@ -78,14 +79,31 @@ const AllQuestionsAnswered = ({ user, userInterface, results, displayModal, empt
             >
               <div className="answer">
                 <div className="choice">
-                  <span className={choiceLeft}>{current.prop_1}</span>
-                  <span className="button textVote">Choix</span>
-                  <span className={choiceRight}>{current.prop_2}</span>
+                  <Radio.Group
+                    disabled={true}>
+                    <Radio.Button
+                      className={choiceLeft} >
+                      {current.prop_1}
+                    </Radio.Button>
+                    <Radio.Button
+                      className={choiceRight} >
+                      {current.prop_2}
+                    </Radio.Button>
+                  </Radio.Group>
                 </div>
                 <div className="purpose">
-                  <span className={predictLeft}>{current.prop_1}</span>
-                  <span className="button textVote">Prédictions</span>
-                  <span className={predictRight}>{current.prop_2}</span>
+                  <div className="divider">Choix <hr /> Prédiction</div>
+                  <Radio.Group
+                    disabled={true} >
+                    <Radio.Button
+                      className={predictLeft}>
+                      {current.prop_1}
+                    </Radio.Button>
+                    <Radio.Button
+                      className={predictRight} >
+                      {current.prop_2}
+                    </Radio.Button>
+                  </Radio.Group>
                 </div>
               </div>
             </Card>

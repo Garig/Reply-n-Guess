@@ -1,52 +1,73 @@
+@import '../../styles/vars'
+
 .ant-card-bordered
-  margin: 1em
+  margin-bottom: 1em
+  border-radius: 4px
 
 .ant-card
-  min-width: fit-content
-  
-.ant-card,
-.answer
-  width: fit-content
-  margin-left: auto
-  margin-right: auto
+  width: 500px
 
-  .choice,
-  .purpose
-    margin: auto
-    width: fit-content
+.ant-card-head-title
+  white-space: pre-wrap!important
 
-  .purpose
-    margin-top: 1em
-    margin-bottom: 1em
+.ant-card-head-wrapper
+  text-align: center
+
+.ant-card-body
+  padding: 0!important
+  position: relative
+  z-index: 0
 
 .ant-radio-button
-  min-width: fit-content
-
   &-wrapper-disabled
-    min-width: fit-content
     background-color: #fff!important
     cursor: default
     color: #000!important
 
     &:hover
-      min-width: fit-content
       border-color: #d9d9d9
       background-color: #fff!important
       color: #000!important
 
 .textVote
-  margin: 0 1em
+  display: none
 
 .choiceLeft,
 .choiceLeft:hover,
 .predictLeft,
 .predictLeft:hover
-  background-color: red!important
+  background-color: $btn-choice-left-bgcolor
   color: #fff!important
 
 .choiceRight,
 .choiceRight:hover,
 .predictRight,
 .predictRight:hover
-  background-color: green!important
+  background-color: $btn-choice-right-bgcolor
   color: #fff!important
+
+.ant-radio-button-wrapper
+  height: 100px
+  width: 50%
+  border-radius: 0!important
+  outline: 1px solide
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+
+.answer .ant-alert-success
+  margin: 0!important
+  border-radius: 0 0 4px 4px!important
+
+.divider
+  position: absolute
+  left: 197px
+  top: 63px
+  width: 100px
+  text-align: center
+  background-color: $header-bgcolor
+  color: $header-textcolor
+  border-radius: 4px
+  border: 1px solid #d9d9d9
+  padding: .5em
+  z-index: 10

@@ -42,19 +42,21 @@ const PrivateRoute = ({ component: Component }) => (
 );
 
 const App = () => (
-  <section className="app">
+  <React.Fragment>
     <Header />
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/signup' component={Signup} />
-      <PrivateRoute exact path='/profile' component={Profile} />
-      <PrivateRoute exact path='/open_questions' component={OpenQuestions} />
-      <PrivateRoute exact path='/lastest_results' component={LastestResults} />
-      <Route exact path='/ranking' component={Ranking} />
-      <Route component={PageNotFound} />
-    </Switch>
-  </section>
+    <section className="app">
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' component={Signup} />
+        <PrivateRoute exact path='/profile' component={Profile} />
+        <PrivateRoute exact path='/open_questions' component={OpenQuestions} />
+        <PrivateRoute exact path='/lastest_results' component={LastestResults} />
+        <Route exact path='/ranking' component={Ranking} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </section>
+  </React.Fragment>
 );
 
 /**

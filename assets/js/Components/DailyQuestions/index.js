@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Redirect, WithRouter } from 'react-router-dom';
-import { Alert, Card, Icon, Radio, Tooltip } from 'antd';
+import { Alert, Card, Divider, Icon, Radio, Tooltip } from 'antd';
 import classNames from 'classnames';
 import moment from 'moment';
 
@@ -52,7 +52,6 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
         var questionsDate = moment(`${current.published_date}`).add(3, 'days');
         var now = moment();
         var days = questionsDate.diff(now, 'days');
-        console.log(days);
         if (days === 0) days = 1;
         return (
           <Tooltip key={current.id} placement="rightTop" title={`Jour restant : ${days}`}>
@@ -72,11 +71,6 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
                       value="1">
                       {current.prop_1}
                     </Radio.Button>
-                    <Radio.Button value="" disabled>
-                      <Icon type="left" theme="outlined" />
-                      <span className="textVote">Choix</span>
-                      <Icon type="right" theme="outlined" />
-                    </Radio.Button>
                     <Radio.Button
                       disabled={current.answered}
                       className={choiceRight}
@@ -88,6 +82,7 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
                 {
                   userInterface.isConnected
                     ? <div className="purpose">
+                      <div className="divider">Choix <hr /> Prédiction</div>
                       <Radio.Group
                         onChange={setAnswer}
                         name={current.id + '-userPredict'}
@@ -98,11 +93,6 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
                           className={predictLeft}
                           value="1">
                           {current.prop_1}
-                        </Radio.Button>
-                        <Radio.Button value="" disabled>
-                          <Icon type="left" theme="outlined" />
-                          <span className="textVote">Prédictions</span>
-                          <Icon type="right" theme="outlined" />
                         </Radio.Button>
                         <Radio.Button
                           disabled={current.answered}
