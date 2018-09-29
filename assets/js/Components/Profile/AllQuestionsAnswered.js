@@ -2,7 +2,7 @@
  * Package Import
  */
 import React from 'react';
-import { Alert, Card, Icon, Modal, Spin, Radio, Tag } from 'antd';
+import { Button, Card, Icon, Modal, Spin, Tag } from 'antd';
 import classNames from 'classnames';
 
 /**
@@ -22,7 +22,7 @@ import 'antd/lib/modal/style/css';
 /**
  * Code
  */
-const AllQuestionsAnswered = ({ user, userInterface, results, displayModal }) => {
+const AllQuestionsAnswered = ({ user, userInterface, results, displayModal, emptyModal }) => {
   let result;
 
   Object.keys(results).length === 0
@@ -35,8 +35,11 @@ const AllQuestionsAnswered = ({ user, userInterface, results, displayModal }) =>
         title="Resultats"
         visible={userInterface.modal.display}
         centered={true}
-        onOk={displayModal}
-        okText="Fermer"
+        closable={false}
+        footer={[
+          <Button key="back" onClick={displayModal}>Retour</Button>
+        ]}
+        afterClose={emptyModal}
         wrapClassName="modal"
       >
         {result}

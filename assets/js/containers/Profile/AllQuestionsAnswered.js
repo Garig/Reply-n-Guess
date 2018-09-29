@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
  */
 import AllQuestionsAnswered from '../../Components/Profile/AllQuestionsAnswered';
 import { displayModal } from '../../store/actions/actions';
-import { getResult } from '../../store/actions/answersActions';
+import { getResult, setResult } from '../../store/actions/answersActions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -33,6 +33,9 @@ const mapDispatchToProps = dispatch => ({
       dispatch(getResult(id));
     };
     if (evt.target.className.includes('ant-btn')) dispatch(displayModal(false));
+  },
+  emptyModal: () => {
+    dispatch(setResult({}));
   }
 });
 
