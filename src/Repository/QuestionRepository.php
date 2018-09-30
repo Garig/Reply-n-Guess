@@ -22,6 +22,23 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
+     * Permet de récupérer les questions possédant le statut 3
+    * @return Questions[] Returns an array of  Questions objects
+    */
+    public function findAllStatus3Questions()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q.id, q.title, q.prop_1, q.prop_2, q.submit_date, u.id as user_id, u.username')
+            ->innerJoin('q.users', 'u')
+            ->where('q.users = u.id')
+            ->andWhere('q.statuses = 3')
+            ->orderBy('q.submit_date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    /**
      * Permet de récupérer les questions du jour actuelles (celle en statut 1) , les plus récente (published date)
     * @return Question[] Returns an array of 3 Questions objects
     */

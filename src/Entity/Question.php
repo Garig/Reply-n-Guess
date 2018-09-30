@@ -10,6 +10,9 @@ use App\Controller\QuestionController;
 use App\Controller\QuestionCloseController;
 use App\Controller\QuestionGetController;
 use App\Controller\QuestionsAnswersAndResultsController;
+use App\Controller\QuestionSetStatus2Controller;
+use App\Controller\QuestionGetStatus3Controller;
+use App\Controller\QuestionSetStatus4Controller;
 
 use App\Entity\Result;
 
@@ -18,6 +21,21 @@ use App\Entity\Result;
  *      collectionOperations={
  *          "get",
  *          "post",
+ *          "getProposedQuestions"={
+ *              "method"="GET",
+ *              "path"="/getProposedQuestions",
+ *              "controller"=QuestionGetStatus3Controller::class
+ *          },
+ *          "setQuestionValidate"={
+ *              "method"="GET",
+ *              "path"="/questions/{id}/validate",
+ *              "controller"=QuestionSetStatus2Controller::class
+ *          },
+ *          "setQuestionDecline"={
+ *              "method"="GET",
+ *              "path"="/questions/{id}/decline",
+ *              "controller"=QuestionSetStatus4Controller::class
+ *          },
  *          "setDailyQuestions"={
  *              "method"="GET",
  *              "path"="/setDailyQuestions",
