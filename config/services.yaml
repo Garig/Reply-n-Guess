@@ -33,6 +33,7 @@ services:
     App\EventListener\HashPasswordListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
     # config lexik_jwt ;)
     acme_api.event.jwt_created_listener:
         class: App\EventListener\JWTCreatedListener
