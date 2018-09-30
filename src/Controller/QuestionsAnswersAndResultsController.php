@@ -274,7 +274,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 1;
             $statsCalculated['perc_predict_2_true'] = 1;
             $statsCalculated['perc_predict_2_false'] = 2;
-            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_1'] * 100 / $statsCalculated['nb_voting'];
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_2'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 2;
         }
 
@@ -283,7 +283,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 2;
             $statsCalculated['perc_predict_2_true'] = 2;
             $statsCalculated['perc_predict_2_false'] = 1;
-            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_2'] * 100 / $statsCalculated['nb_voting'];
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_1'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 1;
         }
 
