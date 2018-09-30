@@ -58,6 +58,7 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
             <Card
               key={current.id}
               title={current.title}
+              className={`${current.answered}`}
             >
               <div className="answer">
                 <div className="choice">
@@ -104,12 +105,12 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
                     </div>
                     : null
                 }
-                {
-                  current.answered
-                    ? <Alert message="Vous avez répondu à cette question" type="success" showIcon />
-                    : null
-                }
               </div>
+              {
+                current.answered
+                  ? <Alert className="alreadyAnswered" message="Vous avez répondu à cette question" type="success" showIcon />
+                  : null
+              }
             </Card>
           </Tooltip>
         );
