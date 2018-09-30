@@ -19,6 +19,9 @@ export const HIDE_ALERT = 'actions/HIDE_ALERT';
 // Pour faire une redirection
 export const MAKE_REDIRECT = 'actions/MAKE_REDIRECT';
 
+export const GET_RANKING = 'actions/GET_RANKING';
+export const SET_RANKING = 'actions/SET_RANKING';
+
 /**
  * Action creators
  */
@@ -54,5 +57,14 @@ export const hideAlert = payload => ({
 // Pour faire une redirection
 export const makeRedirect = payload => ({
   type: MAKE_REDIRECT,
+  payload
+});
+
+export const getRanking = () => ({
+  type: GET_RANKING
+});
+
+export const setRanking = payload => ({
+  type: SET_RANKING,
   payload
 });

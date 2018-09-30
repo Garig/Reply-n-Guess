@@ -12,7 +12,7 @@ import Home from '../../containers/Home';
 import OpenQuestions from '../OpenQuestions';
 import ProposeQuestions from '../../containers/ProposeQuestions';
 import LastestResults from '../LastestResults';
-import Ranking from '../Ranking';
+import Ranking from '../../containers/Ranking';
 import PageNotFound from '../PageNotFound';
 
 import Profile from '../../containers/Profile';

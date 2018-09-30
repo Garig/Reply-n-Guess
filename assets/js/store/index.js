@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import reducer from './reducer.js'; // notre reducer custom
 
 // Middlewares
+import middleware from './middlewares/middleware'; // notre middleware pour la page d'accueil
 import questionsMiddleware from './middlewares/questionsMiddleware'; // notre middleware pour la page d'accueil
 import userMiddleware from './middlewares/userMiddleware'; // notre middleware pour la gestion de l'user
 import answersMiddleware from './middlewares/answersMiddleware'; // notre middleware pour la gestion des réponses
@@ -28,15 +29,16 @@ if (window.devToolsExtension) {
 }
 
 // Middleware custom — on n'en a qu'un seul
-const middleware = applyMiddleware(
+const Middleware = applyMiddleware(
   questionsMiddleware,
   userMiddleware,
   answersMiddleware,
+  middleware,
   thunk
 );
 
 // Enhancers : les extensions/outils + les middlewares custom
-const enhancers = compose(middleware, ...devTools);
+const enhancers = compose(Middleware, ...devTools);
 
 // createStore configure le store avec le reducer et les "enhancers"
 const store = createStore(

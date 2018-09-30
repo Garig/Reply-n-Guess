@@ -22,6 +22,7 @@ import { loggedIn } from './store/actions/userActions';
 
 // Store
 import store from './store';
+import { getRanking } from './store/actions/actions';
 
 store.dispatch(loggedIn());
 
@@ -42,3 +43,4 @@ const targetNode = document.getElementById('root');
 
 // Rendu
 render(rootComponent, targetNode);
+store.dispatch(getRanking());

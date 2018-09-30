@@ -15,7 +15,8 @@ import {
   DISPLAY_ALERT,
   SET_INPUT,
   MAKE_REDIRECT,
-  DISPLAY_MODAL
+  DISPLAY_MODAL,
+  SET_RANKING
 } from './actions/actions';
 
 import {
@@ -56,7 +57,8 @@ const initialState = {
     modal: {
       display: false
     }
-  }
+  },
+  ranking: []
 };
 
 /**
@@ -220,6 +222,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
         questions: state.questions
+      };
+    case SET_RANKING:
+      return {
+        ...state,
+        ranking: action.payload
       };
     default:
       return state;
