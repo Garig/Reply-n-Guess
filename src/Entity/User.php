@@ -95,12 +95,30 @@ class User implements UserInterface, \Serializable
      */
     private $questions;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $total_answers;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $total_accurate_answers;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $perc_accuracy_answers;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->setIsValidate(false);
         $this->setScore(0);
+        $this->setTotalAnswers(0);
+        $this->setTotalAccurateAnswers(0);
+        $this->setPercAccuracyAnswers(0);
     }
 
     public function getSalt()
@@ -333,5 +351,41 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getTotalAnswers(): ?int
+    {
+        return $this->total_answers;
+    }
+
+    public function setTotalAnswers(int $total_answers): self
+    {
+        $this->total_answers = $total_answers;
+
+        return $this;
+    }
+
+    public function getTotalAccurateAnswers(): ?int
+    {
+        return $this->total_accurate_answers;
+    }
+
+    public function setTotalAccurateAnswers(int $total_accurate_answers): self
+    {
+        $this->total_accurate_answers = $total_accurate_answers;
+
+        return $this;
+    }
+
+    public function getPercAccuracyAnswers(): ?int
+    {
+        return $this->perc_accuracy_answers;
+    }
+
+    public function setPercAccuracyAnswers(int $perc_accuracy_answers): self
+    {
+        $this->perc_accuracy_answers = $perc_accuracy_answers;
+
+        return $this;
     }
 }
