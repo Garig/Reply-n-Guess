@@ -83,3 +83,9 @@ export const updateProfile = {
     .error(new Error('Merci de renseigner votre département :)')),
   role: Joi.string().optional()
 };
+
+export const schemaPropose = {
+  title: Joi.string(),
+  prop1: Joi.string(),
+  prop2: Joi.string()
+};

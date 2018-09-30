@@ -93,6 +93,25 @@ class Result
      */
     private $perc_women_answer_2;
 
+    public function __construct()
+    {
+        $this->setNbVoting(0);
+        $this->setNbAnswer1(0);
+        $this->setNbAnswer2(0);
+        $this->setNbPredict1(0);
+        $this->setNbPredict2(0);
+        $this->setPercAnswer1(0);
+        $this->setPercAnswer2(0);
+        $this->setPercPredict1True(0);
+        $this->setPercPredict1False(0);
+        $this->setPercPredict2True(0);
+        $this->setPercPredict2False(0);
+        $this->setPercMenAnswer1(0);
+        $this->setPercMenAnswer2(0);
+        $this->setPercWomenAnswer1(0);
+        $this->setPercWomenAnswer2(0);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

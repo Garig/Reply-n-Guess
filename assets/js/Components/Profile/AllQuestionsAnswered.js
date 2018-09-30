@@ -13,7 +13,7 @@ import {
   userInterfaceType
 } from '../../utils/validationPropTypes';
 
-import ResultCharts from './resultCharts';
+import ResultCharts from './ResultCharts';
 
 // Styles et assets
 import 'antd/lib/card/style/css';

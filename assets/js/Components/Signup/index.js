@@ -9,13 +9,8 @@ import moment from 'moment';
 /**
  * Local import
  */
-<<<<<<< HEAD
-// Component
-// import Department from '../Department/Department';
-=======
 // containers
 import Departments from '../../containers/Departments';
->>>>>>> origin/AddDepartment
 
 // PropTypes
 import {
@@ -37,7 +32,7 @@ const RadioGroup = Radio.Group;
 /**
  * Code
  */
-const Signup = ({ user, userInterface, setInput, setGender, setDate, setDepartment, submitSignup }) => (
+const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
   userInterface.redirection === '/login'
     ? <Redirect to={'/login'} />
     : <Form onSubmit={submitSignup}>

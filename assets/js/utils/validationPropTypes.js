@@ -1,13 +1,11 @@
 /**
  * Package Import
  */
-
 import PropTypes from 'prop-types';
 
 /**
  * PropTypes
  */
-
 // Validation pour la prop question du state
 export const QuestionsType =
   PropTypes.arrayOf(PropTypes.shape({
@@ -55,6 +53,7 @@ export const setGenderType = PropTypes.func;
 export const setDepartmentType = PropTypes.func;
 export const setDateType = PropTypes.func;
 export const submitSignupType = PropTypes.func;
+export const submitProposeType = PropTypes.func;
 export const updateProfileType = PropTypes.func;
 export const setAnswerType = PropTypes.func;
 export const disconnectType = PropTypes.func;
