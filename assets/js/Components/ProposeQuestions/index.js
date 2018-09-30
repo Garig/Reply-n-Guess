@@ -9,12 +9,12 @@ import { Alert, Button, Form, Icon, Input } from 'antd';
  * Local import
  */
 // PropTypes
-// import {
-//   userType,
-//   userInterfaceType,
-//   setInputType,
-//   submitProposeType
-// } from '../../utils/validationPropTypes';
+import {
+  userType,
+  userInterfaceType,
+  setInputType,
+  submitProposeType
+} from '../../utils/validationPropTypes';
 
 // Styles et assets
 import './proposeQuestions.sass';
@@ -24,13 +24,15 @@ const FormItem = Form.Item;
 /**
  * Code
  */
-const ProposeQuestions = ({ user, userInterface, setInput, submitPropose }) => {
-  console.log('user');
-  console.log(user);
-  console.log('user.ProposeQuestions');
-
-  return (
-    <Form onSubmit={submitPropose}>
+const ProposeQuestions = ({ user, userInterface, setInput, submitPropose }) => (
+  userInterface.redirection === '/login'
+    ? <Redirect to={'/login'} />
+    : <Form onSubmit={submitPropose}>
+      {
+        userInterface.alert.display
+          ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
+          : null
+      }
       <FormItem>
         <Input className="title"
           suffix={<Icon type="question" theme="outlined" />}
@@ -50,11 +52,20 @@ const ProposeQuestions = ({ user, userInterface, setInput, submitPropose }) => {
       </FormItem>
       <FormItem>
         <Button type="primary" htmlType="submit" className="purpose-form-button">
-          Proposer ma question
+            Proposer ma question
         </Button>
       </FormItem>
     </Form>
-  );
+);
+
+/**
+ * PropTypes
+ */
+ProposeQuestions.propTypes = {
+  user: userType.isRequired,
+  userInterface: userInterfaceType.isRequired,
+  setInput: setInputType.isRequired,
+  submitPropose: submitProposeType.isRequired
 };
 
 /**

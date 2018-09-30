@@ -1,19 +1,31 @@
 /**
  * Package Import
  */
+import * as Joi from 'joi-browser';
 import axios from 'axios';
 
 /**
  * Local import
  */
+// Actions générales
+import { displayAlert } from '../actions/actions';
 import { URL } from './middleware';
 
+// Actions spécifiques aux questions
 import {
   LOAD_DAILY_QUESTIONS,
   SUBMIT_PROPOSE,
   receiveDailyQuestions
 } from '../actions/questionsActions';
 
+// Validations des données
+import {
+  schemaProposeQuestion
+} from '../../utils/validationJoi';
+
+/*
+ * Code
+ */
 const questionsMiddleware = store => next => (action) => {
   switch (action.type) {
     case LOAD_DAILY_QUESTIONS: {
@@ -41,19 +53,27 @@ const questionsMiddleware = store => next => (action) => {
 
       console.log(payload);
 
-      axios
-        .post(`${URL}/api/questions`, payload, {
-          headers: {
-            'Content-Type': 'application/ld+json'
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
+      Joi.validate(payload, schemaProposeQuestion, (err, value) => {
+        if (err) {
+          console.log('ERREUR JOI');
+          store.dispatch(displayAlert({type: 'error', message: err.message}));
+        }
+        else {
+          console.log('JOI');
+          axios
+            .post(`${URL}/api/questions`, payload, {
+              headers: {
+                'Content-Type': 'application/ld+json'
+              }
+            })
+            .then(response => {
+              console.log(response.data);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
+      });
       break;
     }
     default:

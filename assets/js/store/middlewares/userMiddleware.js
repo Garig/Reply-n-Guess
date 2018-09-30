@@ -27,7 +27,7 @@ import {
 import {
   schemaSignUp,
   schemaLogin,
-  updateProfile
+  schemaUpdateProfile
 } from '../../utils/validationJoi';
 
 // Centralisation des méthodes correspondant aux connexions users
@@ -154,7 +154,7 @@ const userMiddleware = store => next => (action) => {
 
       console.log(payload);
 
-      Joi.validate(payload, updateProfile, (err, value) => {
+      Joi.validate(payload, schemaUpdateProfile, (err, value) => {
         if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));
         else {
           store.dispatch(displayAlert({type: 'info', message: 'Envoi du formulaire...'}));
