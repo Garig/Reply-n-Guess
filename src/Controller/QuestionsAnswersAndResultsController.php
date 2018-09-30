@@ -68,7 +68,8 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->setPercMenAnswer1($statsCalculated[$i]['perc_men_answer_1'])
                     ->setPercMenAnswer2($statsCalculated[$i]['perc_men_answer_2'])
                     ->setPercWomenAnswer1($statsCalculated[$i]['perc_women_answer_1'])
-                    ->setPercWomenAnswer2($statsCalculated[$i]['perc_women_answer_2']);
+                    ->setPercWomenAnswer2($statsCalculated[$i]['perc_women_answer_2'])
+                    ->setPercPredictAccuracy($statsCalculated[$i]['perc_predict_accuracy']);
 
             $entityManager->persist($result);
         }
@@ -273,6 +274,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 1;
             $statsCalculated['perc_predict_2_true'] = 1;
             $statsCalculated['perc_predict_2_false'] = 2;
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_1'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 2;
         }
 
@@ -281,6 +283,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 2;
             $statsCalculated['perc_predict_2_true'] = 2;
             $statsCalculated['perc_predict_2_false'] = 1;
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_2'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 1;
         }
 

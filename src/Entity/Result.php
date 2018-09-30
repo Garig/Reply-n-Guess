@@ -83,6 +83,11 @@ class Result
      */
     private $PercPredict2;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $perc_predict_accuracy;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -240,6 +245,18 @@ class Result
     public function setPercPredict2(int $PercPredict2): self
     {
         $this->PercPredict2 = $PercPredict2;
+
+        return $this;
+    }
+
+    public function getPercPredictAccuracy(): ?float
+    {
+        return $this->perc_predict_accuracy;
+    }
+
+    public function setPercPredictAccuracy(float $perc_predict_accuracy): self
+    {
+        $this->perc_predict_accuracy = $perc_predict_accuracy;
 
         return $this;
     }
