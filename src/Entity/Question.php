@@ -11,6 +11,8 @@ use App\Controller\QuestionCloseController;
 use App\Controller\QuestionGetController;
 use App\Controller\QuestionsAnswersAndResultsController;
 
+use App\Entity\Result;
+
 /**
  * @ApiResource(
  *      collectionOperations={
@@ -121,6 +123,7 @@ class Question
         $this->setNbVoteModerator(0);
         $this->setSubmitDate(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
         $this->submit_date->format("Y-m-d H:i:s");
+        $this->setResults(new Result());
     }
 
     public function getId(): ?int

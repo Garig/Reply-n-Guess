@@ -10,6 +10,7 @@ import { Route, Switch, Redirect, WithRouter } from 'react-router-dom';
 import Header from '../../containers/Header';
 import Home from '../../containers/Home';
 import OpenQuestions from '../OpenQuestions';
+import ProposeQuestions from '../../containers/ProposeQuestions';
 import LastestResults from '../LastestResults';
 import Ranking from '../Ranking';
 import PageNotFound from '../PageNotFound';
@@ -50,6 +51,7 @@ const App = () => (
       <Route exact path='/signup' component={Signup} />
       <PrivateRoute exact path='/profile' component={Profile} />
       <PrivateRoute exact path='/open_questions' component={OpenQuestions} />
+      <PrivateRoute exact path='/propose_questions' component={ProposeQuestions} />
       <PrivateRoute exact path='/lastest_results' component={LastestResults} />
       <Route exact path='/ranking' component={Ranking} />
       <Route component={PageNotFound} />

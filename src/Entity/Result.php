@@ -56,6 +56,16 @@ class Result
     /**
      * @ORM\Column(type="integer")
      */
+    private $perc_predict_1;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $perc_predict_2;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $perc_men_answer_1;
 
     /**
@@ -73,15 +83,24 @@ class Result
      */
     private $perc_women_answer_2;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $PercPredict1;
+    public function __construct()
+    {
+        $this->setNbVoting(0);
+        $this->setNbAnswer1(0);
+        $this->setNbAnswer2(0);
+        $this->setNbPredict1(0);
+        $this->setNbPredict2(0);
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $PercPredict2;
+        $this->setPercAnswer1(0);
+        $this->setPercAnswer2(0);
+        $this->setPercPredict1(0);
+        $this->setPercPredict2(0);
+
+        $this->setPercMenAnswer1(0);
+        $this->setPercMenAnswer2(0);
+        $this->setPercWomenAnswer1(0);
+        $this->setPercWomenAnswer2(0);
+    }
 
     public function getId(): ?int
     {
@@ -172,6 +191,30 @@ class Result
         return $this;
     }
 
+    public function getPercPredict1(): ?int
+    {
+        return $this->perc_predict_1;
+    }
+
+    public function setPercPredict1(int $perc_predict_1): self
+    {
+        $this->perc_predict_1 = $perc_predict_1;
+
+        return $this;
+    }
+
+    public function getPercPredict2(): ?int
+    {
+        return $this->perc_predict_2;
+    }
+
+    public function setPercPredict2(int $perc_predict_2): self
+    {
+        $this->perc_predict_2 = $perc_predict_2;
+
+        return $this;
+    }
+
     public function getPercMenAnswer1(): ?int
     {
         return $this->perc_men_answer_1;
@@ -216,30 +259,6 @@ class Result
     public function setPercWomenAnswer2(int $perc_women_answer_2): self
     {
         $this->perc_women_answer_2 = $perc_women_answer_2;
-
-        return $this;
-    }
-
-    public function getPercPredict1(): ?int
-    {
-        return $this->PercPredict1;
-    }
-
-    public function setPercPredict1(int $PercPredict1): self
-    {
-        $this->PercPredict1 = $PercPredict1;
-
-        return $this;
-    }
-
-    public function getPercPredict2(): ?int
-    {
-        return $this->PercPredict2;
-    }
-
-    public function setPercPredict2(int $PercPredict2): self
-    {
-        $this->PercPredict2 = $PercPredict2;
 
         return $this;
     }

@@ -1,5 +1,12 @@
+/**
+ * Package Import
+ */
 import * as Joi from 'joi-browser';
 
+/**
+ * Export des schémas de données
+ */
+// Pour l'inscription
 export const schemaSignUp = {
   username: Joi.string()
     .alphanum()
@@ -38,6 +45,7 @@ export const schemaSignUp = {
   role: Joi.string().optional()
 };
 
+// Pour le login
 export const schemaLogin = {
   username: Joi.string()
     .alphanum()
@@ -53,7 +61,8 @@ export const schemaLogin = {
     .error(new Error('Merci de renseigner votre mot de passe comprenant entre 8 et 60 caractères :)'))
 };
 
-export const updateProfile = {
+// Pour la mise à jour du profil
+export const schemaUpdateProfile = {
   username: Joi.string()
     .alphanum()
     .min(4)
@@ -82,4 +91,13 @@ export const updateProfile = {
     .max(20)
     .error(new Error('Merci de renseigner votre département :)')),
   role: Joi.string().optional()
+};
+
+// Pour la proposition d'une question
+export const schemaProposeQuestion = {
+  title: Joi.string(),
+  prop1: Joi.string(),
+  prop2: Joi.string(),
+  users: Joi.string().optional(),
+  statuses: Joi.string().optional()
 };
