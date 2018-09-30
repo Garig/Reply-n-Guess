@@ -83,6 +83,12 @@ class Result
      */
     private $perc_women_answer_2;
 
+     /**
+     * @ORM\Column(type="float")
+     */
+    private $perc_predict_accuracy;
+
+
     public function __construct()
     {
         $this->setNbVoting(0);
@@ -100,12 +106,8 @@ class Result
         $this->setPercMenAnswer2(0);
         $this->setPercWomenAnswer1(0);
         $this->setPercWomenAnswer2(0);
+        $this->setPercPredictAccuracy(0);
     }
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $perc_predict_accuracy;
 
     public function getId(): ?int
     {
