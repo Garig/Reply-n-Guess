@@ -32,7 +32,7 @@ const RadioGroup = Radio.Group;
 /**
  * Code
  */
-const Signup = ({ user, userInterface, setInput, setGender, setDate, setDepartment, submitSignup }) => (
+const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignup }) => (
   userInterface.redirection === '/login'
     ? <Redirect to={'/login'} />
     : <Form onSubmit={submitSignup}>

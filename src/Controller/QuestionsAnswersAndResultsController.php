@@ -63,14 +63,13 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->setNbPredict2($statsCalculated[$i]['nb_predict_2'])
                     ->setPercAnswer1($statsCalculated[$i]['perc_answer_1'])
                     ->setPercAnswer2($statsCalculated[$i]['perc_answer_2'])
-                    ->setPercPredict1True($statsCalculated[$i]['perc_predict_1_true'])
-                    ->setPercPredict1False($statsCalculated[$i]['perc_predict_1_false'])
-                    ->setPercPredict2True($statsCalculated[$i]['perc_predict_2_true'])
-                    ->setPercPredict2False($statsCalculated[$i]['perc_predict_2_false'])
+                    ->setPercPredict1($statsCalculated[$i]['perc_predict_1'])
+                    ->setPercPredict2($statsCalculated[$i]['perc_predict_2'])
                     ->setPercMenAnswer1($statsCalculated[$i]['perc_men_answer_1'])
                     ->setPercMenAnswer2($statsCalculated[$i]['perc_men_answer_2'])
                     ->setPercWomenAnswer1($statsCalculated[$i]['perc_women_answer_1'])
-                    ->setPercWomenAnswer2($statsCalculated[$i]['perc_women_answer_2']);
+                    ->setPercWomenAnswer2($statsCalculated[$i]['perc_women_answer_2'])
+                    ->setPercPredictAccuracy($statsCalculated[$i]['perc_predict_accuracy']);
 
             $entityManager->persist($result);
         }
@@ -275,6 +274,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 1;
             $statsCalculated['perc_predict_2_true'] = 1;
             $statsCalculated['perc_predict_2_false'] = 2;
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_2'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 2;
         }
 
@@ -283,6 +283,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $statsCalculated['perc_predict_1_false'] = 2;
             $statsCalculated['perc_predict_2_true'] = 2;
             $statsCalculated['perc_predict_2_false'] = 1;
+            $statsCalculated['perc_predict_accuracy'] = $statsCalculated['nb_predict_1'] * 100 / $statsCalculated['nb_voting'];
             $statsCalculated['score_calc'] = 1;
         }
 

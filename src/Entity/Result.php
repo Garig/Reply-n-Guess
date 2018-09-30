@@ -56,22 +56,12 @@ class Result
     /**
      * @ORM\Column(type="integer")
      */
-    private $perc_predict_1_true;
+    private $perc_predict_1;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $perc_predict_1_false;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $perc_predict_2_true;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $perc_predict_2_false;
+    private $perc_predict_2;
 
     /**
      * @ORM\Column(type="integer")
@@ -92,6 +82,32 @@ class Result
      * @ORM\Column(type="integer")
      */
     private $perc_women_answer_2;
+
+     /**
+     * @ORM\Column(type="float")
+     */
+    private $perc_predict_accuracy;
+
+
+    public function __construct()
+    {
+        $this->setNbVoting(0);
+        $this->setNbAnswer1(0);
+        $this->setNbAnswer2(0);
+        $this->setNbPredict1(0);
+        $this->setNbPredict2(0);
+
+        $this->setPercAnswer1(0);
+        $this->setPercAnswer2(0);
+        $this->setPercPredict1(0);
+        $this->setPercPredict2(0);
+
+        $this->setPercMenAnswer1(0);
+        $this->setPercMenAnswer2(0);
+        $this->setPercWomenAnswer1(0);
+        $this->setPercWomenAnswer2(0);
+        $this->setPercPredictAccuracy(0);
+    }
 
     public function getId(): ?int
     {
@@ -182,50 +198,26 @@ class Result
         return $this;
     }
 
-    public function getPercPredict1True(): ?int
+    public function getPercPredict1(): ?int
     {
-        return $this->perc_predict_1_true;
+        return $this->perc_predict_1;
     }
 
-    public function setPercPredict1True(int $perc_predict_1_true): self
+    public function setPercPredict1(int $perc_predict_1): self
     {
-        $this->perc_predict_1_true = $perc_predict_1_true;
+        $this->perc_predict_1 = $perc_predict_1;
 
         return $this;
     }
 
-    public function getPercPredict1False(): ?int
+    public function getPercPredict2(): ?int
     {
-        return $this->perc_predict_1_false;
+        return $this->perc_predict_2;
     }
 
-    public function setPercPredict1False(int $perc_predict_1_false): self
+    public function setPercPredict2(int $perc_predict_2): self
     {
-        $this->perc_predict_1_false = $perc_predict_1_false;
-
-        return $this;
-    }
-
-    public function getPercPredict2True(): ?int
-    {
-        return $this->perc_predict_2_true;
-    }
-
-    public function setPercPredict2True(int $perc_predict_2_true): self
-    {
-        $this->perc_predict_2_true = $perc_predict_2_true;
-
-        return $this;
-    }
-
-    public function getPercPredict2False(): ?int
-    {
-        return $this->perc_predict_2_false;
-    }
-
-    public function setPercPredict2False(int $perc_predict_2_false): self
-    {
-        $this->perc_predict_2_false = $perc_predict_2_false;
+        $this->perc_predict_2 = $perc_predict_2;
 
         return $this;
     }
@@ -274,6 +266,18 @@ class Result
     public function setPercWomenAnswer2(int $perc_women_answer_2): self
     {
         $this->perc_women_answer_2 = $perc_women_answer_2;
+
+        return $this;
+    }
+
+    public function getPercPredictAccuracy(): ?float
+    {
+        return $this->perc_predict_accuracy;
+    }
+
+    public function setPercPredictAccuracy(float $perc_predict_accuracy): self
+    {
+        $this->perc_predict_accuracy = $perc_predict_accuracy;
 
         return $this;
     }

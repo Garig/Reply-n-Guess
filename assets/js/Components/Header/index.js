@@ -35,6 +35,9 @@ const Header = ({ userInterface, disconnect }) => (
       <Menu.Item key="/lastest_results">
         <NavLink to="/lastest_results">Derniers résultats</NavLink>
       </Menu.Item>
+      <Menu.Item key="/propose_questions">
+        <NavLink to="/propose_questions">Soumettre une question</NavLink>
+      </Menu.Item>
       <Menu.Item key="/ranking">
         <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>

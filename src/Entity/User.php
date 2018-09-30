@@ -99,7 +99,6 @@ class User implements UserInterface, \Serializable
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
-        // $this->roles = new ArrayCollection();
         $this->setIsValidate(false);
         $this->setScore(0);
     }

@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
  * Local import
  */
 // Component
-import Login from '../Components/Login';
+import ProposeQuestions from '../Components/ProposeQuestions';
 
 // action
-import { submitLogin } from '../store/actions/userActions';
+import { submitPropose } from '../store/actions/questionsActions';
 import { setInput } from '../store/actions/actions';
 
 /* === State (données) ===
@@ -37,9 +37,9 @@ const mapDispatchToProps = dispatch => ({
     };
     dispatch(setInput(payload));
   },
-  submitLogin: (evt) => {
+  submitPropose: (evt) => {
     evt.preventDefault();
-    dispatch(submitLogin());
+    dispatch(submitPropose());
   }
 });
 
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps, // lecture
   mapDispatchToProps // écriture
-)(Login);
+)(ProposeQuestions);
