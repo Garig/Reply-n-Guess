@@ -76,6 +76,7 @@ const AllQuestionsAnswered = ({ user, userInterface, results, displayModal, empt
               key={current.id}
               title={current.title}
               extra={<Tag color="geekblue" className="tag" name={current.id} onClick={displayModal} >Resultats</Tag>}
+              className="true"
             >
               <div className="answer">
                 <div className="choice">
