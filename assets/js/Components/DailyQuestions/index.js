@@ -12,7 +12,7 @@ import moment from 'moment';
  */
 // PropTypes
 import {
-  QuestionsType,
+  questionsType,
   userInterfaceType,
   setAnswerType
 } from '../../utils/validationPropTypes';
@@ -123,7 +123,7 @@ const DailyQuestions = ({ questions, userInterface, setAnswer }) => (
  * PropTypes
  */
 DailyQuestions.propTypes = {
-  questions: QuestionsType.isRequired,
+  questions: questionsType.isRequired,
   userInterface: userInterfaceType.isRequired,
   setAnswer: setAnswerType.isRequired
 };

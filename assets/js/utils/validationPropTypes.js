@@ -7,7 +7,20 @@ import PropTypes from 'prop-types';
  * PropTypes
  */
 // Validation pour la prop question du state
-export const QuestionsType =
+export const questionsType =
+  PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    prop_1: PropTypes.string.isRequired,
+    prop_2: PropTypes.string.isRequired,
+    submit_date: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    avatar: PropTypes.string
+  }));
+
+// Validation pour la prop question du state
+export const proposedQuestionsType =
   PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -46,14 +59,23 @@ export const userInterfaceType =
     }).isRequired
   });
 
-// Validation pour les actions du reducer
+// Validation pour les actions du reducer et des middlewares
 export const setInputType = PropTypes.func;
 export const submitLoginType = PropTypes.func;
+
 export const setGenderType = PropTypes.func;
 export const setDepartmentType = PropTypes.func;
 export const setDateType = PropTypes.func;
 export const submitSignupType = PropTypes.func;
+
 export const submitProposeType = PropTypes.func;
+
+export const voteSubmitProposedQuestionsType = PropTypes.func;
+export const setInputProposedQuestionsType = PropTypes.func;
+
+export const voteValidateProposedQuestionsType = PropTypes.func;
+export const voteDeclineProposedQuestionsType = PropTypes.func;
+
 export const updateProfileType = PropTypes.func;
 export const setAnswerType = PropTypes.func;
 export const disconnectType = PropTypes.func;

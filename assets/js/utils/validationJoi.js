@@ -95,9 +95,20 @@ export const schemaUpdateProfile = {
 
 // Pour la proposition d'une question
 export const schemaProposeQuestion = {
-  title: Joi.string(),
-  prop1: Joi.string(),
-  prop2: Joi.string(),
+  title: Joi.string()
+    .min(10)
+    .max(255)
+    .error(new Error('Merci de renseigner une question comprenant entre 10 et 255 caractères :)')),
+  prop1: Joi.string()
+    .min(3)
+    .max(50)
+    .error(new Error('Merci de renseigner votre mot de passe comprenant entre 3 et 50 caractères :)')),
+  prop2: Joi.string()
+    .min(3)
+    .max(50)
+    .error(new Error('Merci de renseigner votre mot de passe comprenant entre 3 et 50 caractères :)')),
   users: Joi.string().optional(),
-  statuses: Joi.string().optional()
+  statuses: Joi.string().optional(),
+  validateDate: Joi.string().optional(),
+  declineDate: Joi.string().optional()
 };
