@@ -9,6 +9,7 @@ import { Icon, Menu } from 'antd';
  * Local import
  */
 import {
+  // userType,
   userInterfaceType,
   disconnectType
 } from '../../utils/validationPropTypes';
@@ -20,7 +21,7 @@ import './header.sass';
 /**
  * Code
  */
-const Header = ({ userInterface, disconnect }) => (
+const Header = ({ user, userInterface, disconnect }) => (
   <header className="headerNav">
     <Menu
       mode="horizontal"
@@ -38,6 +39,15 @@ const Header = ({ userInterface, disconnect }) => (
       <Menu.Item key="/propose_questions">
         <NavLink to="/propose_questions">Soumettre une question</NavLink>
       </Menu.Item>
+      {
+        userInterface.isConnected
+          ? user.roles[0] === 'ROLE_USER'
+            ? <Menu.Item key="/vote_proposed_questions" >
+              <NavLink to="/vote_proposed_questions">Voter pour une question</NavLink>
+            </Menu.Item>
+            : null
+          : null
+      }
       <Menu.Item key="/ranking">
         <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>
@@ -59,6 +69,7 @@ const Header = ({ userInterface, disconnect }) => (
  * PropTypes
  */
 Header.propTypes = {
+  // user: userType.isRequired,
   userInterface: userInterfaceType.isRequired,
   disconnect: disconnectType.isRequired
 };

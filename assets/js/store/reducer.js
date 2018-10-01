@@ -2,7 +2,9 @@
  * Local import
  */
 import {
-  RECEIVE_DAILY_QUESTIONS
+  SET_INPUT_PROPOSED_QUESTIONS,
+  RECEIVE_DAILY_QUESTIONS,
+  RECEIVE_PROPOSED_QUESTIONS
 } from './actions/questionsActions';
 
 import {
@@ -32,6 +34,7 @@ import {
  */
 const initialState = {
   answers: {},
+  proposedQuestions: {},
   questions: [],
   results: {},
   user: {
@@ -81,6 +84,24 @@ const reducer = (state = initialState, action = {}) => {
         answers: {...answersArray}
       };
     }
+
+    // case PROPOSED_QUESTIONS_DONE: {
+    //   let proposedObject = state.proposedQuestions;
+    //   // console.log('-----BEFORE-----');
+    //   // console.log(proposedObject);
+    //   proposedObject[action.payload.id] = {
+    //     ...proposedObject[action.payload.id],
+    //     [action.payload.inputName]: action.payload.value
+    //   };
+    //   delete answersArray[currentQuestion.id];
+    //   // console.log('-----AFTER-----');
+    //   // console.log(proposedObject);
+    //   return {
+    //     ...state,
+    //     proposedQuestions: proposedObject
+    //   };
+    // }
+
     case SET_ANSWERED:
       const questionAnswered = action.payload;
       const questionToUpdate = state.questions;
@@ -120,15 +141,32 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         questions: [...action.payload]
       };
+    case RECEIVE_PROPOSED_QUESTIONS:
+      return {
+        ...state,
+        proposedQuestions: action.payload
+      };
     case SET_INPUT:
-      console.log('SET_INPUT');
-      console.log(action.payload.inputName, action.payload.value);
       return {
         ...state,
         user: {
           ...state.user,
           [action.payload.inputName]: action.payload.value
         }
+      };
+    case SET_INPUT_PROPOSED_QUESTIONS:
+      let proposedObject = state.proposedQuestions;
+      // console.log('-----BEFORE-----');
+      // console.log(proposedObject);
+      proposedObject[action.payload.id] = {
+        ...proposedObject[action.payload.id],
+        [action.payload.inputName]: action.payload.value
+      };
+      // console.log('-----AFTER-----');
+      // console.log(proposedObject);
+      return {
+        ...state,
+        proposedQuestions: proposedObject
       };
     case SET_DATE:
       return {

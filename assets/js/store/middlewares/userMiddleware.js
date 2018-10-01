@@ -18,6 +18,7 @@ import {
   SUBMIT_LOGIN,
   updateConnection,
   LOGGED_IN,
+  loggedIn,
   DISCONNECT,
   setUserInfos,
   UPDATE_PROFILE
@@ -97,8 +98,8 @@ const userMiddleware = store => next => (action) => {
               Auth.connectWithToken(token)
                 .then(response => {
                   store.dispatch(displayAlert({type: 'success', message: 'Connexion réussie !'}));
+                  store.dispatch(loggedIn());
                   setTimeout(() => {
-                    store.dispatch(updateConnection(true));
                     store.dispatch(makeRedirect('/'));
                   }, 1000);
                 })
@@ -116,9 +117,9 @@ const userMiddleware = store => next => (action) => {
 
     case LOGGED_IN: {
       if (Auth.loggedIn()) {
-        store.dispatch(updateConnection(true));
         const userObject = Auth.getProfile();
         store.dispatch(setUserInfos(userObject));
+        store.dispatch(updateConnection(true));
         Auth.getQuestion(userObject.id)
           .then(arrayQuestionAnswered => store.dispatch(setAnswered(arrayQuestionAnswered)))
           .catch(err => console.log(err));

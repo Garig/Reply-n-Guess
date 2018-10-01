@@ -17,6 +17,7 @@ import { disconnect } from '../store/actions/userActions';
  * Pas de data à transmettre ? ==> alors const mapStateToProps = null;
  */
 const mapStateToProps = state => ({
+  user: state.user,
   userInterface: state.userInterface
 });
 

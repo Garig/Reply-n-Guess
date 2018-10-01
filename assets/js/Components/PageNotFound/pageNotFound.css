@@ -9,10 +9,6 @@
   line-height: 0.7;
   position: relative;
   color: #FFB485;
-}
-.error-container > span {
-  display: inline-block;
-  position: relative;
   vertical-align: middle;
 }
 .error-container > span:nth-of-type(1) {

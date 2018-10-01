@@ -11,6 +11,7 @@ import Header from '../../containers/Header';
 import Home from '../../containers/Home';
 import OpenQuestions from '../OpenQuestions';
 import ProposeQuestions from '../../containers/ProposeQuestions';
+import VoteProposedQuestions from '../../containers/VoteProposedQuestions';
 import LastestResults from '../LastestResults';
 import Ranking from '../Ranking';
 import PageNotFound from '../PageNotFound';
@@ -52,6 +53,7 @@ const App = () => (
       <PrivateRoute exact path='/profile' component={Profile} />
       <PrivateRoute exact path='/open_questions' component={OpenQuestions} />
       <PrivateRoute exact path='/propose_questions' component={ProposeQuestions} />
+      <PrivateRoute exact path='/vote_proposed_questions' component={VoteProposedQuestions} />
       <PrivateRoute exact path='/lastest_results' component={LastestResults} />
       <Route exact path='/ranking' component={Ranking} />
       <Route component={PageNotFound} />
