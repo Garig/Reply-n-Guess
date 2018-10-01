@@ -87,9 +87,13 @@ class QuestionsAnswersAndResultsController extends AbstractController
             $entityManager->persist($question);
         }
         
+        $i = 0;
         $addScore = 0;
         $currentScore = 0;
         $countQuestion = 0;
+        $currentTotAnswers = 0;
+        $currentAccurateAnswers = 0;
+        $newPercAccuracyPredict = 0;
 
         // Permet de boucler sur la totalité des réponses de chaque question et de modifier le score de l'user de -1 ou +1 
         // en fonction de sa prédiction (la clé score calc indique la prédiction majoritaire donc si l'user predic correspond 
@@ -102,10 +106,13 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->getRepository(User::class)
                     ->find($Answers[$i]['user_id']);
                     $currentScore = $user->getScore();
+                    $currentTotAnswers = $user->getTotalAnswers() + 1;
+                    $currentAccurateAnswers = $user->getTotalAccurateAnswers() + 1;
+                    $newPercAccuracyPredict = $currentAccurateAnswers * 100 / $currentTotAnswers;
+                    $user->setPercAccuracyAnswers($newPercAccuracyPredict);
+                    $user->setTotalAnswers($currentTotAnswers);
+                    $user->setTotalAccurateAnswers($currentAccurateAnswers);
                     $user->setScore($currentScore + $addScore);
-                    $entityManager->persist($user);
-                    $addScore = 0;
-                    $currentScore = 0;
                     
                 } else {
                     $addScore = - 1;
@@ -113,15 +120,18 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     ->getRepository(User::class)
                     ->find($Answers[$i]['user_id']);
                     $currentScore = $user->getScore();
+                    $currentTotAnswers = $user->getTotalAnswers() + 1;
+                    $currentAccurateAnswers = $user->getTotalAccurateAnswers();
+                    $newPercAccuracyPredict = $currentAccurateAnswers * 100 / $currentTotAnswers;
+                    $user->setPercAccuracyAnswers($newPercAccuracyPredict);
+                    $user->setTotalAnswers($currentTotAnswers);
                     if($currentScore == 0) {
-                        $addScore = 0;
+                        
                     } else {
                         $user->setScore($currentScore + $addScore);
-                        $entityManager->persist($user);
-                        $addScore = 0;
-                        $currentScore = 0;
                     }
                 }
+                $entityManager->persist($user);
                 $i++;
             } else {
                 $countQuestion++;
@@ -129,7 +139,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
         }
 
         $entityManager->flush();
-        return $statsCalculated;
+        return $Answers;
     }
 
     public function getNbAnswersTot($Answers) {

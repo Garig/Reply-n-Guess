@@ -29,7 +29,7 @@ class UserRepository extends ServiceEntityRepository
     public function findAllUsersSortedByScore() 
     {
         return $this->createQueryBuilder('u')
-            ->select('u.id as user_id, u.username, u.avatar, u.score')
+            ->select('u.id as user_id, u.username, u.avatar, u.score, u.total_answers, u.perc_accuracy_answers, u.total_accurate_answers')
             ->orderBy('u.score', 'DESC')
             ->getQuery()
             ->getResult();

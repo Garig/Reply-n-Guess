@@ -115,7 +115,7 @@ class User implements UserInterface, \Serializable
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->setIsValidate(false);
-        $this->setScore(0);
+        $this->setScore(100);
         $this->setTotalAnswers(0);
         $this->setTotalAccurateAnswers(0);
         $this->setPercAccuracyAnswers(0);
