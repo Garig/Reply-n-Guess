@@ -41,7 +41,7 @@ const Header = ({ user, userInterface, disconnect }) => (
       </Menu.Item>
       {
         userInterface.isConnected
-          ? user.roles[0] === 'ROLE_USER'
+          ? user.roles[0] === 'ROLE_ADMIN'
             ? <Menu.Item key="/vote_proposed_questions" >
               <NavLink to="/vote_proposed_questions">Voter pour une question</NavLink>
             </Menu.Item>
