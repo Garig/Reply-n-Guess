@@ -101,7 +101,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
         while ($i < $nbAnswersTot) {
             if ($Answers[$i]['question_id'] == $ids[$countQuestion]) {
                 if ($Answers[$i]['user_predict'] == $statsCalculated[$countQuestion]['score_calc']) {
-                    $addScore = 1;
+                    $addScore = 2;
                     $user = $this->getDoctrine()
                     ->getRepository(User::class)
                     ->find($Answers[$i]['user_id']);
@@ -125,11 +125,7 @@ class QuestionsAnswersAndResultsController extends AbstractController
                     $newPercAccuracyPredict = $currentAccurateAnswers * 100 / $currentTotAnswers;
                     $user->setPercAccuracyAnswers($newPercAccuracyPredict);
                     $user->setTotalAnswers($currentTotAnswers);
-                    if($currentScore == 0) {
-                        
-                    } else {
-                        $user->setScore($currentScore + $addScore);
-                    }
+                    $user->setScore($currentScore + $addScore);
                 }
                 $entityManager->persist($user);
                 $i++;

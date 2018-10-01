@@ -71,7 +71,7 @@ class User implements UserInterface, \Serializable
     private $gender;
 
     /**
-     * @ORM\Column(type="integer", nullable=true, options={"unsigned":true}))
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $score;
 
@@ -115,7 +115,7 @@ class User implements UserInterface, \Serializable
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->setIsValidate(false);
-        $this->setScore(100);
+        $this->setScore(0);
         $this->setTotalAnswers(0);
         $this->setTotalAccurateAnswers(0);
         $this->setPercAccuracyAnswers(0);
