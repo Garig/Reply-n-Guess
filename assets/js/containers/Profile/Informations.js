@@ -19,7 +19,8 @@ import Informations from '../../Components/Profile/Informations';
  */
 const mapStateToProps = state => ({
   user: state.user,
-  userInterface: state.userInterface
+  userInterface: state.userInterface,
+  ranking: state.ranking
 });
 
 /* === Actions ===

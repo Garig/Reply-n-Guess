@@ -24,6 +24,18 @@ const Ranking = ({ user, userInterface, ranking }) => {
     title: 'Score',
     dataIndex: 'score',
     key: 'score'
+  }, {
+    title: 'Nb de prédiction juste',
+    dataIndex: 'total_accurate_answers',
+    key: 'total_accurate_answers'
+  }, {
+    title: '% prédiction juste',
+    dataIndex: 'perc_accuracy_answers',
+    key: 'perc_accuracy_answers'
+  }, {
+    title: 'Nb prédiction totale',
+    dataIndex: 'total_answers',
+    key: 'total_answers'
   }];
   ranking.map(current => { current.key = current.user_id; });
   console.log(ranking);
