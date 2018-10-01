@@ -20,7 +20,8 @@ import {
   LOAD_PROPOSED_QUESTIONS,
   receiveProposedQuestions,
   VOTE_VALIDATE_PROPOSED_QUESTIONS,
-  VOTE_DECLINE_PROPOSED_QUESTIONS
+  VOTE_DECLINE_PROPOSED_QUESTIONS,
+  proposedQuestionsDone
 } from '../actions/questionsActions';
 
 // Validations des données
@@ -132,6 +133,7 @@ const questionsMiddleware = store => next => (action) => {
         .then(response => {
           console.log(response.data);
           store.dispatch(displayAlert({type: 'success', message: 'Question refusée !'}));
+          store.dispatch(proposedQuestionsDone(id));
         })
         .catch(error => {
           console.log(error);

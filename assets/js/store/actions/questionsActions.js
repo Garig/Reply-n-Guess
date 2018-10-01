@@ -17,6 +17,7 @@ export const LOAD_PROPOSED_QUESTIONS = 'actions/LOAD_PROPOSED_QUESTIONS';
 export const RECEIVE_PROPOSED_QUESTIONS = 'actions/RECEIVE_PROPOSED_QUESTIONS';
 export const VOTE_VALIDATE_PROPOSED_QUESTIONS = 'actions/VOTE_VALIDATE_PROPOSED_QUESTIONS';
 export const VOTE_DECLINE_PROPOSED_QUESTIONS = 'actions/VOTE_DECLINE_PROPOSED_QUESTIONS';
+export const PROPOSED_QUESTIONS_DONE = 'actions/PROPOSED_QUESTIONS_DONE';
 
 /**
  * Action creators
@@ -59,5 +60,10 @@ export const voteValidateProposedQuestions = payload => ({
 
 export const voteDeclineProposedQuestions = payload => ({
   type: VOTE_DECLINE_PROPOSED_QUESTIONS,
+  payload
+});
+
+export const proposedQuestionsDone = payload => ({
+  type: PROPOSED_QUESTIONS_DONE,
   payload
 });

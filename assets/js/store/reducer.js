@@ -4,7 +4,8 @@
 import {
   SET_INPUT_PROPOSED_QUESTIONS,
   RECEIVE_DAILY_QUESTIONS,
-  RECEIVE_PROPOSED_QUESTIONS
+  RECEIVE_PROPOSED_QUESTIONS,
+  PROPOSED_QUESTIONS_DONE
 } from './actions/questionsActions';
 
 import {
@@ -85,22 +86,14 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
 
-    // case PROPOSED_QUESTIONS_DONE: {
-    //   let proposedObject = state.proposedQuestions;
-    //   // console.log('-----BEFORE-----');
-    //   // console.log(proposedObject);
-    //   proposedObject[action.payload.id] = {
-    //     ...proposedObject[action.payload.id],
-    //     [action.payload.inputName]: action.payload.value
-    //   };
-    //   delete answersArray[currentQuestion.id];
-    //   // console.log('-----AFTER-----');
-    //   // console.log(proposedObject);
-    //   return {
-    //     ...state,
-    //     proposedQuestions: proposedObject
-    //   };
-    // }
+    case PROPOSED_QUESTIONS_DONE: {
+      let proposedObject = state.proposedQuestions;
+      delete proposedObject[action.payload];
+      return {
+        ...state,
+        proposedQuestions: proposedObject
+      };
+    }
 
     case SET_ANSWERED:
       const questionAnswered = action.payload;

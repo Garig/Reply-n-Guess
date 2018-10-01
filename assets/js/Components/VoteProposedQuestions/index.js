@@ -27,16 +27,16 @@ const FormItem = Form.Item;
 const VoteProposedQuestions = ({ proposedQuestions, userInterface, voteValidateProposedQuestions, voteDeclineProposedQuestions }) => (
   <div>
     {
+      userInterface.alert.display
+        ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
+        : null
+    }
+    {
       Object.keys(proposedQuestions).map((valueKey, index) => {
         let current = proposedQuestions[valueKey];
         return (
           <Card key={current.id} >
             <Form className="proposedQuestions">
-              {
-                userInterface.alert.display
-                  ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
-                  : null
-              }
               <FormItem>
                 <Input className="title"
                   suffix={<Icon type="question" theme="outlined" />}
@@ -55,10 +55,10 @@ const VoteProposedQuestions = ({ proposedQuestions, userInterface, voteValidateP
                   autoComplete="off" placeholder="Proposition 2" />
               </FormItem>
               <FormItem>
-                <Button type="primary" htmlType="submit" className="purpose-form-button" name={current.id} onClick={voteValidateProposedQuestions}>
+                <Button type="primary" htmlType="submit" className="validate-form-button" name={current.id} onClick={voteValidateProposedQuestions}>
                   Modifier / Valider la question
                 </Button>
-                <Button type="primary" htmlType="submit" className="purpose-form-button" name={current.id} onClick={voteDeclineProposedQuestions}>
+                <Button type="primary" htmlType="submit" className="decline-form-button" name={current.id} onClick={voteDeclineProposedQuestions}>
                   Refuser la question
                 </Button>
               </FormItem>
