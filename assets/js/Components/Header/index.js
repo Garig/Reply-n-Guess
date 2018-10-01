@@ -30,15 +30,16 @@ const Header = ({ user, userInterface, disconnect }) => (
       <Menu.Item key="/">
         <NavLink to="/">Reply'n'Guess</NavLink>
       </Menu.Item>
-      <Menu.Item key="/open_questions">
-        <NavLink to="/open_questions">Questions ouvertes</NavLink>
+      <Menu.Item key="/ranking">
+        <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>
-      <Menu.Item key="/lastest_results">
-        <NavLink to="/lastest_results">Derniers résultats</NavLink>
-      </Menu.Item>
-      <Menu.Item key="/propose_questions">
-        <NavLink to="/propose_questions">Soumettre une question</NavLink>
-      </Menu.Item>
+      {
+        userInterface.isConnected
+          ? <Menu.Item key="/propose_questions">
+            <NavLink to="/propose_questions">Soumettre une question</NavLink>
+          </Menu.Item>
+          : null
+      }
       {
         userInterface.isConnected
           ? user.roles[0] === 'ROLE_ADMIN'
@@ -48,9 +49,6 @@ const Header = ({ user, userInterface, disconnect }) => (
             : null
           : null
       }
-      <Menu.Item key="/ranking">
-        <NavLink to="/ranking">Classement</NavLink>
-      </Menu.Item>
       {
         userInterface.isConnected
           ? <Menu.Item key="/profile"><NavLink to="/profile">Profil</NavLink></Menu.Item>
