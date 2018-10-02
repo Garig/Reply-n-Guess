@@ -39,6 +39,8 @@ the tree structure of the framework is presented like this in the `/public` fold
 
 # Use in our project
 
+## General use
+
 <img src="Capture API.png">
 
 > example of an entity with custom paths in our API
@@ -92,4 +94,18 @@ this snippet will add à new entry in your Api collection of routes, but then yo
 
 
 then you are ready to use the full potential of your api, it's simple as this ;)
+
+## List of the custom routes
+
+List of the routes we created for our project :
+
+| Routes | Utility  |
+|--|--|
+| /api/answers/answeredQuestionsByUser/{userId} | return a list of answers from 1 user |
+| /api/closeDailyQuestions | close the 3 oldest questions from home |
+| /api/getAnswerAndResultDailyQuestions | calculation of the statistics for the 3 closed questions |
+| /api/getDailyQuestions | route to display the questions with open status on home |
+| /api/getProposedQuestions | get a list of user's propositions to accept or decline |
+| /api/setDailyQuestions | open 3 questions to vote on home |
+| /api/getRanking | get the statistics and ranking for users |
     
