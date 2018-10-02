@@ -21,10 +21,10 @@ import DailyQuestions from '../../containers/DailyQuestions';
  */
 class Home extends React.Component {
   componentDidMount() {
-    this.props.loadDailyQuestions();
     this.props.makeRedirect();
     this.props.loggedIn();
   }
+
   render() {
     return (
       <DailyQuestions />

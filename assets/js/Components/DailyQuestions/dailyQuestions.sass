@@ -58,10 +58,14 @@
   line-height: 100px
 
 .true .answer
-  display: none
+  opacity: 0
+  height: 0!important
+  transition-duration: 0.3s
 
 .true:hover .answer
-  display: block
+  opacity: 1
+  height: 200px!important
+  transition-duration: 0.3s
 
 .alreadyAnswered
   margin: 0!important

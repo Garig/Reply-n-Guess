@@ -20,13 +20,14 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import App from './Components/App';
 import {loggedIn} from './store/actions/userActions';
 // Actions spécifiques aux questions
-import { loadProposedQuestions } from './store/actions/questionsActions';
+import { loadProposedQuestions, loadDailyQuestions } from './store/actions/questionsActions';
 
 // Store
 import store from './store';
 import { getRanking } from './store/actions/actions';
 
 store.dispatch(loggedIn());
+store.dispatch(loadDailyQuestions());
 
 /**
  * Code
@@ -39,11 +40,11 @@ const rootComponent = (
     </Router>
   </Provider>
 );
-
+  
 // Point d'entrée
 const targetNode = document.getElementById('root');
-
+  
 // Rendu
 render(rootComponent, targetNode);
-store.dispatch(getRanking());
 store.dispatch(loadProposedQuestions());
+store.dispatch(getRanking());

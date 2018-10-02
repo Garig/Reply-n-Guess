@@ -11,6 +11,7 @@ import VoteProposedQuestions from '../Components/VoteProposedQuestions';
 
 // action
 import { setInputProposedQuestions, voteValidateProposedQuestions, voteDeclineProposedQuestions } from '../store/actions/questionsActions';
+import { loadProposedQuestions } from '../store/actions/questionsActions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -47,6 +48,9 @@ const mapDispatchToProps = dispatch => ({
     evt.preventDefault();
     const id = evt.target.name;
     dispatch(voteDeclineProposedQuestions(id));
+  },
+  loadProposedQuestions: () => {
+    dispatch(loadProposedQuestions());
   }
 });
 

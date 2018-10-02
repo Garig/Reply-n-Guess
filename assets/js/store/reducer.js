@@ -252,7 +252,7 @@ const reducer = (state = initialState, action = {}) => {
     case DISCONNECT:
       return {
         ...initialState,
-        questions: state.questions
+        ranking: state.ranking
       };
     case SET_RANKING:
       return {

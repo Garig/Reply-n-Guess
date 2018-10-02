@@ -9,7 +9,7 @@ import moment from 'moment';
  * Local import
  */
 // Actions générales
-import { displayAlert } from '../actions/actions';
+import { displayAlert, makeRedirect } from '../actions/actions';
 
 import { URL } from '../../utils/url';
 
@@ -74,6 +74,7 @@ const questionsMiddleware = store => next => (action) => {
             .then(response => {
               console.log(response.data);
               store.dispatch(displayAlert({type: 'success', message: 'Question envoyée !'}));
+              setTimeout(() => { store.dispatch(makeRedirect('/propose_questions')); }, 1000);
             })
             .catch(error => {
               console.log(error);
@@ -108,6 +109,7 @@ const questionsMiddleware = store => next => (action) => {
             .then(response => {
               console.log(response.data);
               store.dispatch(displayAlert({type: 'success', message: 'Question validée !'}));
+              setTimeout(() => { store.dispatch(makeRedirect('/vote_proposed_questions')); }, 1000);
             })
             .catch(error => {
               console.log(error);
@@ -135,6 +137,7 @@ const questionsMiddleware = store => next => (action) => {
           console.log(response.data);
           store.dispatch(displayAlert({type: 'success', message: 'Question refusée !'}));
           store.dispatch(proposedQuestionsDone(id));
+          setTimeout(() => { store.dispatch(makeRedirect('/vote_proposed_questions')); }, 1000);
         })
         .catch(error => {
           console.log(error);

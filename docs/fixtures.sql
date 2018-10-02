@@ -194,7 +194,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 --
 
 INSERT INTO `app_users` (`is_validate`, `username`, `password`, `email`, `birth_date`, `gender`, `score`, `role_id`, `departments_id`, `total_answers`, `total_accurate_answers`, `perc_accuracy_answers`) VALUES
-(1, 'Sylvère', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'sylvere@oclock.io', '01/01/1999', 'homme', 0, 1, 68, 0, 0, 0),
+(1, 'Silvere', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'silvere@oclock.io', '01/01/1999', 'homme', 0, 1, 68, 0, 0, 0),
 (1, 'Quentin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'quentin@oclock.io', '01/01/1999', 'homme', 0, 1, 20, 0, 0, 0),
 (1, 'Justin', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'justin@oclock.io', '01/01/1999', 'homme', 0, 1, 94, 0, 0, 0),
 (1, 'Christophe', '$2y$10$k5Xl4Rs0N.CXwW7IBYp8ze4IgU1GxE4NXbWxNq0Ds9S28SqzUxnCC', 'christophe@oclock.io', '01/01/1999', 'homme', 0, 1, 90, 0, 0, 0),

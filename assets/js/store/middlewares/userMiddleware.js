@@ -7,10 +7,10 @@ import axios from 'axios';
 /*
  * Local import
  */
-
 // Actions générales
 import { displayAlert, makeRedirect } from '../actions/actions';
 import { setAnswered } from '../actions/answersActions';
+import { loadDailyQuestions } from '../actions/questionsActions';
 
 // Actions spécifiques à l'user
 import {
@@ -131,6 +131,7 @@ const userMiddleware = store => next => (action) => {
       Auth.logout();
       store.dispatch(makeRedirect('/'));
       store.dispatch(updateConnection(false));
+      store.dispatch(loadDailyQuestions());
       break;
     }
 
@@ -153,7 +154,7 @@ const userMiddleware = store => next => (action) => {
         };
       }
 
-      console.log(payload);
+      // console.log(payload);
 
       Joi.validate(payload, schemaUpdateProfile, (err, value) => {
         if (err) store.dispatch(displayAlert({type: 'error', message: err.message}));

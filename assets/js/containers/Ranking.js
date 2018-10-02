@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
  * Local import
  */
 import Ranking from '../Components/Ranking';
+import { getRanking } from '../store/actions/actions';
 
 /* === State (données) ===
  * - mapStateToProps retourne un objet de props pour le composant de présentation
@@ -23,7 +24,11 @@ const mapStateToProps = state => ({
 
 /* === Actions ===
  */
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getRanking: () => {
+    dispatch(getRanking());
+  }
+});
 
 /**
  * Export

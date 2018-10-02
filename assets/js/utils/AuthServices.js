@@ -30,7 +30,7 @@ export class AuthService {
 
   // Modification des informations de l'utilisateur
   updateProfile(payload) {
-    console.log('updateProfile');
+    // console.log('updateProfile');
     let objectUser = this.getProfile();
     let id = objectUser.id;
     return new Promise((resolve, reject) =>

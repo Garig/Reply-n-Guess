@@ -32,7 +32,7 @@ const FormItem = Form.Item;
 const Informations = ({ user, ranking, userInterface, setInput, setGender, setDate, updateProfile }) => {
   let myProfil = ranking.filter(current => current.user_id === user.id);
   myProfil = {...myProfil[0]};
-  console.log(myProfil);
+  // console.log(myProfil);
   return (
     <React.Fragment>
       <div className="profil">
@@ -90,14 +90,20 @@ const Informations = ({ user, ranking, userInterface, setInput, setGender, setDa
           </FormItem>
         </Form>
         <div className="profil-ranking">
-          <p className="user-score">Score</p>
-          <span className="user-score">{myProfil.score}</span>
-          <p className="user-accuracy">Précisiton des prédictions</p>
-          <span className="user-accuracy">{myProfil.perc_accuracy_answers} %</span>
-          <div>
-            <span className="user-win">Bonne : {myProfil.total_accurate_answers}</span>
-            <span className="user-loose">Mauvaise : {myProfil.total_answers - myProfil.total_accurate_answers}</span>
-          </div>
+          {
+            ranking.length === 0
+              ? null
+              : <React.Fragment>
+                <p className="user-score">Score</p>
+                <span className="user-score">{myProfil.score}</span>
+                <p className="user-accuracy">Précisiton des prédictions</p>
+                <span className="user-accuracy">{myProfil.perc_accuracy_answers} %</span>
+                <div>
+                  <span className="user-win">Bonne : {myProfil.total_accurate_answers}</span>
+                  <span className="user-loose">Mauvaise : {myProfil.total_answers - myProfil.total_accurate_answers}</span>
+                </div>
+              </React.Fragment>
+          }
         </div>
       </div>
     </React.Fragment>

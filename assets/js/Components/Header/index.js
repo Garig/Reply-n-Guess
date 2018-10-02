@@ -25,17 +25,16 @@ const Header = ({ user, userInterface, disconnect }) => (
   <header className="headerNav">
     <Menu
       mode="horizontal"
-      selectedKeys={[window.location.pathname]}
     >
       <Menu.Item key="/">
         <NavLink to="/">Reply'n'Guess</NavLink>
       </Menu.Item>
-      <Menu.Item key="/ranking">
+      <Menu.Item key="ranking">
         <NavLink to="/ranking">Classement</NavLink>
       </Menu.Item>
       {
         userInterface.isConnected
-          ? <Menu.Item key="/propose_questions">
+          ? <Menu.Item key="propose_questions">
             <NavLink to="/propose_questions">Soumettre une question</NavLink>
           </Menu.Item>
           : null
@@ -43,7 +42,7 @@ const Header = ({ user, userInterface, disconnect }) => (
       {
         userInterface.isConnected
           ? user.roles[0] === 'ROLE_ADMIN'
-            ? <Menu.Item key="/vote_proposed_questions" >
+            ? <Menu.Item key="vote_proposed_questions">
               <NavLink to="/vote_proposed_questions">Voter pour une question</NavLink>
             </Menu.Item>
             : null
@@ -51,13 +50,13 @@ const Header = ({ user, userInterface, disconnect }) => (
       }
       {
         userInterface.isConnected
-          ? <Menu.Item key="/profile"><NavLink to="/profile">Profil</NavLink></Menu.Item>
-          : <Menu.Item key="/login"><NavLink to="/login">Connexion</NavLink></Menu.Item>
+          ? <Menu.Item key="profile"><NavLink to="/profile">Profil</NavLink></Menu.Item>
+          : <Menu.Item key="login"><NavLink to="/login">Connexion</NavLink></Menu.Item>
       }
       {
         userInterface.isConnected
-          ? <Menu.Item key="/logout"><Icon type="poweroff" theme="outlined" onClick={disconnect} /></Menu.Item>
-          : <Menu.Item key="/signup"><NavLink to="/signup">Inscription</NavLink></Menu.Item>
+          ? <Menu.Item key="logout" onClick={disconnect} ><Icon type="poweroff" theme="outlined" /></Menu.Item>
+          : <Menu.Item key="signup"><NavLink to="/signup">Inscription</NavLink></Menu.Item>
       }
     </Menu>
   </header>

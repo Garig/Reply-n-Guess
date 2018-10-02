@@ -24,51 +24,59 @@ const FormItem = Form.Item;
 /**
  * Code
  */
-const VoteProposedQuestions = ({ proposedQuestions, userInterface, voteValidateProposedQuestions, voteDeclineProposedQuestions }) => (
-  <div>
-    {
-      userInterface.alert.display
-        ? <Alert message={userInterface.alert.message} type={userInterface.alert.type} showIcon />
-        : null
-    }
-    {
-      Object.keys(proposedQuestions).map((valueKey, index) => {
-        let current = proposedQuestions[valueKey];
-        return (
-          <Card key={current.id} >
-            <Form className="proposedQuestions">
-              <FormItem>
-                <Input className="title"
-                  suffix={<Icon type="question" theme="outlined" />}
-                  id={current.id} name="title" type="text"
-                  value={current.title} onChange={() => {}}
-                  autoComplete="off" placeholder="Intitulé de la question" />
-              </FormItem>
-              <FormItem>
-                <Input className="prop1"
-                  id={current.id} name="prop_1" type="text"
-                  value={current.prop_1} onChange={() => {}}
-                  autoComplete="off" placeholder="Proposition 1" />
-                <Input className="prop2"
-                  id={current.id} name="prop_2" type="text"
-                  value={current.prop_2} onChange={() => {}}
-                  autoComplete="off" placeholder="Proposition 2" />
-              </FormItem>
-              <FormItem>
-                <Button type="primary" htmlType="submit" className="validate-form-button" name={current.id} onClick={voteValidateProposedQuestions}>
-                  Modifier / Valider la question
-                </Button>
-                <Button type="primary" htmlType="submit" className="decline-form-button" name={current.id} onClick={voteDeclineProposedQuestions}>
-                  Refuser la question
-                </Button>
-              </FormItem>
-            </Form>
-          </Card>
-        );
-      })
-    }
-  </div>
-);
+class VoteProposedQuestions extends React.Component {
+  componentDidMount() {
+    this.props.loadProposedQuestions();
+  }
+
+  render() {
+    return (
+      <div>
+        {
+          this.props.userInterface.alert.display
+            ? <Alert className="alertVoted" message={this.props.userInterface.alert.message} type={this.props.userInterface.alert.type} showIcon />
+            : null
+        }
+        {
+          Object.keys(this.props.proposedQuestions).map((valueKey, index) => {
+            let current = this.props.proposedQuestions[valueKey];
+            return (
+              <Card key={current.id} >
+                <Form className="proposedQuestions">
+                  <FormItem>
+                    <Input className="title"
+                      suffix={<Icon type="question" theme="outlined" />}
+                      id={current.id} name="title" type="text"
+                      value={current.title} onChange={() => {}}
+                      autoComplete="off" placeholder="Intitulé de la question" />
+                  </FormItem>
+                  <FormItem>
+                    <Input className="prop1"
+                      id={current.id} name="prop_1" type="text"
+                      value={current.prop_1} onChange={() => {}}
+                      autoComplete="off" placeholder="Proposition 1" />
+                    <Input className="prop2"
+                      id={current.id} name="prop_2" type="text"
+                      value={current.prop_2} onChange={() => {}}
+                      autoComplete="off" placeholder="Proposition 2" />
+                  </FormItem>
+                  <FormItem>
+                    <Button type="primary" htmlType="submit" className="validate-form-button" name={current.id} onClick={this.props.voteValidateProposedQuestions}>
+              Modifier / Valider la question
+                    </Button>
+                    <Button type="primary" htmlType="submit" className="decline-form-button" name={current.id} onClick={this.props.voteDeclineProposedQuestions}>
+              Refuser la question
+                    </Button>
+                  </FormItem>
+                </Form>
+              </Card>
+            );
+          })
+        }
+      </div>
+    );
+  }
+}
 
 /**
  * PropTypes
@@ -80,7 +88,7 @@ VoteProposedQuestions.propTypes = {
   setInputProposedQuestions: setInputProposedQuestionsType.isRequired
 };
 
-/**
+/**this.props.
  * Export
  */
 export default VoteProposedQuestions;

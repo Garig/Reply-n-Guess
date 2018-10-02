@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
  */
 import AllQuestionsAnswered from '../../Components/Profile/AllQuestionsAnswered';
 import { displayModal } from '../../store/actions/actions';
+import { loggedIn } from '../../store/actions/userActions';
 import { getResult, setResult } from '../../store/actions/answersActions';
 
 /* === State (données) ===
@@ -36,6 +37,9 @@ const mapDispatchToProps = dispatch => ({
   },
   emptyModal: () => {
     dispatch(setResult({}));
+  },
+  loggedIn: () => {
+    dispatch(loggedIn());
   }
 });
 

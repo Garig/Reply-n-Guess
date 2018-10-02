@@ -71,8 +71,8 @@ const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignu
       </FormItem>
       <FormItem>
         <RadioGroup onChange={setGender} value={user.gender}>
-          <Radio defaultChecked value={'homme'}>Homme</Radio>
-          <Radio value={'femme'}>Femme</Radio>
+          <Radio className="genderRadio" defaultChecked value={'homme'}>Homme</Radio>
+          <Radio className="genderRadio" value={'femme'}>Femme</Radio>
         </RadioGroup>
       </FormItem>
       <FormItem>
