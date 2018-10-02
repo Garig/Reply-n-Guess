@@ -43,28 +43,28 @@ const Signup = ({ user, userInterface, setInput, setGender, setDate, submitSignu
       }
       <FormItem>
         <Input
-          prefix={<Icon type="user" />}
+          suffix={<Icon type="user" />}
           id="username" name="username" type="text"
           value={user.username} onChange={setInput}
           autoComplete="off" placeholder="Votre pseudo"/>
       </FormItem>
       <FormItem>
         <Input
-          prefix={<Icon type="lock" />}
+          suffix={<Icon type="lock" />}
           id="password" name="password" type="password"
           value={user.password} onChange={setInput}
           autoComplete="off" placeholder="Votre mot de passe"/>
       </FormItem>
       <FormItem>
         <Input
-          prefix={<Icon type="lock" />}
+          suffix={<Icon type="lock" />}
           id="passwordConfirm" name="passwordConfirm" type="password"
           value={user.passwordConfirm} onChange={setInput}
           autoComplete="off" placeholder="Confirmer votre mot de passe"/>
       </FormItem>
       <FormItem>
         <Input
-          prefix={<Icon type="mail" />}
+          suffix={<Icon type="mail" />}
           id="email" name="email" type="text"
           value={user.email} onChange={setInput}
           autoComplete="off" placeholder="Votre email"/>

@@ -37,7 +37,7 @@ const Login = ({ user, userInterface, setInput, submitLogin }) => (
       }
       <FormItem>
         <Input
-          prefix={<Icon type="user" />}
+          suffix={<Icon type="user" />}
           className="signup-card-input"
           id="username" name="username" type="text"
           value={user.username} onChange={setInput}
@@ -45,7 +45,7 @@ const Login = ({ user, userInterface, setInput, submitLogin }) => (
       </FormItem>
       <FormItem>
         <Input
-          prefix={<Icon type="lock" />}
+          suffix={<Icon type="lock" />}
           className="signup-card-input"
           id="password" name="password" type="password"
           value={user.password} onChange={setInput}
