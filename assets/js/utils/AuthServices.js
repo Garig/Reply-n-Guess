@@ -7,7 +7,8 @@ import decode from 'jwt-decode';
 /*
  * Local import
  */
-import { URL } from '../store/middlewares/middleware';
+// adress
+import { URL } from './url';
 
 /*
  * Code

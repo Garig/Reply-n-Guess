@@ -10,7 +10,8 @@ import moment from 'moment';
  */
 // Actions générales
 import { displayAlert } from '../actions/actions';
-import { URL } from './middleware';
+
+import { URL } from '../../utils/url';
 
 // Actions spécifiques aux questions
 import {

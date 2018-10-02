@@ -6,7 +6,9 @@ import axios from 'axios';
 /**
  * Local import
  */
-import { URL } from './middleware';
+// adresse
+import { URL } from '../../utils/url';
+
 import {
   SEND_ANSWER,
   setAnswered,
